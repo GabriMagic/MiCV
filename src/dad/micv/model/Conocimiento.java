@@ -1,0 +1,68 @@
+package dad.micv.model;
+
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlSeeAlso;
+import javax.xml.bind.annotation.XmlType;
+
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+
+@XmlType
+@XmlSeeAlso({ Idioma.class, Nivel.class })
+
+public class Conocimiento extends Idioma{
+
+	private StringProperty denominacion;
+	private ObjectProperty<Idioma> idioma;
+	private ObjectProperty<Nivel> nivel;
+
+	public Conocimiento() {
+
+		denominacion = new SimpleStringProperty(this, "denominacion");
+		idioma = new SimpleObjectProperty<>(this, "idioma");
+		nivel = new SimpleObjectProperty<>(this, "idioma");
+
+	}
+
+	public StringProperty denominacionProperty() {
+		return this.denominacion;
+	}
+
+	@XmlAttribute
+	public String getDenominacion() {
+		return this.denominacionProperty().get();
+	}
+
+	public void setDenominacion(final String denominacion) {
+		this.denominacionProperty().set(denominacion);
+	}
+
+	public ObjectProperty<Idioma> idiomaProperty() {
+		return this.idioma;
+	}
+
+	@XmlAttribute
+	public Idioma getIdioma() {
+		return this.idiomaProperty().get();
+	}
+
+	public void setIdioma(final Idioma idioma) {
+		this.idiomaProperty().set(idioma);
+	}
+
+	public ObjectProperty<Nivel> nivelProperty() {
+		return this.nivel;
+	}
+
+	@XmlAttribute
+	public Nivel getNivel() {
+		return this.nivelProperty().get();
+	}
+
+	public void setNivel(final Nivel nivel) {
+		this.nivelProperty().set(nivel);
+	}
+
+}
