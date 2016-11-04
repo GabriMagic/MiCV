@@ -13,15 +13,26 @@ public class MainController {
 	MainView mainView;
 	PersonalController personalController;
 	ContactoController contactoController;
-
+	FormacionController formacionController;
+	ExperienciaController experienciaController;
+	ConocimientosController conocimientosController;
+	
 	public MainController() {
+		
 		mainView = new MainView();
+		
 		personalController = new PersonalController();
 		contactoController = new ContactoController();
-
+		formacionController = new FormacionController();
+		experienciaController = new ExperienciaController();
+		conocimientosController = new ConocimientosController();
+		
 		mainView.getPersonalTab().setContent(personalController.getView());
 		mainView.getContactoTab().setContent(contactoController.getView());
-
+		mainView.getFormaciónTab().setContent(formacionController.getView());
+		mainView.getExperienciaTab().setContent(experienciaController.getView());
+		mainView.getConocimientosTab().setContent(conocimientosController.getView());
+		
 		mainView.getSalir().setOnAction(e -> onSalirMenuItem());
 
 	}
