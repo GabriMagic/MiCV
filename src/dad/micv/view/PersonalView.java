@@ -19,11 +19,11 @@ public class PersonalView extends GridPane {
 			paisLabel, nacionalidadLabel;
 
 	TextArea direccionText;
-	ListView<String> nacionalidadText;
 	TextField dniText, nombreText, apellidosText, codPostalText, localidadText;
 	DatePicker fechaNacimiento;
-	ComboBox<String> paises;
 	Button masButton, menosButton;
+	ComboBox<String> paises;
+	ListView<String> nacionalidadText;
 
 	public PersonalView() {
 
@@ -47,6 +47,7 @@ public class PersonalView extends GridPane {
 		nombreText = new TextField();
 		apellidosText = new TextField();
 		codPostalText = new TextField();
+		codPostalText.setMaxWidth(70);
 		localidadText = new TextField();
 
 		fechaNacimiento = new DatePicker();
@@ -58,8 +59,6 @@ public class PersonalView extends GridPane {
 		masButton.setMaxWidth(Double.MAX_VALUE);
 		menosButton = new Button("-");
 		menosButton.setMaxWidth(Double.MAX_VALUE);
-
-//		setGridLinesVisible(true);
 
 		add(dniLabel, 0, 0);
 		add(dniText, 1, 0);

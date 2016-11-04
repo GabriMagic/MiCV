@@ -7,6 +7,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.NoSuchElementException;
 import java.util.Optional;
+
+import dad.micv.model.Personal;
 import dad.micv.view.PersonalView;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -16,6 +18,8 @@ import javafx.scene.control.Alert.AlertType;
 
 public class PersonalController {
 
+	private Personal personal;
+	
 	private PersonalView view;
 	private ChoiceDialog<String> nacionalidadChoice;
 	private ObservableList<String> listaNacionalidades;
@@ -25,10 +29,25 @@ public class PersonalController {
 		view = new PersonalView();
 		listaNacionalidades = FXCollections.observableArrayList();
 
+		personal = new Personal();
+		
 		view.getMasButton().setOnAction(e -> onMasButtonAction());
 		view.getMenosButton().setOnAction(e -> onMenosButtonAction());
 
+		bind(personal);
 		cargarComboBox();
+	}
+	
+	private void bind(Personal personal) {
+		personal.dniProperty().bind(view.getDniText().textProperty());
+		personal.nombreProperty().bind(view.getNombreText().textProperty());
+		personal.apellidosProperty().bind(view.getApellidosText().textProperty());
+		personal.fechaNacimientoProperty().bind(view.getFechaNacimiento().valueProperty());
+		personal.codigoPostalProperty().bind(view.getCodPostalText().textProperty());
+		personal.localidadProperty().bind(view.getLocalidadText().textProperty());
+		personal.paisProperty().bind(view.getPaises().valueProperty());
+		// Bindear una ListProperty
+//		personal.nacionalidadesProperty().bind(view.getNacionalidadText());
 	}
 
 	private void onMenosButtonAction() {

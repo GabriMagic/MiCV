@@ -25,6 +25,7 @@ public class Personal {
 	private StringProperty codigoPostal;
 	private StringProperty localidad;
 	private StringProperty pais;
+	private StringProperty dni;
 	private ObjectProperty<LocalDate> fechaNacimiento;
 	private ListProperty<Nacionalidad> nacionalidades;
 
@@ -36,6 +37,7 @@ public class Personal {
 		codigoPostal = new SimpleStringProperty(this, "codigoPostal");
 		localidad = new SimpleStringProperty(this, "localidad");
 		pais = new SimpleStringProperty(this, "pais");
+		dni = new SimpleStringProperty(this, "dni");
 		fechaNacimiento = new SimpleObjectProperty<LocalDate>(this, "fechaNacimiento");
 		nacionalidades = new SimpleListProperty<Nacionalidad>(this, "nacionalidades",
 				FXCollections.observableArrayList());
@@ -156,6 +158,18 @@ public class Personal {
 
 	public void setPais(final String pais) {
 		this.paisProperty().set(pais);
+	}
+
+	public StringProperty dniProperty() {
+		return this.dni;
+	}
+
+	public String getDni() {
+		return this.dniProperty().get();
+	}
+
+	public void setDni(final String dni) {
+		this.dniProperty().set(dni);
 	}
 
 }
