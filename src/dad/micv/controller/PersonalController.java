@@ -25,8 +25,8 @@ public class PersonalController {
 		view = new PersonalView();
 		listaNacionalidades = FXCollections.observableArrayList();
 
-		view.getMasButton().setOnAction((e) -> onMasButtonAction());
-		view.getMenosButton().setOnAction((e) -> onMenosButtonAction());
+		view.getMasButton().setOnAction(e -> onMasButtonAction());
+		view.getMenosButton().setOnAction(e -> onMenosButtonAction());
 
 		cargarComboBox();
 	}

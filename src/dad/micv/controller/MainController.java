@@ -18,11 +18,11 @@ public class MainController {
 		mainView = new MainView();
 		personalController = new PersonalController();
 		contactoController = new ContactoController();
-		
+
 		mainView.getPersonalTab().setContent(personalController.getView());
 		mainView.getContactoTab().setContent(contactoController.getView());
 
-		mainView.getSalir().setOnAction((e) -> onSalirMenuItem());
+		mainView.getSalir().setOnAction(e -> onSalirMenuItem());
 
 	}
 

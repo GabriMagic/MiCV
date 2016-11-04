@@ -111,4 +111,80 @@ public class ContactoView extends SplitPane {
 
 		setOrientation(Orientation.VERTICAL);
 	}
+
+	public TableView<Telefono> getTelefonosTable() {
+		return telefonosTable;
+	}
+
+	public TableView<Email> getEmailsTable() {
+		return emailsTable;
+	}
+
+	public TableView<Web> getWebsTable() {
+		return websTable;
+	}
+
+	public TableColumn<Telefono, String> getTelefonoColumn() {
+		return telefonoColumn;
+	}
+
+	public TableColumn<Telefono, TipoTelefono> getTipoTelefonoColumn() {
+		return tipoTelefonoColumn;
+	}
+
+	public TableColumn<Email, String> getEmailColumn() {
+		return emailColumn;
+	}
+
+	public TableColumn<Web, String> getWebColumn() {
+		return webColumn;
+	}
+
+	public TitledPane getTelefonosPane() {
+		return telefonosPane;
+	}
+
+	public TitledPane getEmailsPane() {
+		return emailsPane;
+	}
+
+	public TitledPane getWebsPane() {
+		return websPane;
+	}
+
+	public GridPane getTelefonoINPane() {
+		return telefonoINPane;
+	}
+
+	public GridPane getEmailsINPane() {
+		return emailsINPane;
+	}
+
+	public GridPane getWebsINPane() {
+		return websINPane;
+	}
+
+	public Button getTelefonoAddButton() {
+		return telefonoAddButton;
+	}
+
+	public Button getTelefonoDelButotn() {
+		return telefonoDelButotn;
+	}
+
+	public Button getEmailsAddButton() {
+		return emailsAddButton;
+	}
+
+	public Button getEmailsDelButotn() {
+		return emailsDelButotn;
+	}
+
+	public Button getWebsAddButton() {
+		return websAddButton;
+	}
+
+	public Button getWebsDelButotn() {
+		return websDelButotn;
+	}
 }
