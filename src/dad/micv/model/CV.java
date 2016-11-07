@@ -33,6 +33,19 @@ public class CV {
 		habilidad = new SimpleListProperty<>(this, "habilidad", FXCollections.observableArrayList());
 	}
 
+	public void save(File file) throws Exception {
+		JAXBContext context = JAXBContext.newInstance(CV.class);
+		Marshaller marshaller = context.createMarshaller();
+		marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+		marshaller.marshal(this, file);
+	}
+
+	public static CV read(File file) throws JAXBException {
+		JAXBContext context = JAXBContext.newInstance(CV.class);
+		Unmarshaller unmarshaller = context.createUnmarshaller();
+		return (CV) unmarshaller.unmarshal(file);
+	}
+
 	public ObjectProperty<Personal> personalProperty() {
 		return this.personal;
 	}
@@ -57,19 +70,6 @@ public class CV {
 
 	public void setContacto(final Contacto contacto) {
 		this.contactoProperty().set(contacto);
-	}
-
-	public void save(File file) throws Exception {
-		JAXBContext context = JAXBContext.newInstance(CV.class);
-		Marshaller marshaller = context.createMarshaller();
-		marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-		marshaller.marshal(this, file);
-	}
-
-	public static CV read(File file) throws JAXBException {
-		JAXBContext context = JAXBContext.newInstance(CV.class);
-		Unmarshaller unmarshaller = context.createUnmarshaller();
-		return (CV) unmarshaller.unmarshal(file);
 	}
 
 	public ListProperty<Titulo> tituloProperty() {

@@ -86,20 +86,19 @@ public class PersonalView extends GridPane {
 		col1.setPrefWidth(120);
 
 		ColumnConstraints col2 = new ColumnConstraints();
-		
+		col2.setHgrow(Priority.ALWAYS);
+
 		ColumnConstraints col3 = new ColumnConstraints();
 		col3.setHgrow(Priority.NEVER);
-		
 
-		getColumnConstraints().addAll(col1, col2,col3);
+		getColumnConstraints().addAll(col1, col2, col3);
 
 		setColumnSpan(dniText, 2);
 		setColumnSpan(nombreText, 2);
 		setColumnSpan(apellidosText, 2);
 		setColumnSpan(direccionText, 2);
 		setColumnSpan(localidadText, 2);
-		
-		
+
 		setPadding(new Insets(5));
 		setVgap(5);
 		setHgap(5);
