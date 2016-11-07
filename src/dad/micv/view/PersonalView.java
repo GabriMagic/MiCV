@@ -11,6 +11,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 
 public class PersonalView extends GridPane {
@@ -82,12 +83,23 @@ public class PersonalView extends GridPane {
 
 		ColumnConstraints col1 = new ColumnConstraints();
 		col1.setHalignment(HPos.RIGHT);
-
 		col1.setPrefWidth(120);
+
 		ColumnConstraints col2 = new ColumnConstraints();
+		
+		ColumnConstraints col3 = new ColumnConstraints();
+		col3.setHgrow(Priority.NEVER);
+		
 
-		getColumnConstraints().addAll(col1, col2);
+		getColumnConstraints().addAll(col1, col2,col3);
 
+		setColumnSpan(dniText, 2);
+		setColumnSpan(nombreText, 2);
+		setColumnSpan(apellidosText, 2);
+		setColumnSpan(direccionText, 2);
+		setColumnSpan(localidadText, 2);
+		
+		
 		setPadding(new Insets(5));
 		setVgap(5);
 		setHgap(5);

@@ -103,7 +103,8 @@ public class PersonalController {
 				nacionalidadExist.setHeaderText(null);
 				nacionalidadExist.setTitle("Nacionalidad añadida");
 				nacionalidadExist.setContentText("Ya se ha añadido esa nacionalidad.");
-				nacionalidadExist.show();
+				nacionalidadExist.showAndWait();
+				onMasButtonAction();
 			}
 
 		} catch (NoSuchElementException e) {
@@ -111,7 +112,8 @@ public class PersonalController {
 			errorNacionalidad.setHeaderText("Eliga una nacionalidad válida");
 			errorNacionalidad.setTitle("Error de nacionalidad");
 			errorNacionalidad.setContentText("La nacionalidad que ha seleccionado no es correcta");
-			errorNacionalidad.show();
+			errorNacionalidad.showAndWait();
+			onMasButtonAction();
 		}
 
 		view.getNacionalidadText().setItems(listaNacionalidades);
