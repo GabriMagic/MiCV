@@ -41,7 +41,6 @@ public class FormacionController {
 		formacionAdd.getIcons().add(new Image("cv64x64.png"));
 		formacionAdd.initModality(Modality.APPLICATION_MODAL);
 		formacionAdd.setTitle("Añadir Título");
-
 		formacionAdd.setScene(formScene);
 
 		view.getFormacionTable().setItems(titulos);
@@ -65,9 +64,10 @@ public class FormacionController {
 			titulo.setDenominacion(editVista.getDenominacionText().getText());
 			titulo.setOrganizador(editVista.getOrganizadorText().getText());
 
-			titulos.add(titulos.size(), titulo);
+			titulos.add(titulo);
 
 			vaciarVentana();
+
 			formacionAdd.close();
 
 		} else if (editVista.getDenominacionText().getText().isEmpty()) {
