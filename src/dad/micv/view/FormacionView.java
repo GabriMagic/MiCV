@@ -21,10 +21,18 @@ public class FormacionView extends GridPane {
 	public FormacionView() {
 
 		formacionTable = new TableView<>();
+
 		desdeColumn = new TableColumn<>("Desde");
+		desdeColumn.setPrefWidth(100);
+
 		hastaColumn = new TableColumn<>("Hasta");
+		hastaColumn.setPrefWidth(100);
+
 		denominacionColumn = new TableColumn<>("Denominacion");
+		denominacionColumn.setPrefWidth(150);
+
 		organizadorColumn = new TableColumn<>("Organizador");
+		organizadorColumn.setPrefWidth(150);
 
 		formacionTable.getColumns().add(desdeColumn);
 		formacionTable.getColumns().add(hastaColumn);

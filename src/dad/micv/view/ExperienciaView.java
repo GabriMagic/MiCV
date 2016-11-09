@@ -21,11 +21,19 @@ public class ExperienciaView extends GridPane {
 	public ExperienciaView() {
 
 		experienciaTable = new TableView<>();
+		
 		desdeColumn = new TableColumn<>("Desde");
+		desdeColumn.setPrefWidth(100);
+		
 		hastaColumn = new TableColumn<>("Hasta");
+		hastaColumn.setPrefWidth(100);
+		
 		denominacionColumn = new TableColumn<>("Denominacion");
+		denominacionColumn.setPrefWidth(150);
+		
 		empleadorColumn = new TableColumn<>("Empleador");
-
+		empleadorColumn.setPrefWidth(150);
+		
 		experienciaTable.getColumns().add(desdeColumn);
 		experienciaTable.getColumns().add(hastaColumn);
 		experienciaTable.getColumns().add(denominacionColumn);

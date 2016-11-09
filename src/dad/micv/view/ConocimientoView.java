@@ -21,8 +21,11 @@ public class ConocimientoView extends GridPane {
 	public ConocimientoView() {
 
 		conocimientoTable = new TableView<>();
+
 		nivelColumn = new TableColumn<>("Nivel");
+
 		denominacionColumn = new TableColumn<>("Denominacion");
+		denominacionColumn.setPrefWidth(150);
 
 		conocimientoTable.getColumns().add(denominacionColumn);
 		conocimientoTable.getColumns().add(nivelColumn);
