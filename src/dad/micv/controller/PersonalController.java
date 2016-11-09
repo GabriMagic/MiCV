@@ -7,11 +7,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.NoSuchElementException;
 import java.util.Optional;
-
 import dad.micv.model.Nacionalidad;
 import dad.micv.model.Personal;
-import dad.micv.model.Titulo;
 import dad.micv.view.PersonalView;
+import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
@@ -21,30 +20,24 @@ import javafx.scene.control.Alert.AlertType;
 public class PersonalController {
 
 	private Personal personal;
-	private Nacionalidad nacionalidad;
 	private PersonalView view;
 	private ChoiceDialog<String> nacionalidadChoice;
-	private ObservableList<Nacionalidad> listaNacionalidades;
 
 	public PersonalController() {
 
 		view = new PersonalView();
-		listaNacionalidades = FXCollections.observableArrayList();
-
-		nacionalidad = new Nacionalidad();
 
 		personal = new Personal();
 
 		view.getMasButton().setOnAction(e -> onMasButtonAction());
 		view.getMenosButton().setOnAction(e -> onMenosButtonAction());
 
-		view.getNacionalidadList().itemsProperty().bind(personal.nacionalidadesProperty());
-
 		bind(personal);
 		cargarComboBox();
 	}
 
 	private void bind(Personal personal) {
+
 		personal.dniProperty().bind(view.getDniText().textProperty());
 		personal.nombreProperty().bind(view.getNombreText().textProperty());
 		personal.apellidosProperty().bind(view.getApellidosText().textProperty());
@@ -52,27 +45,27 @@ public class PersonalController {
 		personal.codigoPostalProperty().bind(view.getCodPostalText().textProperty());
 		personal.localidadProperty().bind(view.getLocalidadText().textProperty());
 		personal.paisProperty().bind(view.getPaises().valueProperty());
+		Bindings.bindBidirectional(personal.nacionalidadesProperty(), view.getNacionalidadList().itemsProperty());
 
-		// Bindear una ListProperty
-		// personal.nacionalidadesProperty().bind(listaNacionalidades);
 	}
 
 	private void onMenosButtonAction() {
-		Nacionalidad aux = view.getNacionalidadList().getSelectionModel().getSelectedItem();
-		listaNacionalidades.remove(aux);
+		Nacionalidad nacAux = view.getNacionalidadList().getSelectionModel().getSelectedItem();
+		personal.getNacionalidades().remove(nacAux);
 	}
 
 	private boolean comprobarNacionalidad(Nacionalidad nacionalidad) {
-
+		System.out.println("UIGAFUIGDUFG");
 		boolean exit = false;
-		//
-		// for (int i = 0; i < listaNacionalidades.size(); i++) {
-		// if (listaNacionalidades.get(i) == nacionalidad) {
-		// return true;
-		// } else {
-		// exit = false;
-		// }
-		// }
+
+		for (int i = 0; i < personal.getNacionalidades().size(); i++) {
+			if (personal.getNacionalidades().get(i) == nacionalidad) {
+
+				return true;
+			} else {
+				exit = false;
+			}
+		}
 		return exit;
 
 	}
@@ -107,11 +100,13 @@ public class PersonalController {
 			Nacionalidad aux = new Nacionalidad();
 			aux.setDenominacion(nac.get());
 
+			comprobarNacionalidad(aux);
+
 			if (!comprobarNacionalidad(aux)) {
 
 				Nacionalidad nacionalidad = new Nacionalidad();
 				nacionalidad.setDenominacion(nac.get());
-				listaNacionalidades.add(nacionalidad);
+				personal.getNacionalidades().add(nacionalidad);
 			} else {
 				Alert nacionalidadExist = new Alert(AlertType.ERROR);
 				nacionalidadExist.setHeaderText(null);
