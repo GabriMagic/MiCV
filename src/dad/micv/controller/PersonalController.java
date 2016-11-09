@@ -10,6 +10,7 @@ import java.util.Optional;
 
 import dad.micv.model.Nacionalidad;
 import dad.micv.model.Personal;
+import dad.micv.model.Titulo;
 import dad.micv.view.PersonalView;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -20,7 +21,7 @@ import javafx.scene.control.Alert.AlertType;
 public class PersonalController {
 
 	private Personal personal;
-
+	private Nacionalidad nacionalidad;
 	private PersonalView view;
 	private ChoiceDialog<String> nacionalidadChoice;
 	private ObservableList<Nacionalidad> listaNacionalidades;
@@ -30,13 +31,15 @@ public class PersonalController {
 		view = new PersonalView();
 		listaNacionalidades = FXCollections.observableArrayList();
 
+		nacionalidad = new Nacionalidad();
+
 		personal = new Personal();
 
 		view.getMasButton().setOnAction(e -> onMasButtonAction());
 		view.getMenosButton().setOnAction(e -> onMenosButtonAction());
 
-		view.getNacionalidadList().setItems(listaNacionalidades);
-		
+		view.getNacionalidadList().itemsProperty().bind(personal.nacionalidadesProperty());
+
 		bind(personal);
 		cargarComboBox();
 	}
@@ -62,14 +65,14 @@ public class PersonalController {
 	private boolean comprobarNacionalidad(Nacionalidad nacionalidad) {
 
 		boolean exit = false;
-//
-//		for (int i = 0; i < listaNacionalidades.size(); i++) {
-//			if (listaNacionalidades.get(i) == nacionalidad) {
-//				return true;
-//			} else {
-//				exit = false;
-//			}
-//		}
+		//
+		// for (int i = 0; i < listaNacionalidades.size(); i++) {
+		// if (listaNacionalidades.get(i) == nacionalidad) {
+		// return true;
+		// } else {
+		// exit = false;
+		// }
+		// }
 		return exit;
 
 	}
@@ -103,7 +106,7 @@ public class PersonalController {
 			Optional<String> nac = nacionalidadChoice.showAndWait();
 			Nacionalidad aux = new Nacionalidad();
 			aux.setDenominacion(nac.get());
-			
+
 			if (!comprobarNacionalidad(aux)) {
 
 				Nacionalidad nacionalidad = new Nacionalidad();
@@ -125,7 +128,6 @@ public class PersonalController {
 			errorNacionalidad.showAndWait();
 		}
 
-		
 	}
 
 	private void cargarComboBox() {
