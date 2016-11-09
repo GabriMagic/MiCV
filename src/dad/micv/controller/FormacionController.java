@@ -1,5 +1,6 @@
 package dad.micv.controller;
 
+import java.time.Period;
 import dad.micv.main.MiCvAPP;
 import dad.micv.model.Titulo;
 import dad.micv.view.FormacionADDView;
@@ -8,6 +9,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -52,19 +55,33 @@ public class FormacionController {
 
 	private void onConfirmAction(ActionEvent e) {
 
-		titulo.setDesde(editVista.getDesde().getValue());
-		titulo.setHasta(editVista.getHasta().getValue());
-		titulo.setDenominacion(editVista.getDenominacionText().getText());
-		titulo.setOrganizador(editVista.getOrganizadorText().getText());
+		Alert errorAlert = new Alert(AlertType.ERROR);
+		errorAlert.setHeaderText(null);
 
-		titulos.add(titulo);
-		view.getFormacionTable().setItems(titulos);
-		formacionAdd.close();
+		if (Period.between(editVista.getDesde().getValue(), editVista.getHasta().getValue()).getDays() > 0) {
+			titulo.setDesde(editVista.getDesde().getValue());
+			titulo.setHasta(editVista.getHasta().getValue());
+			titulo.setDenominacion(editVista.getDenominacionText().getText());
+			titulo.setOrganizador(editVista.getOrganizadorText().getText());
 
-		editVista.getDesde().setValue(null);
-		editVista.getHasta().setValue(null);
-		editVista.getDenominacionText().setText(null);
-		editVista.getOrganizadorText().setText(null);
+			titulos.add(titulo);
+			view.getFormacionTable().setItems(titulos);
+			formacionAdd.close();
+
+			editVista.getDesde().setValue(null);
+			editVista.getHasta().setValue(null);
+			editVista.getDenominacionText().setText(null);
+			editVista.getOrganizadorText().setText(null);
+
+		} else if (editVista.getDenominacionText().getText().isEmpty()) {
+			errorAlert.setTitle("Campos vacíos");
+			errorAlert.setContentText("Rellene todos los campos");
+			errorAlert.show();
+		} else {
+			errorAlert.setTitle("Fecha Incorrecta");
+			errorAlert.setContentText("Las fechas deben ser correctas.");
+			errorAlert.show();
+		}
 
 	}
 
