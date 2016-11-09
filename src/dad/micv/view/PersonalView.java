@@ -1,5 +1,6 @@
 package dad.micv.view;
 
+import dad.micv.model.Nacionalidad;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
@@ -16,15 +17,14 @@ import javafx.scene.layout.VBox;
 
 public class PersonalView extends GridPane {
 
-	Label dniLabel, nombreLabel, apellidosLabel, fechaNacLabel, direccionLabel, codPostalLabel, localidadLabel,
+	private Label dniLabel, nombreLabel, apellidosLabel, fechaNacLabel, direccionLabel, codPostalLabel, localidadLabel,
 			paisLabel, nacionalidadLabel;
-
-	TextArea direccionText;
-	TextField dniText, nombreText, apellidosText, codPostalText, localidadText;
-	DatePicker fechaNacimiento;
-	Button masButton, menosButton;
-	ComboBox<String> paises;
-	ListView<String> nacionalidadText;
+	private TextArea direccionText;
+	private TextField dniText, nombreText, apellidosText, codPostalText, localidadText;
+	private DatePicker fechaNacimiento;
+	private Button masButton, menosButton;
+	private ComboBox<String> paises;
+	private ListView<Nacionalidad> nacionalidadList;
 
 	public PersonalView() {
 
@@ -41,8 +41,8 @@ public class PersonalView extends GridPane {
 		direccionText = new TextArea();
 		direccionText.setMaxHeight(50);
 
-		nacionalidadText = new ListView<>();
-		nacionalidadText.setMaxHeight(150);
+		nacionalidadList = new ListView<Nacionalidad>();
+		nacionalidadList.setMaxHeight(150);
 
 		dniText = new TextField();
 		nombreText = new TextField();
@@ -78,7 +78,7 @@ public class PersonalView extends GridPane {
 		add(paisLabel, 0, 7);
 		add(paises, 1, 7);
 		add(nacionalidadLabel, 0, 8);
-		add(nacionalidadText, 1, 8);
+		add(nacionalidadList, 1, 8);
 		add(new VBox(5, masButton, menosButton), 2, 8);
 
 		ColumnConstraints col1 = new ColumnConstraints();
@@ -153,8 +153,8 @@ public class PersonalView extends GridPane {
 		return direccionText;
 	}
 
-	public ListView<String> getNacionalidadText() {
-		return nacionalidadText;
+	public ListView<Nacionalidad> getNacionalidadList() {
+		return nacionalidadList;
 	}
 
 	public TextField getDniText() {
