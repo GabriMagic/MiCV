@@ -55,17 +55,16 @@ public class PersonalController {
 	}
 
 	private boolean comprobarNacionalidad(Nacionalidad nacionalidad) {
-		System.out.println("UIGAFUIGDUFG");
+
 		boolean exit = false;
 
-		for (int i = 0; i < personal.getNacionalidades().size(); i++) {
-			if (personal.getNacionalidades().get(i) == nacionalidad) {
-
-				return true;
-			} else {
-				exit = false;
+		for (Nacionalidad nacAux : personal.getNacionalidades()) {
+			if (nacAux == nacionalidad) {
+				exit = true;
 			}
+
 		}
+
 		return exit;
 
 	}
@@ -100,13 +99,12 @@ public class PersonalController {
 			Nacionalidad aux = new Nacionalidad();
 			aux.setDenominacion(nac.get());
 
-			comprobarNacionalidad(aux);
-
 			if (!comprobarNacionalidad(aux)) {
 
 				Nacionalidad nacionalidad = new Nacionalidad();
 				nacionalidad.setDenominacion(nac.get());
 				personal.getNacionalidades().add(nacionalidad);
+
 			} else {
 				Alert nacionalidadExist = new Alert(AlertType.ERROR);
 				nacionalidadExist.setHeaderText(null);
