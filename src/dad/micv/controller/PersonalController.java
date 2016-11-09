@@ -55,18 +55,11 @@ public class PersonalController {
 	}
 
 	private boolean comprobarNacionalidad(Nacionalidad nacionalidad) {
-
 		boolean exit = false;
-
-		for (Nacionalidad nacAux : personal.getNacionalidades()) {
-			if (nacAux.toString().equals(nacionalidad.toString())) {
+		for (Nacionalidad nacAux : personal.getNacionalidades())
+			if (nacAux.toString().equals(nacionalidad.toString()))
 				exit = true;
-			}
-
-		}
-
 		return exit;
-
 	}
 
 	private void onMasButtonAction() {
@@ -91,6 +84,7 @@ public class PersonalController {
 		try {
 
 			nacionalidadChoice = new ChoiceDialog<>();
+			nacionalidadChoice.setSelectedItem(nacionChoice.get(0));
 			nacionalidadChoice.setHeaderText("Añadir Nacionalidad");
 			nacionalidadChoice.setContentText("Seleccione una nacionalidad");
 			nacionalidadChoice.getItems().addAll(nacionChoice);
