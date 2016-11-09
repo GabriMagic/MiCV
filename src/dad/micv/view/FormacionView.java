@@ -16,7 +16,7 @@ public class FormacionView extends GridPane {
 	TableColumn<Titulo, LocalDate> desdeColumn, hastaColumn;
 	TableColumn<Titulo, String> denominacionColumn, organizadorColumn;
 
-	Button añadirButton, eliminarButton;
+	Button addButton, eliminarButton;
 
 	public FormacionView() {
 
@@ -39,8 +39,8 @@ public class FormacionView extends GridPane {
 		formacionTable.getColumns().add(denominacionColumn);
 		formacionTable.getColumns().add(organizadorColumn);
 
-		añadirButton = new Button("Añadir");
-		añadirButton.setMaxWidth(Double.MAX_VALUE);
+		addButton = new Button("Añadir");
+		addButton.setMaxWidth(Double.MAX_VALUE);
 		eliminarButton = new Button("Eliminar");
 
 		GridPane.setHgrow(formacionTable, Priority.ALWAYS);
@@ -48,7 +48,35 @@ public class FormacionView extends GridPane {
 		setHgap(5);
 		setPadding(new Insets(5));
 		add(formacionTable, 0, 0);
-		add(new VBox(5, añadirButton, eliminarButton), 1, 0);
+		add(new VBox(5, addButton, eliminarButton), 1, 0);
 
+	}
+
+	public TableView<Titulo> getFormacionTable() {
+		return formacionTable;
+	}
+
+	public TableColumn<Titulo, LocalDate> getDesdeColumn() {
+		return desdeColumn;
+	}
+
+	public TableColumn<Titulo, LocalDate> getHastaColumn() {
+		return hastaColumn;
+	}
+
+	public TableColumn<Titulo, String> getDenominacionColumn() {
+		return denominacionColumn;
+	}
+
+	public TableColumn<Titulo, String> getOrganizadorColumn() {
+		return organizadorColumn;
+	}
+
+	public Button getAñadirButton() {
+		return addButton;
+	}
+
+	public Button getEliminarButton() {
+		return eliminarButton;
 	}
 }
