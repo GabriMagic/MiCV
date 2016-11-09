@@ -104,7 +104,7 @@ public class PersonalController {
 
 			Optional<String> nac = nacionalidadChoice.showAndWait();
 			if (!comprobarNacionalidad(nac.get())) {
-				listaNacionalidades.add(listaNacionalidades.size(), nac.get());
+				listaNacionalidades.add(nac.get());
 			} else {
 				Alert nacionalidadExist = new Alert(AlertType.ERROR);
 				nacionalidadExist.setHeaderText(null);
