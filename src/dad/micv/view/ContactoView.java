@@ -40,9 +40,11 @@ public class ContactoView extends SplitPane {
 		telefonoAddButton = new Button("Añadir");
 		telefonoAddButton.setMaxWidth(Double.MAX_VALUE);
 		telefonoDelButotn = new Button("Eliminar");
+
 		emailsAddButton = new Button("Añadir");
 		emailsAddButton.setMaxWidth(Double.MAX_VALUE);
 		emailsDelButotn = new Button("Eliminar");
+
 		websAddButton = new Button("Añadir");
 		websAddButton.setMaxWidth(Double.MAX_VALUE);
 		websDelButotn = new Button("Eliminar");
@@ -110,6 +112,7 @@ public class ContactoView extends SplitPane {
 		getItems().addAll(telefonosPane, emailsPane, websPane);
 
 		setOrientation(Orientation.VERTICAL);
+		setDividerPositions(0.33,0.66);
 	}
 
 	public TableView<Telefono> getTelefonosTable() {

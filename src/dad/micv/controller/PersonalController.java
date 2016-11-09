@@ -19,7 +19,7 @@ import javafx.scene.control.Alert.AlertType;
 public class PersonalController {
 
 	private Personal personal;
-	
+
 	private PersonalView view;
 	private ChoiceDialog<String> nacionalidadChoice;
 	private ObservableList<String> listaNacionalidades;
@@ -30,14 +30,14 @@ public class PersonalController {
 		listaNacionalidades = FXCollections.observableArrayList();
 
 		personal = new Personal();
-		
+
 		view.getMasButton().setOnAction(e -> onMasButtonAction());
 		view.getMenosButton().setOnAction(e -> onMenosButtonAction());
 
 		bind(personal);
 		cargarComboBox();
 	}
-	
+
 	private void bind(Personal personal) {
 		personal.dniProperty().bind(view.getDniText().textProperty());
 		personal.nombreProperty().bind(view.getNombreText().textProperty());
@@ -47,10 +47,17 @@ public class PersonalController {
 		personal.localidadProperty().bind(view.getLocalidadText().textProperty());
 		personal.paisProperty().bind(view.getPaises().valueProperty());
 		// Bindear una ListProperty
-//		personal.nacionalidadesProperty().bind(view.getNacionalidadText());
+		// personal.nacionalidadesProperty().bind(view.getNacionalidadText());
 	}
 
 	private void onMenosButtonAction() {
+		String aux = view.getNacionalidadText().getSelectionModel().getSelectedItem();
+
+		for (int i = 0; i < listaNacionalidades.size(); i++) {
+			if (listaNacionalidades.get(i).equals(aux)) {
+				listaNacionalidades.remove(i);
+			}
+		}
 
 	}
 

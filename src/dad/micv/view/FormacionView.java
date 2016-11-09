@@ -6,6 +6,7 @@ import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
@@ -22,16 +23,20 @@ public class FormacionView extends GridPane {
 
 		formacionTable = new TableView<>();
 
-		desdeColumn = new TableColumn<>("Desde");
+		desdeColumn = new TableColumn<>("FechaInicio");
+		desdeColumn.setCellValueFactory(new PropertyValueFactory<>("desde"));
 		desdeColumn.setPrefWidth(100);
 
-		hastaColumn = new TableColumn<>("Hasta");
+		hastaColumn = new TableColumn<>("FechaFin");
+		hastaColumn.setCellValueFactory(new PropertyValueFactory<>("hasta"));
 		hastaColumn.setPrefWidth(100);
 
 		denominacionColumn = new TableColumn<>("Denominacion");
+		denominacionColumn.setCellValueFactory(new PropertyValueFactory<>("denominacion"));
 		denominacionColumn.setPrefWidth(150);
 
 		organizadorColumn = new TableColumn<>("Organizador");
+		organizadorColumn.setCellValueFactory(new PropertyValueFactory<>("organizador"));
 		organizadorColumn.setPrefWidth(150);
 
 		formacionTable.getColumns().add(desdeColumn);
