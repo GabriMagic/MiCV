@@ -108,11 +108,6 @@ public class PersonalController {
 			}
 
 		} catch (NoSuchElementException e) {
-			Alert errorNacionalidad = new Alert(AlertType.ERROR);
-			errorNacionalidad.setHeaderText("Eliga una nacionalidad válida");
-			errorNacionalidad.setTitle("Error de nacionalidad");
-			errorNacionalidad.setContentText("La nacionalidad que ha seleccionado no es correcta");
-			errorNacionalidad.showAndWait();
 		}
 
 	}
