@@ -76,4 +76,12 @@ public class Titulo {
 		this.organizadorProperty().set(organizador);
 	}
 
+	@Override
+	public String toString() {
+		return "Desde:"+getDesde().toString()
+				+"Hasta: "+getHasta().toString()
+				+"Denominacion: "+getDenominacion()
+				+"Organizador:" + getOrganizador();
+	}
+
 }

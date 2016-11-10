@@ -94,7 +94,7 @@ public class FormacionController {
 	}
 
 	private void onEliminarButtonAction(ActionEvent e) {
-
+		titulos.remove(view.getFormacionTable().getSelectionModel().getSelectedItem());
 	}
 
 	private void onAddButtonAction(ActionEvent e) {
