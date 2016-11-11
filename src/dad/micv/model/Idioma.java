@@ -6,7 +6,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 @XmlType
-public class Idioma {
+public class Idioma extends Conocimiento{
 
 	StringProperty certificacion;
 

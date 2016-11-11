@@ -1,10 +1,23 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <cv>
-    <personal identificacion="564654z">
-        <apellidos>Norris</apellidos>
+    <contacto>
+        <telefonos numero="606263803" tipo="MOVIL"/>
+        <telefonos numero="922568987" tipo="DOMICILIO"/>
+        <telefonos numero="955875421" tipo="DOMICILIO"/>
+    </contacto>
+    <experiencia>
+        <denominacion>DAM 2</denominacion>
+        <desde/>
+        <empleador>Pérez Minik</empleador>
+        <hasta/>
+    </experiencia>
+    <personal identificacion="No lo se">
+        <apellidos>Gutierrez garcia</apellidos>
+        <codigoPostal>9875</codigoPostal>
+        <direccion>En su casa</direccion>
+        <dni>98745632-X</dni>
         <fechaNacimiento/>
-        <nacionalidades denominacion="Estadounidense"/>
-        <nacionalidades denominacion="Japonés"/>
-        <nombre>Chuck</nombre>
+        <nombre>Alba</nombre>
+        <pais>España</pais>
     </personal>
 </cv>
