@@ -12,7 +12,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 
-public class FormacionADDView extends GridPane {
+public class AddFormacionView extends GridPane {
 
 	private Titulo formacion;
 	private Label desdeLabel, hastaLabel, denominacionLabel, organizadorLabel;
@@ -20,7 +20,7 @@ public class FormacionADDView extends GridPane {
 	private TextField denominacionText, organizadorText;
 	private Button addButton, cancelarButton;
 
-	public FormacionADDView() {
+	public AddFormacionView() {
 
 		formacion = new Titulo();
 
@@ -36,6 +36,7 @@ public class FormacionADDView extends GridPane {
 		organizadorText = new TextField();
 
 		addButton = new Button("Añadir");
+		addButton.setDefaultButton(true);
 
 		cancelarButton = new Button("Cancelar");
 

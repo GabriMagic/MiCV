@@ -46,6 +46,7 @@ public class FormacionView extends GridPane {
 
 		addButton = new Button("Añadir");
 		addButton.setMaxWidth(Double.MAX_VALUE);
+		addButton.setDefaultButton(true);
 		eliminarButton = new Button("Eliminar");
 
 		GridPane.setHgrow(formacionTable, Priority.ALWAYS);

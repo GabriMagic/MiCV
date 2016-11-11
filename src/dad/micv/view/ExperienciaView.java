@@ -16,31 +16,31 @@ public class ExperienciaView extends GridPane {
 	TableColumn<Experiencia, LocalDate> desdeColumn, hastaColumn;
 	TableColumn<Experiencia, String> denominacionColumn, empleadorColumn;
 
-	Button añadirButton, eliminarButton;
+	Button addButton, eliminarButton;
 
 	public ExperienciaView() {
 
 		experienciaTable = new TableView<>();
-		
+
 		desdeColumn = new TableColumn<>("Desde");
 		desdeColumn.setPrefWidth(100);
-		
+
 		hastaColumn = new TableColumn<>("Hasta");
 		hastaColumn.setPrefWidth(100);
-		
+
 		denominacionColumn = new TableColumn<>("Denominacion");
 		denominacionColumn.setPrefWidth(150);
-		
+
 		empleadorColumn = new TableColumn<>("Empleador");
 		empleadorColumn.setPrefWidth(150);
-		
+
 		experienciaTable.getColumns().add(desdeColumn);
 		experienciaTable.getColumns().add(hastaColumn);
 		experienciaTable.getColumns().add(denominacionColumn);
 		experienciaTable.getColumns().add(empleadorColumn);
 
-		añadirButton = new Button("Añadir");
-		añadirButton.setMaxWidth(Double.MAX_VALUE);
+		addButton = new Button("Añadir");
+		addButton.setMaxWidth(Double.MAX_VALUE);
 		eliminarButton = new Button("Eliminar");
 
 		GridPane.setHgrow(experienciaTable, Priority.ALWAYS);
@@ -48,7 +48,24 @@ public class ExperienciaView extends GridPane {
 		setHgap(5);
 		setPadding(new Insets(5));
 		add(experienciaTable, 0, 0);
-		add(new VBox(5, añadirButton, eliminarButton), 1, 0);
+		add(new VBox(5, addButton, eliminarButton), 1, 0);
 
 	}
+
+	public TableView<Experiencia> getExperienciaTable() {
+		return experienciaTable;
+	}
+
+	public TableColumn<Experiencia, String> getEmpleadorColumn() {
+		return empleadorColumn;
+	}
+
+	public Button getAddButton() {
+		return addButton;
+	}
+
+	public Button getEliminarButton() {
+		return eliminarButton;
+	}
+
 }
