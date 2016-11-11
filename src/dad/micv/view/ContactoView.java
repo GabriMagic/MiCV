@@ -11,6 +11,7 @@ import javafx.scene.control.SplitPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TitledPane;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
@@ -50,19 +51,26 @@ public class ContactoView extends SplitPane {
 		websDelButotn = new Button("Eliminar");
 
 		telefonoColumn = new TableColumn<>("Número");
-		telefonoColumn.setMaxWidth(500);
+		telefonoColumn.setCellValueFactory(new PropertyValueFactory<>("numero"));
+		telefonoColumn.setPrefWidth(120);
 		tipoTelefonoColumn = new TableColumn<>("Tipo");
-
+		tipoTelefonoColumn.setCellValueFactory(new PropertyValueFactory<>("tipo"));
+		tipoTelefonoColumn.setPrefWidth(120);
+		
 		telefonosTable = new TableView<Telefono>();
 		telefonosTable.getColumns().add(telefonoColumn);
 		telefonosTable.getColumns().add(tipoTelefonoColumn);
 
 		emailColumn = new TableColumn<>("E-Mail");
+		emailColumn.setPrefWidth(300);
+		emailColumn.setCellValueFactory(new PropertyValueFactory<>("direccion"));
 
 		emailsTable = new TableView<Email>();
 		emailsTable.getColumns().add(emailColumn);
 
 		webColumn = new TableColumn<>("URL");
+		webColumn.setPrefWidth(300);
+		webColumn.setCellValueFactory(new PropertyValueFactory<>("url"));
 
 		websTable = new TableView<Web>();
 		websTable.getColumns().add(webColumn);
@@ -112,7 +120,7 @@ public class ContactoView extends SplitPane {
 		getItems().addAll(telefonosPane, emailsPane, websPane);
 
 		setOrientation(Orientation.VERTICAL);
-		setDividerPositions(0.33,0.66);
+		setDividerPositions(0.33, 0.66);
 	}
 
 	public TableView<Telefono> getTelefonosTable() {

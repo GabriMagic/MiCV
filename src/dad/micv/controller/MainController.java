@@ -44,7 +44,15 @@ public class MainController {
 
 	private void onGuardar(ActionEvent e) {
 		try {
-			cv.save(new File("asd.xml"));
+			File fich = new File("asd.xml");
+
+			if (fich.exists()) {
+				Alert confirmAlert = new Alert(AlertType.CONFIRMATION);
+				confirmAlert.setHeaderText("El fichero ya existe");
+				confirmAlert.setContentText("¿Desea sobreescribir el fichero?");
+				cv.save(fich);
+
+			}
 		} catch (Exception e1) {
 			e1.printStackTrace();
 		}
