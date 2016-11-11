@@ -10,6 +10,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 
 public class AddEmailView extends GridPane {
+
 	private Label emailLabel;
 	private TextField emailText;
 	private Button addButton, cancelButton;
@@ -19,6 +20,7 @@ public class AddEmailView extends GridPane {
 		emailLabel = new Label("Dirección");
 
 		emailText = new TextField();
+		emailText.setPrefColumnCount(20);
 
 		addButton = new Button("Añadir");
 		addButton.setDefaultButton(true);
@@ -37,7 +39,7 @@ public class AddEmailView extends GridPane {
 		setVgap(5);
 		setHgap(5);
 
-		setPadding(new Insets(10, 10, 20, 10));
+		setPadding(new Insets(10));
 
 	}
 

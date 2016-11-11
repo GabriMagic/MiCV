@@ -1,23 +1,30 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <cv>
-    <contacto/>
+    <contacto>
+        <emails direccion="champy9a@gmail.com"/>
+        <emails direccion="support@pokepoly.com"/>
+        <telefonos numero="966565" tipo="MOVIL"/>
+        <telefonos numero="9789789" tipo="DOMICILIO"/>
+        <webs url="https://www.pokepoly.com"/>
+    </contacto>
+    <experiencia/>
+    <habilidad/>
     <personal identificacion="">
-        <apellidos></apellidos>
-        <codigoPostal></codigoPostal>
-        <dni></dni>
-        <localidad></localidad>
-        <nombre></nombre>
+        <apellidos>MacPasta</apellidos>
+        <codigoPostal>98774</codigoPostal>
+        <dni>79082654-X</dni>
+        <fechaNacimiento>1994-06-09</fechaNacimiento>
+        <localidad>Los Alpes</localidad>
+        <nacionalidades denominacion="americano"/>
+        <nacionalidades denominacion="bosnio"/>
+        <nacionalidades denominacion="liechtensteiniano"/>
+        <nombre>Gabri</nombre>
+        <pais>Canadá</pais>
     </personal>
     <titulo>
-        <denominacion>123</denominacion>
-        <desde>2016-10-13</desde>
-        <hasta>2016-11-25</hasta>
-        <organizador>12</organizador>
-    </titulo>
-    <titulo>
-        <denominacion>123</denominacion>
-        <desde>2016-10-13</desde>
-        <hasta>2016-11-25</hasta>
-        <organizador>12</organizador>
+        <denominacion>2º DAM</denominacion>
+        <desde>2016-11-07</desde>
+        <hasta>2016-12-02</hasta>
+        <organizador>IES Domingo Pérez Minik</organizador>
     </titulo>
 </cv>

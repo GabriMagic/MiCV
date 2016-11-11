@@ -25,6 +25,7 @@ public class AddTelefonoView extends GridPane {
 		tipoTelefonoLabel = new Label("Tipo de teléfono");
 
 		telefonoText = new TextField();
+		telefonoText.setPrefColumnCount(10);
 
 		tipoTelefonoBox = new ComboBox<>();
 		tipoTelefonoBox.setPromptText("Seleccione tipo");
@@ -51,7 +52,7 @@ public class AddTelefonoView extends GridPane {
 		setVgap(5);
 		setHgap(5);
 
-		setPadding(new Insets(10, 10, 20, 10));
+		setPadding(new Insets(10));
 
 	}
 

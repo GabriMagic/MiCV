@@ -3,17 +3,23 @@ package dad.micv.controller;
 import java.io.File;
 import java.util.Optional;
 
+import dad.micv.main.MiCvAPP;
 import dad.micv.model.CV;
+import dad.micv.model.Contacto;
+import dad.micv.model.Personal;
 import dad.micv.view.MainView;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.stage.FileChooser;
+import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.scene.control.Alert.AlertType;
 
 public class MainController {
 
 	CV cv;
+	MiCvAPP app;
 	MainView mainView;
 	PersonalController personalController;
 	ContactoController contactoController;
@@ -26,6 +32,8 @@ public class MainController {
 		mainView = new MainView();
 		cv = new CV();
 
+		app = new MiCvAPP();
+
 		personalController = new PersonalController();
 		contactoController = new ContactoController();
 		formacionController = new FormacionController();
@@ -34,6 +42,9 @@ public class MainController {
 
 		cv.setPersonal(personalController.getPersonal());
 		cv.setContacto(contactoController.getContacto());
+		cv.getExperiencia().add(experienciaController.getExperiencia());
+		cv.getHabilidad().add(conocimientosController.getConocimiento());
+		cv.getTitulo().add(formacionController.getTitulo());
 
 		mainView.getPersonalTab().setContent(personalController.getView());
 		mainView.getContactoTab().setContent(contactoController.getView());
@@ -41,8 +52,42 @@ public class MainController {
 		mainView.getExperienciaTab().setContent(experienciaController.getView());
 		mainView.getConocimientosTab().setContent(conocimientosController.getView());
 
-		mainView.getSalir().setOnAction(e -> onSalirMenuItem(e));
+		mainView.getSalir().setOnAction(e -> onSalir(e));
 		mainView.getGuardar().setOnAction(e -> onGuardar(e));
+		mainView.getNuevo().setOnAction(e -> onNuevo(e));
+		mainView.getGuardarComo().setOnAction(e -> onGuardarComo(e));
+	}
+
+	private void onGuardarComo(ActionEvent e) {
+
+		FileChooser fc = new FileChooser();
+		fc.setTitle("Guardar curriculum XML...");
+		fc.getExtensionFilters().add(new ExtensionFilter("Fichero XML", "*.xml"));
+
+		if (System.getProperty("os.name").indexOf("Win") >= 0) {
+			File fichero = new File(
+					System.getProperty("user.home").toString() + System.getProperty("file.separator") + "Desktop");
+			fc.setInitialDirectory(fichero);
+		} else if (System.getProperty("os.name").indexOf("Lin") >= 0) {
+			File fichero = new File(
+					System.getProperty("user.home").toString() + System.getProperty("file.separator") + "Desktop");
+			fc.setInitialDirectory(fichero);
+		}
+		File file = fc.showOpenDialog(app.getPrimaryStage());
+		if (file != null) {
+			try {
+				cv.save(file);
+			} catch (Exception e1) {
+			}
+		}
+
+	}
+
+	private void onNuevo(ActionEvent e) {
+		cv = new CV();
+
+		cv.setPersonal(new Personal());
+		cv.setContacto(new Contacto());
 	}
 
 	private void onGuardar(ActionEvent e) {
@@ -67,7 +112,7 @@ public class MainController {
 		}
 	}
 
-	private void onSalirMenuItem(ActionEvent e) {
+	private void onSalir(ActionEvent e) {
 
 		Alert salirAlert = new Alert(AlertType.CONFIRMATION);
 		salirAlert.setContentText("¿Desea salir de la aplicación?");
