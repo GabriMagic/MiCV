@@ -64,12 +64,6 @@ public class PersonalController {
 		personal.paisProperty().bind(view.getPaises().valueProperty());
 		personal.nacionalidadesProperty().bind(view.getNacionalidadList().itemsProperty());
 
-		// personal.nacionalidadesProperty().addListener( (observable, oldValue,
-		// newValue) -> {
-		// System.out.println("Yo antes era: "+oldValue+"\n y ahora soy: "+
-		// newValue);
-		// });
-
 	}
 
 	private void onMenosButtonAction() {
