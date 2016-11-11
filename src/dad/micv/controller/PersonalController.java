@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 import dad.micv.model.Nacionalidad;
@@ -22,6 +23,7 @@ public class PersonalController {
 	private Personal personal;
 	private PersonalView view;
 	private ChoiceDialog<String> nacionalidadChoice;
+	private ArrayList<String> nacionChoice;
 
 	public PersonalController() {
 
@@ -34,6 +36,23 @@ public class PersonalController {
 
 		bind(personal);
 		cargarComboBox();
+
+		BufferedReader bf = null;
+		nacionChoice = new ArrayList<String>();
+
+		try {
+			bf = new BufferedReader(new FileReader(new File("nacionalidades.csv")));
+
+			while (bf.ready())
+				nacionChoice.add(bf.readLine());
+
+		} catch (IOException e) {
+		} finally {
+			try {
+				bf.close();
+			} catch (IOException e1) {
+			}
+		}
 	}
 
 	private void bind(Personal personal) {
@@ -51,6 +70,8 @@ public class PersonalController {
 
 	private void onMenosButtonAction() {
 		Nacionalidad nacAux = view.getNacionalidadList().getSelectionModel().getSelectedItem();
+		nacionChoice.add(nacAux.getDenominacion());
+		nacionChoice.sort(String::compareToIgnoreCase);
 		personal.getNacionalidades().remove(nacAux);
 	}
 
@@ -63,23 +84,6 @@ public class PersonalController {
 	}
 
 	private void onMasButtonAction() {
-
-		BufferedReader bf = null;
-		ArrayList<String> nacionChoice = new ArrayList<String>();
-
-		try {
-			bf = new BufferedReader(new FileReader(new File("nacionalidades.csv")));
-
-			while (bf.ready())
-				nacionChoice.add(bf.readLine());
-
-		} catch (IOException e) {
-		} finally {
-			try {
-				bf.close();
-			} catch (IOException e1) {
-			}
-		}
 
 		try {
 
@@ -98,6 +102,12 @@ public class PersonalController {
 				Nacionalidad nacionalidad = new Nacionalidad();
 				nacionalidad.setDenominacion(nac.get());
 				personal.getNacionalidades().add(nacionalidad);
+
+				for (int i = 0; i < nacionChoice.size(); i++) {
+					if (nacionChoice.get(i).equals(nac.get())) {
+						nacionChoice.remove(i);
+					}
+				}
 
 			} else {
 				Alert nacionalidadExist = new Alert(AlertType.ERROR);
