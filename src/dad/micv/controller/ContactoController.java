@@ -58,14 +58,14 @@ public class ContactoController {
 		});
 
 		addTelefonoView.getAddButton().setOnAction(e -> AddTelefono(e));
-		addTelefonoView.getCancelButton().setOnAction(e -> addStage.close());
+		addTelefonoView.getCancelButton().setOnAction(e -> onEndTelefono(e));
 
 		addEmailView.getAddButton().setOnAction(e -> AddEmail(e));
-		addEmailView.getCancelButton().setOnAction(e -> addStage.close());
+		addEmailView.getCancelButton().setOnAction(e -> onEndEmail(e));
 
-		addWebsView.getAddButton().setOnAction( e -> addWeb(e));
-		addWebsView.getCancelButton().setOnAction(e -> addStage.close());
-		
+		addWebsView.getAddButton().setOnAction(e -> addWeb(e));
+		addWebsView.getCancelButton().setOnAction(e -> onEndWeb(e));
+
 		bind();
 	}
 
@@ -81,9 +81,7 @@ public class ContactoController {
 		t1.setNumero(addTelefonoView.getTelefonoText().getText());
 		t1.setTipo(addTelefonoView.getTipoTelefonoBox().getValue());
 		contacto.getTelefonos().add(t1);
-		addTelefonoView.getTelefonoText().setText("");
-		addTelefonoView.getTelefonoText().setText("");
-		addStage.close();
+		onEndTelefono(e);
 	}
 
 	// EMAILS
@@ -91,8 +89,7 @@ public class ContactoController {
 		Email e1 = new Email();
 		e1.setDireccion(addEmailView.getEmailText().getText());
 		contacto.getEmails().add(e1);
-		addEmailView.getEmailText().setText("");
-		addStage.close();
+		onEndEmail(e);
 	}
 
 	// WEBS
@@ -100,6 +97,21 @@ public class ContactoController {
 		Web w1 = new Web();
 		w1.setUrl(addWebsView.getWebText().getText());
 		contacto.getWebs().add(w1);
+		onEndWeb(e);
+	}
+
+	private void onEndTelefono(ActionEvent e) {
+		addTelefonoView.getTelefonoText().setText("");
+		addTelefonoView.getTelefonoText().setText("");
+		addStage.close();
+	}
+
+	private void onEndEmail(ActionEvent e) {
+		addEmailView.getEmailText().setText("");
+		addStage.close();
+	}
+
+	private void onEndWeb(ActionEvent e) {
 		addWebsView.getWebText().setText("");
 		addStage.close();
 	}

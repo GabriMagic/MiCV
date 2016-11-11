@@ -10,6 +10,7 @@ import java.util.Optional;
 import dad.micv.model.Nacionalidad;
 import dad.micv.model.Personal;
 import dad.micv.view.PersonalView;
+import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
@@ -54,16 +55,14 @@ public class PersonalController {
 	}
 
 	private void bind(Personal personal) {
-
-		personal.dniProperty().bind(view.getDniText().textProperty());
-		personal.nombreProperty().bind(view.getNombreText().textProperty());
-		personal.apellidosProperty().bind(view.getApellidosText().textProperty());
-		personal.fechaNacimientoProperty().bind(view.getFechaNacimiento().valueProperty());
-		personal.codigoPostalProperty().bind(view.getCodPostalText().textProperty());
-		personal.localidadProperty().bind(view.getLocalidadText().textProperty());
-		personal.paisProperty().bind(view.getPaises().valueProperty());
-		personal.nacionalidadesProperty().bind(view.getNacionalidadList().itemsProperty());
-
+		Bindings.bindBidirectional(view.getDniText().textProperty(), personal.dniProperty());
+		Bindings.bindBidirectional(view.getNombreText().textProperty(), personal.nombreProperty());
+		Bindings.bindBidirectional(view.getApellidosText().textProperty(), personal.apellidosProperty());
+		Bindings.bindBidirectional(view.getFechaNacimiento().valueProperty(), personal.fechaNacimientoProperty());
+		Bindings.bindBidirectional(view.getCodPostalText().textProperty(), personal.codigoPostalProperty());
+		Bindings.bindBidirectional(view.getLocalidadText().textProperty(), personal.localidadProperty());
+		Bindings.bindBidirectional(view.getPais().valueProperty(), personal.paisProperty());
+		Bindings.bindBidirectional(view.getNacionalidadList().itemsProperty(), personal.nacionalidadesProperty());
 	}
 
 	private void onMenosButtonAction() {
@@ -150,7 +149,7 @@ public class PersonalController {
 			}
 		}
 
-		view.getPaises().setItems(listaPaises);
+		view.getPais().setItems(listaPaises);
 	}
 
 	public PersonalView getView() {

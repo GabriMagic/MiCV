@@ -55,7 +55,29 @@ public class MainController {
 		mainView.getSalir().setOnAction(e -> onSalir(e));
 		mainView.getGuardar().setOnAction(e -> onGuardar(e));
 		mainView.getNuevo().setOnAction(e -> onNuevo(e));
+		mainView.getAbrir().setOnAction(e -> onAbrir(e));
 		mainView.getGuardarComo().setOnAction(e -> onGuardarComo(e));
+	}
+
+	private void onAbrir(ActionEvent e) {
+
+		FileChooser fc = new FileChooser();
+		fc.setTitle("Abrir curriculum existente");
+		fc.getExtensionFilters().add(new ExtensionFilter("Fichero XML", "*.xml"));
+
+		File fichero = new File(".");
+		fc.setInitialDirectory(fichero);
+
+		File file = fc.showOpenDialog(app.getPrimaryStage());
+		if (file != null) {
+			try {
+				CV c2 = CV.read(file);
+
+				cv.personalProperty().bind(c2.personalProperty());
+				
+			} catch (Exception e1) {
+			}
+		}
 	}
 
 	private void onGuardarComo(ActionEvent e) {
