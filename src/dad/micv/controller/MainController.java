@@ -13,13 +13,13 @@ import javafx.scene.control.Alert.AlertType;
 
 public class MainController {
 
+	CV cv;
 	MainView mainView;
 	PersonalController personalController;
 	ContactoController contactoController;
 	FormacionController formacionController;
 	ExperienciaController experienciaController;
 	ConocimientosController conocimientosController;
-	CV cv;
 
 	public MainController() {
 
@@ -32,25 +32,34 @@ public class MainController {
 		experienciaController = new ExperienciaController();
 		conocimientosController = new ConocimientosController();
 
+		cv.setPersonal(personalController.getPersonal());
+		cv.setContacto(contactoController.getContacto());
+
 		mainView.getPersonalTab().setContent(personalController.getView());
 		mainView.getContactoTab().setContent(contactoController.getView());
 		mainView.getFormaciónTab().setContent(formacionController.getView());
 		mainView.getExperienciaTab().setContent(experienciaController.getView());
 		mainView.getConocimientosTab().setContent(conocimientosController.getView());
 
-		mainView.getSalir().setOnAction(e -> onSalirMenuItem());
+		mainView.getSalir().setOnAction(e -> onSalirMenuItem(e));
 		mainView.getGuardar().setOnAction(e -> onGuardar(e));
 	}
 
 	private void onGuardar(ActionEvent e) {
 		try {
-			File fich = new File("asd.xml");
+			File fich = new File("micurriculum.xml");
 
 			if (fich.exists()) {
 				Alert confirmAlert = new Alert(AlertType.CONFIRMATION);
 				confirmAlert.setHeaderText("El fichero ya existe");
 				confirmAlert.setContentText("¿Desea sobreescribir el fichero?");
-				cv.save(fich);
+				Optional<ButtonType> confirm = confirmAlert.showAndWait();
+
+				if (confirm.get() == ButtonType.OK) {
+					cv.save(fich);
+				} else {
+
+				}
 
 			}
 		} catch (Exception e1) {
@@ -58,7 +67,7 @@ public class MainController {
 		}
 	}
 
-	private void onSalirMenuItem() {
+	private void onSalirMenuItem(ActionEvent e) {
 
 		Alert salirAlert = new Alert(AlertType.CONFIRMATION);
 		salirAlert.setContentText("¿Desea salir de la aplicación?");

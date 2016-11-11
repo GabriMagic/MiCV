@@ -1,23 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <cv>
     <contacto>
+        <telefonos numero="922244095" tipo="DOMICILIO"/>
         <telefonos numero="606263803" tipo="MOVIL"/>
-        <telefonos numero="922568987" tipo="DOMICILIO"/>
-        <telefonos numero="955875421" tipo="DOMICILIO"/>
     </contacto>
-    <experiencia>
-        <denominacion>DAM 2</denominacion>
-        <desde/>
-        <empleador>Pérez Minik</empleador>
-        <hasta/>
-    </experiencia>
-    <habilidad xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="idioma" certificacion="Inglés" nivel="AVANZADO"/>
-    <habilidad denominacion="Liarla parda" nivel="AVANZADO"/>
-    <personal identificacion="564654z">
-        <apellidos>Norris</apellidos>
-        <fechaNacimiento/>
-        <nacionalidades denominacion="Estadounidense"/>
-        <nacionalidades denominacion="Japonés"/>
-        <nombre>Chuck</nombre>
+    <personal identificacion="">
+        <apellidos></apellidos>
+        <codigoPostal></codigoPostal>
+        <dni></dni>
+        <localidad></localidad>
+        <nombre></nombre>
     </personal>
 </cv>

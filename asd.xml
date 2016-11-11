@@ -2,7 +2,20 @@
 <cv>
     <contacto/>
     <personal identificacion="">
-        <apellidos></apellidos>
-        <nombre></nombre>
+        <apellidos>Ramos Cozzi</apellidos>
+        <codigoPostal>38004</codigoPostal>
+        <dni>7908241-S</dni>
+        <fechaNacimiento/>
+        <localidad>Santa Cruz de Tenerife</localidad>
+        <nacionalidades denominacion="español"/>
+        <nacionalidades denominacion="afgano"/>
+        <nacionalidades denominacion="albano"/>
+        <nacionalidades denominacion="alemán"/>
+        <nacionalidades denominacion="americano"/>
+        <nacionalidades denominacion="andorrano"/>
+        <nacionalidades denominacion="angolano"/>
+        <nacionalidades denominacion="antiguano"/>
+        <nombre>Gabriel</nombre>
+        <pais>España</pais>
     </personal>
 </cv>

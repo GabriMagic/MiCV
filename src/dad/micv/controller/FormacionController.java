@@ -23,6 +23,10 @@ public class FormacionController {
 	private FormacionADDView editVista;
 	private ObservableList<Titulo> titulos;
 
+	public ObservableList<Titulo> getTitulos() {
+		return titulos;
+	}
+
 	public FormacionController() {
 
 		view = new FormacionView();

@@ -1,8 +1,8 @@
 package dad.micv.controller;
 
+import dad.micv.model.Contacto;
 import dad.micv.model.Email;
 import dad.micv.model.Telefono;
-import dad.micv.model.TipoTelefono;
 import dad.micv.model.Web;
 import dad.micv.view.AddTelefonoView;
 import dad.micv.view.ContactoView;
@@ -13,16 +13,15 @@ import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 public class ContactoController {
 
+	private Contacto contacto;
 	private ContactoView view;
 	private AddTelefonoView addTelefonoView;
 	private AddEmailView addEmailView;
 	private AddWebsView addWebsView;
 	private Stage addStage;
-	private Scene addScene;
 	private ObservableList<Telefono> telefonos;
 	private ObservableList<Email> emails;
 	private ObservableList<Web> webs;
@@ -30,6 +29,8 @@ public class ContactoController {
 	public ContactoController() {
 
 		view = new ContactoView();
+
+		contacto = new Contacto();
 
 		addTelefonoView = new AddTelefonoView();
 
@@ -66,16 +67,17 @@ public class ContactoController {
 	}
 
 	public void bind() {
-		view.getTelefonosTable().setItems(telefonos);
-		view.getEmailsTable().setItems(emails);
-		view.getWebsTable().setItems(webs);
+		view.getTelefonosTable().itemsProperty().bind(contacto.telefonosProperty());
+		view.getEmailsTable().itemsProperty().bind(contacto.emailsProperty());
+		view.getWebsTable().itemsProperty().bind(contacto.websProperty());
 	}
 
 	private void AddTelefono(ActionEvent e) {
 		Telefono t1 = new Telefono();
 		t1.setNumero(addTelefonoView.getTelefonoText().getText());
 		t1.setTipo(addTelefonoView.getTipoTelefonoBox().getValue());
-		telefonos.add(t1);
+
+		contacto.getTelefonos().add(t1);
 
 		addTelefonoView.getTelefonoText().setText("");
 		addTelefonoView.getTelefonoText().setText("");
@@ -94,5 +96,9 @@ public class ContactoController {
 
 	public ContactoView getView() {
 		return view;
+	}
+
+	public Contacto getContacto() {
+		return contacto;
 	}
 }

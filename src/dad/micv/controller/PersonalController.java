@@ -157,4 +157,8 @@ public class PersonalController {
 		return view;
 	}
 
+	public Personal getPersonal() {
+		return personal;
+	}
+
 }
