@@ -39,8 +39,10 @@ public class MainView extends BorderPane {
 		salir.setAccelerator(KeyCombination.keyCombination("Ctrl+S"));
 		acercaDe = new MenuItem("Acerca de...");
 
-		archivo = new Menu("Archivo");
-		ayuda = new Menu("Ayuda");
+		archivo = new Menu("_Archivo");
+		archivo.setMnemonicParsing(true);
+		ayuda = new Menu("A_yuda");
+		ayuda.setMnemonicParsing(true);
 
 		archivo.getItems().addAll(nuevo, abrir, guardar, guardarComo, new SeparatorMenuItem(), salir);
 		ayuda.getItems().addAll(acercaDe);
@@ -55,7 +57,7 @@ public class MainView extends BorderPane {
 		formaciónTab.setClosable(false);
 		experienciaTab = new Tab("Experiencia");
 		experienciaTab.setClosable(false);
-		conocimientosTab = new Tab("Conocimientos");
+		conocimientosTab = new Tab("Habilidades");
 		conocimientosTab.setClosable(false);
 
 		tabPane = new TabPane(personalTab, contactoTab, formaciónTab, experienciaTab, conocimientosTab);

@@ -16,7 +16,7 @@ public class ConocimientoView extends GridPane {
 	TableColumn<Experiencia, Nivel> nivelColumn;
 	TableColumn<Experiencia, String> denominacionColumn;
 
-	Button añadirConocimientoButton, añadirIdiomaButton, eliminarButton;
+	Button addConocimientoButton, addIdiomaButton, eliminarButton;
 
 	public ConocimientoView() {
 
@@ -30,9 +30,9 @@ public class ConocimientoView extends GridPane {
 		conocimientoTable.getColumns().add(denominacionColumn);
 		conocimientoTable.getColumns().add(nivelColumn);
 
-		añadirConocimientoButton = new Button("Añadir conocimiento");
-		añadirIdiomaButton = new Button("Añadir Idioma");
-		añadirIdiomaButton.setMaxWidth(Double.MAX_VALUE);
+		addConocimientoButton = new Button("Añadir conocimiento");
+		addIdiomaButton = new Button("Añadir Idioma");
+		addIdiomaButton.setMaxWidth(Double.MAX_VALUE);
 		eliminarButton = new Button("Eliminar");
 		eliminarButton.setMaxWidth(Double.MAX_VALUE);
 
@@ -41,7 +41,32 @@ public class ConocimientoView extends GridPane {
 		setHgap(5);
 		setPadding(new Insets(5));
 		add(conocimientoTable, 0, 0);
-		add(new VBox(5, añadirConocimientoButton, añadirIdiomaButton, eliminarButton), 1, 0);
+		add(new VBox(5, addConocimientoButton, addIdiomaButton, eliminarButton), 1, 0);
 
 	}
+
+	public TableView<Experiencia> getConocimientoTable() {
+		return conocimientoTable;
+	}
+
+	public TableColumn<Experiencia, Nivel> getNivelColumn() {
+		return nivelColumn;
+	}
+
+	public TableColumn<Experiencia, String> getDenominacionColumn() {
+		return denominacionColumn;
+	}
+
+	public Button getAddConocimientoButton() {
+		return addConocimientoButton;
+	}
+
+	public Button getAddIdiomaButton() {
+		return addIdiomaButton;
+	}
+
+	public Button getEliminarButton() {
+		return eliminarButton;
+	}
+
 }
