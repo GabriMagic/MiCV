@@ -18,7 +18,6 @@ public class FormacionController {
 
 	private Titulo titulo;
 	private FormacionView view;
-	private FormacionADDController controller;
 	private Stage formacionAdd;
 	private Scene formScene;
 	private FormacionADDView editVista;
@@ -26,16 +25,14 @@ public class FormacionController {
 
 	public FormacionController() {
 
-		controller = new FormacionADDController();
-
 		view = new FormacionView();
-		editVista = controller.getView();
+		editVista = new FormacionADDView();
 
 		titulo = new Titulo();
 
 		titulos = FXCollections.observableArrayList();
 
-		formScene = new Scene(controller.getView(), 305, 155);
+		formScene = new Scene(editVista, 305, 155);
 
 		formacionAdd = new Stage();
 		formacionAdd.getIcons().add(new Image("cv64x64.png"));

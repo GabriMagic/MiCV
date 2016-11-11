@@ -5,13 +5,11 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 import dad.micv.model.Nacionalidad;
 import dad.micv.model.Personal;
 import dad.micv.view.PersonalView;
-import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
@@ -64,15 +62,29 @@ public class PersonalController {
 		personal.codigoPostalProperty().bind(view.getCodPostalText().textProperty());
 		personal.localidadProperty().bind(view.getLocalidadText().textProperty());
 		personal.paisProperty().bind(view.getPaises().valueProperty());
-		Bindings.bindBidirectional(personal.nacionalidadesProperty(), view.getNacionalidadList().itemsProperty());
+		personal.nacionalidadesProperty().bind(view.getNacionalidadList().itemsProperty());
+
+		// personal.nacionalidadesProperty().addListener( (observable, oldValue,
+		// newValue) -> {
+		// System.out.println("Yo antes era: "+oldValue+"\n y ahora soy: "+
+		// newValue);
+		// });
 
 	}
 
 	private void onMenosButtonAction() {
-		Nacionalidad nacAux = view.getNacionalidadList().getSelectionModel().getSelectedItem();
-		nacionChoice.add(nacAux.getDenominacion());
-		nacionChoice.sort(String::compareToIgnoreCase);
-		personal.getNacionalidades().remove(nacAux);
+		try {
+			Nacionalidad nacAux = view.getNacionalidadList().getSelectionModel().getSelectedItem();
+			nacionChoice.add(nacAux.getDenominacion());
+			nacionChoice.sort(String::compareToIgnoreCase);
+			personal.getNacionalidades().remove(nacAux);
+		} catch (NullPointerException e) {
+			Alert nacionalidadExist = new Alert(AlertType.WARNING);
+			nacionalidadExist.setHeaderText(null);
+			nacionalidadExist.setTitle("Nada seleccionado");
+			nacionalidadExist.setContentText("No hay ninguna nacionalidad seleccionada.");
+			nacionalidadExist.showAndWait();
+		}
 	}
 
 	private boolean comprobarNacionalidad(Nacionalidad nacionalidad) {
