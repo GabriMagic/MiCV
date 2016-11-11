@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 import javafx.beans.property.ListProperty;
 import javafx.beans.property.ObjectProperty;
@@ -87,6 +88,7 @@ public class Personal {
 	}
 
 	@XmlElement
+	@XmlJavaTypeAdapter(LocalDateAdapter.class)
 	public LocalDate getFechaNacimiento() {
 		return this.fechaNacimientoProperty().get();
 	}

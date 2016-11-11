@@ -4,6 +4,7 @@ import java.time.LocalDate;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
@@ -29,6 +30,7 @@ public class Titulo {
 	}
 
 	@XmlElement
+	@XmlJavaTypeAdapter(LocalDateAdapter.class)
 	public LocalDate getDesde() {
 		return this.desdeProperty().get();
 	}
@@ -42,6 +44,7 @@ public class Titulo {
 	}
 
 	@XmlElement
+	@XmlJavaTypeAdapter(LocalDateAdapter.class)
 	public LocalDate getHasta() {
 		return this.hastaProperty().get();
 	}

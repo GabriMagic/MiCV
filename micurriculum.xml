@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <cv>
-    <contacto>
-        <telefonos numero="922244095" tipo="DOMICILIO"/>
-        <telefonos numero="606263803" tipo="MOVIL"/>
-    </contacto>
+    <contacto/>
     <personal identificacion="">
         <apellidos></apellidos>
         <codigoPostal></codigoPostal>
@@ -11,4 +8,16 @@
         <localidad></localidad>
         <nombre></nombre>
     </personal>
+    <titulo>
+        <denominacion>123</denominacion>
+        <desde>2016-10-13</desde>
+        <hasta>2016-11-25</hasta>
+        <organizador>12</organizador>
+    </titulo>
+    <titulo>
+        <denominacion>123</denominacion>
+        <desde>2016-10-13</desde>
+        <hasta>2016-11-25</hasta>
+        <organizador>12</organizador>
+    </titulo>
 </cv>

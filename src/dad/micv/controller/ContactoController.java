@@ -1,13 +1,11 @@
 package dad.micv.controller;
 
 import dad.micv.model.Contacto;
-import dad.micv.model.Email;
 import dad.micv.model.Telefono;
-import dad.micv.model.Web;
+import dad.micv.view.AddEmailView;
 import dad.micv.view.AddTelefonoView;
+import dad.micv.view.AddWebsView;
 import dad.micv.view.ContactoView;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
@@ -22,9 +20,6 @@ public class ContactoController {
 	private AddEmailView addEmailView;
 	private AddWebsView addWebsView;
 	private Stage addStage;
-	private ObservableList<Telefono> telefonos;
-	private ObservableList<Email> emails;
-	private ObservableList<Web> webs;
 
 	public ContactoController() {
 
@@ -33,10 +28,6 @@ public class ContactoController {
 		contacto = new Contacto();
 
 		addTelefonoView = new AddTelefonoView();
-
-		telefonos = FXCollections.observableArrayList();
-		emails = FXCollections.observableArrayList();
-		webs = FXCollections.observableArrayList();
 
 		addStage = new Stage();
 		addStage.setScene(new Scene(new VBox()));

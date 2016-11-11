@@ -1,4 +1,4 @@
-package dad.micv.controller;
+package dad.micv.view;
 
 import javafx.scene.layout.GridPane;
 
