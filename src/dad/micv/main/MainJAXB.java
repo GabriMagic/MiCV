@@ -4,8 +4,11 @@ import java.io.File;
 import java.time.LocalDate;
 import javax.xml.bind.annotation.XmlType;
 import dad.micv.model.CV;
+import dad.micv.model.Conocimiento;
 import dad.micv.model.Experiencia;
+import dad.micv.model.Idioma;
 import dad.micv.model.Nacionalidad;
+import dad.micv.model.Nivel;
 import dad.micv.model.Telefono;
 import dad.micv.model.TipoTelefono;
 import javafx.collections.FXCollections;
@@ -58,6 +61,17 @@ public class MainJAXB {
 
 		cv.getExperiencia().add(ex);
 
+		Conocimiento co = new Conocimiento();
+		co.setDenominacion("Liarla parda");
+		co.setNivel(Nivel.AVANZADO);
+		
+		Idioma id = new Idioma();
+		id.setCertificacion("Inglés");
+		id.setNivel(Nivel.AVANZADO);
+		
+		cv.getHabilidad().add(id);
+		cv.getHabilidad().add(co);
+		
 		cv.save(new File("micurriculum.xml"));
 	}
 

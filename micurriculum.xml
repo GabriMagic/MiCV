@@ -11,13 +11,13 @@
         <empleador>Pérez Minik</empleador>
         <hasta/>
     </experiencia>
-    <personal identificacion="No lo se">
-        <apellidos>Gutierrez garcia</apellidos>
-        <codigoPostal>9875</codigoPostal>
-        <direccion>En su casa</direccion>
-        <dni>98745632-X</dni>
+    <habilidad xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="idioma" certificacion="Inglés" nivel="AVANZADO"/>
+    <habilidad denominacion="Liarla parda" nivel="AVANZADO"/>
+    <personal identificacion="564654z">
+        <apellidos>Norris</apellidos>
         <fechaNacimiento/>
-        <nombre>Alba</nombre>
-        <pais>España</pais>
+        <nacionalidades denominacion="Estadounidense"/>
+        <nacionalidades denominacion="Japonés"/>
+        <nombre>Chuck</nombre>
     </personal>
 </cv>
