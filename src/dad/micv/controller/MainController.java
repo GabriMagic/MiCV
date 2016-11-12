@@ -74,7 +74,10 @@ public class MainController {
 				CV c2 = CV.read(file);
 
 				cv.personalProperty().bind(c2.personalProperty());
-				
+				cv.contactoProperty().bind(c2.contactoProperty());
+				cv.habilidadProperty().bind(c2.habilidadProperty());
+				cv.experienciaProperty().bind(c2.experienciaProperty());
+				cv.tituloProperty().bind(c2.tituloProperty());
 			} catch (Exception e1) {
 			}
 		}
@@ -98,7 +101,7 @@ public class MainController {
 		File file = fc.showOpenDialog(app.getPrimaryStage());
 		if (file != null) {
 			try {
-				cv.save(file);
+				this.cv.save(file);
 			} catch (Exception e1) {
 			}
 		}

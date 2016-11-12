@@ -90,6 +90,7 @@ public class FormacionController {
 	}
 
 	private void onEliminarButtonAction(ActionEvent e) {
+		 cv.getTitulo().remove(view.getFormacionTable().getSelectionModel().getSelectedItem());
 	}
 
 	private void onAddButtonAction(ActionEvent e) {
