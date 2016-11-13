@@ -56,7 +56,6 @@ public class MainController {
 	}
 
 	private void onAbrir(ActionEvent e) {
-
 		FileChooser fc = new FileChooser();
 		fc.setTitle("Abrir curriculum existente");
 		fc.getExtensionFilters().add(new ExtensionFilter("Fichero XML", "*.xml"));
@@ -71,9 +70,12 @@ public class MainController {
 
 				personalController.bind(cv.getPersonal());
 				contactoController.bind(cv.getContacto());
+				experienciaController.bind(cv.getExperiencia());
 
 				Bindings.bindBidirectional(formacionController.getView().getFormacionTable().itemsProperty(),
 						cv.tituloProperty());
+				Bindings.bindBidirectional(experienciaController.getView().getExperienciaTable().itemsProperty(),
+						cv.experienciaProperty());
 
 			} catch (Exception e1) {
 			}
@@ -109,6 +111,9 @@ public class MainController {
 			contactoController.bind(cv.getContacto());
 			Bindings.bindBidirectional(formacionController.getView().getFormacionTable().itemsProperty(),
 					cv.tituloProperty());
+			Bindings.bindBidirectional(experienciaController.getView().getExperienciaTable().itemsProperty(),
+					cv.experienciaProperty());
+
 		} else {
 
 		}

@@ -5,7 +5,12 @@
         <telefonos numero="606258977" tipo="MOVIL"/>
         <webs url="https://www.gabrimagic.com"/>
     </contacto>
-    <experiencia/>
+    <experiencia>
+        <denominacion>1</denominacion>
+        <desde>2016-11-14</desde>
+        <empleador>1</empleador>
+        <hasta>2016-12-02</hasta>
+    </experiencia>
     <habilidad/>
     <personal identificacion="">
         <apellidos>Mc'Pasta</apellidos>

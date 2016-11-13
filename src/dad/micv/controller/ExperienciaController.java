@@ -6,6 +6,7 @@ import dad.micv.model.CV;
 import dad.micv.model.Experiencia;
 import dad.micv.view.ExperienciaView;
 import javafx.beans.binding.Bindings;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -37,7 +38,7 @@ public class ExperienciaController {
 		formacionAdd.setTitle("Añadir Título");
 		formacionAdd.setScene(formScene);
 
-		bind();
+		bind(cv.getExperiencia());
 
 		view.getAddButton().setOnAction(e -> onAddButtonAction(e));
 		view.getEliminarButton().setOnAction(e -> onEliminarButtonAction(e));
@@ -46,7 +47,7 @@ public class ExperienciaController {
 		addView.getAddButton().setOnAction(e -> onConfirmAction(e));
 	}
 
-	private void bind() {
+	public void bind(ObservableList<Experiencia> observableList) {
 		Bindings.bindBidirectional(view.getExperienciaTable().itemsProperty(), cv.experienciaProperty());
 	}
 
@@ -62,6 +63,9 @@ public class ExperienciaController {
 				e1.setDenominacion(addView.getDenominacionText().getText());
 				e1.setEmpleador(addView.getEmpleadorText().getText());
 				cv.getExperiencia().add(e1);
+				for (Experiencia w1 : cv.getExperiencia()) {
+					System.out.println(w1);
+				}
 				vaciarVentana();
 				formacionAdd.close();
 			} else if (addView.getDenominacionText().getText().equals("")) {
@@ -79,9 +83,6 @@ public class ExperienciaController {
 			errorAlert.show();
 		}
 
-		for (Experiencia w1 : cv.getExperiencia()) {
-			System.out.println(w1);
-		}
 	}
 
 	private void onCancelarButton(ActionEvent e) {

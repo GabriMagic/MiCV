@@ -45,7 +45,9 @@ public class ExperienciaView extends GridPane {
 		experienciaTable.getColumns().add(empleadorColumn);
 
 		addButton = new Button("Añadir");
+		addButton.setDefaultButton(true);
 		addButton.setMaxWidth(Double.MAX_VALUE);
+
 		eliminarButton = new Button("Eliminar");
 
 		GridPane.setHgrow(experienciaTable, Priority.ALWAYS);
