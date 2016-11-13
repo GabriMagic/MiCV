@@ -2,29 +2,41 @@ package dad.micv.view;
 
 import dad.micv.model.Conocimiento;
 import dad.micv.model.Nivel;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.ComboBoxTableCell;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 
 public class ConocimientoView extends GridPane {
 
-	TableView<Conocimiento> conocimientoTable;
-	TableColumn<Conocimiento, Nivel> nivelColumn;
-	TableColumn<Conocimiento, String> denominacionColumn;
-
-	Button addConocimientoButton, addIdiomaButton, eliminarButton;
+	private TableView<Conocimiento> conocimientoTable;
+	private TableColumn<Conocimiento, Nivel> nivelColumn;
+	private TableColumn<Conocimiento, String> denominacionColumn;
+	private ObservableList<Nivel> niveles;
+	private Button addConocimientoButton, addIdiomaButton, eliminarButton;
 
 	public ConocimientoView() {
 
 		conocimientoTable = new TableView<>();
+		conocimientoTable.setEditable(true);
+		
+		niveles = FXCollections.observableArrayList(Nivel.BASICO, Nivel. MEDIO, Nivel.AVANZADO);
 
 		nivelColumn = new TableColumn<>("Nivel");
+		nivelColumn.setCellValueFactory(new PropertyValueFactory<>("nivel"));
+		nivelColumn.setCellFactory(ComboBoxTableCell.forTableColumn(niveles));
 
 		denominacionColumn = new TableColumn<>("Denominacion");
+		denominacionColumn.setCellValueFactory(new PropertyValueFactory<>("denominacion"));
+		denominacionColumn.setCellFactory(TextFieldTableCell.forTableColumn());
 		denominacionColumn.setPrefWidth(150);
 
 		conocimientoTable.getColumns().add(denominacionColumn);

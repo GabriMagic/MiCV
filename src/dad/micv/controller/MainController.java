@@ -113,7 +113,8 @@ public class MainController {
 					cv.tituloProperty());
 			Bindings.bindBidirectional(experienciaController.getView().getExperienciaTable().itemsProperty(),
 					cv.experienciaProperty());
-
+			Bindings.bindBidirectional(conocimientosController.getView().getConocimientoTable().itemsProperty(),
+					cv.habilidadProperty());
 		} else {
 
 		}
