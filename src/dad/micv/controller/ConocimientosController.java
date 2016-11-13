@@ -1,5 +1,6 @@
 package dad.micv.controller;
 
+import dad.micv.model.CV;
 import dad.micv.model.Conocimiento;
 import dad.micv.view.AddConocimientoView;
 import dad.micv.view.ConocimientoView;
@@ -12,17 +13,18 @@ import javafx.stage.Stage;
 
 public class ConocimientosController {
 
-	private Conocimiento conocimiento;
+	private CV cv;
 	private AddConocimientoView addConocimientoView;
 	private AddIdiomaView addIdiomaView;
 	private ConocimientoView view;
 	private Stage addStage;
 	private ObservableList<Conocimiento> habilidades;
 
-	public ConocimientosController() {
+	public ConocimientosController(CV cv) {
 
-		conocimiento = new Conocimiento();
+		this.cv = cv;
 		view = new ConocimientoView();
+
 		addConocimientoView = new AddConocimientoView();
 		addIdiomaView = new AddIdiomaView();
 
@@ -62,7 +64,7 @@ public class ConocimientosController {
 		return view;
 	}
 
-	public Conocimiento getConocimiento() {
-		return conocimiento;
+	public ObservableList<Conocimiento> getCv() {
+		return cv.getHabilidad();
 	}
 }

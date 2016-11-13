@@ -13,39 +13,13 @@
         <direccion>C/ Miraflores 50</direccion>
         <dni>79854612-X</dni>
         <fechaNacimiento>1994-06-09</fechaNacimiento>
-        <localidad>asdasd</localidad>
-        <nacionalidades denominacion="afgano"/>
-        <nacionalidades denominacion="español"/>
-        <nacionalidades denominacion="guineano"/>
-        <nacionalidades denominacion="eslovaco"/>
-        <nacionalidades denominacion="alemán"/>
-        <nacionalidades denominacion="americano"/>
-        <nacionalidades denominacion="andorrano"/>
-        <nacionalidades denominacion="angolano"/>
-        <nacionalidades denominacion="antiguano"/>
-        <nacionalidades denominacion="argelino"/>
-        <nacionalidades denominacion="argentino"/>
-        <nacionalidades denominacion="armenio"/>
-        <nacionalidades denominacion="australiano"/>
-        <nacionalidades denominacion="austriaco"/>
-        <nacionalidades denominacion="azerbaiyano"/>
-        <nacionalidades denominacion="bahameño"/>
-        <nacionalidades denominacion="bangladesí"/>
-        <nacionalidades denominacion="barbadense"/>
-        <nacionalidades denominacion="bareiní"/>
-        <nacionalidades denominacion="belga"/>
-        <nacionalidades denominacion="beliceño"/>
-        <nacionalidades denominacion="beninés"/>
-        <nacionalidades denominacion="bieloruso"/>
-        <nacionalidades denominacion="birmano"/>
-        <nacionalidades denominacion="boliviano"/>
-        <nacionalidades denominacion="bosnio"/>
+        <localidad>S/C de Tenerife</localidad>
         <nacionalidades denominacion="botsuano"/>
         <nacionalidades denominacion="brasileño"/>
         <nacionalidades denominacion="británico"/>
         <nacionalidades denominacion="bruneano"/>
         <nombre>GabriMagic</nombre>
-        <pais>Andorra</pais>
+        <pais>Camboya</pais>
     </personal>
     <titulo>
         <denominacion>2º DAM</denominacion>
@@ -58,11 +32,5 @@
         <desde>2016-11-07</desde>
         <hasta>2016-12-08</hasta>
         <organizador>1</organizador>
-    </titulo>
-    <titulo>
-        <denominacion>2</denominacion>
-        <desde>2016-11-29</desde>
-        <hasta>2016-12-11</hasta>
-        <organizador>2</organizador>
     </titulo>
 </cv>

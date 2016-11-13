@@ -1,4 +1,4 @@
-package dad.micv.view;
+package dad.micv.controller;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -11,25 +11,25 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 
-public class AddFormacionView extends GridPane {
+public class AddExperienciaView extends GridPane {
 
-	private Label desdeLabel, hastaLabel, denominacionLabel, organizadorLabel;
+	private Label desdeLabel, hastaLabel, denominacionLabel, empleadorLabel;
 	private DatePicker desde, hasta;
-	private TextField denominacionText, organizadorText;
+	private TextField denominacionText, empleadorText;
 	private Button addButton, cancelarButton;
 
-	public AddFormacionView() {
+	public AddExperienciaView() {
 
 		desdeLabel = new Label("Desde");
 		hastaLabel = new Label("Hasta");
 		denominacionLabel = new Label("Denominación");
-		organizadorLabel = new Label("Organizador");
+		empleadorLabel = new Label("Empleador");
 
 		desde = new DatePicker();
 		hasta = new DatePicker();
 
 		denominacionText = new TextField();
-		organizadorText = new TextField();
+		empleadorText = new TextField();
 
 		addButton = new Button("Añadir");
 		addButton.setDefaultButton(true);
@@ -45,8 +45,8 @@ public class AddFormacionView extends GridPane {
 		add(hasta, 1, 1);
 		add(denominacionLabel, 0, 2);
 		add(denominacionText, 1, 2);
-		add(organizadorLabel, 0, 3);
-		add(organizadorText, 1, 3);
+		add(empleadorLabel, 0, 3);
+		add(empleadorText, 1, 3);
 		add(cajaButton, 1, 4);
 
 		ColumnConstraints col1 = new ColumnConstraints();
@@ -72,8 +72,8 @@ public class AddFormacionView extends GridPane {
 		return denominacionLabel;
 	}
 
-	public Label getOrganizadorLabel() {
-		return organizadorLabel;
+	public Label getEmpleadorLabel() {
+		return empleadorLabel;
 	}
 
 	public DatePicker getDesde() {
@@ -88,8 +88,8 @@ public class AddFormacionView extends GridPane {
 		return denominacionText;
 	}
 
-	public TextField getOrganizadorText() {
-		return organizadorText;
+	public TextField getEmpleadorText() {
+		return empleadorText;
 	}
 
 	public Button getAddButton() {

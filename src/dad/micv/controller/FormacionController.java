@@ -17,21 +17,19 @@ import java.time.Period;
 public class FormacionController {
 
 	private CV cv;
-	private Titulo titulo;
 	private FormacionView view;
 	private Stage formacionAdd;
 	private Scene formScene;
-	private AddFormacionView editVista;
+	private AddFormacionView addView;
 
-	public FormacionController() {
+	public FormacionController(CV cv) {
+
+		this.cv = cv;
 
 		view = new FormacionView();
-		editVista = new AddFormacionView();
+		addView = new AddFormacionView();
 
-		cv = new CV();
-		titulo = new Titulo();
-
-		formScene = new Scene(editVista, 305, 155);
+		formScene = new Scene(addView, 305, 155);
 
 		formacionAdd = new Stage();
 		formacionAdd.getIcons().add(new Image("cv64x64.png"));
@@ -39,13 +37,17 @@ public class FormacionController {
 		formacionAdd.setTitle("Añadir Título");
 		formacionAdd.setScene(formScene);
 
-		Bindings.bindBidirectional(view.getFormacionTable().itemsProperty(), cv.tituloProperty());
+		bind();
 
 		view.getAñadirButton().setOnAction(e -> onAddButtonAction(e));
 		view.getEliminarButton().setOnAction(e -> onEliminarButtonAction(e));
 
-		editVista.getCancelarButton().setOnAction(e -> onCancelarButton(e));
-		editVista.getAddButton().setOnAction(e -> onConfirmAction(e));
+		addView.getCancelarButton().setOnAction(e -> onCancelarButton(e));
+		addView.getAddButton().setOnAction(e -> onConfirmAction(e));
+	}
+
+	private void bind() {
+		Bindings.bindBidirectional(view.getFormacionTable().itemsProperty(), cv.tituloProperty());
 	}
 
 	private void onConfirmAction(ActionEvent e) {
@@ -53,16 +55,16 @@ public class FormacionController {
 		errorAlert.setHeaderText(null);
 
 		try {
-			if (Period.between(editVista.getDesde().getValue(), editVista.getHasta().getValue()).getDays() > 0) {
+			if (Period.between(addView.getDesde().getValue(), addView.getHasta().getValue()).getDays() > 0) {
 				Titulo t1 = new Titulo();
-				t1.setDesde(editVista.getDesde().getValue());
-				t1.setHasta(editVista.getHasta().getValue());
-				t1.setDenominacion(editVista.getDenominacionText().getText());
-				t1.setOrganizador(editVista.getOrganizadorText().getText());
+				t1.setDesde(addView.getDesde().getValue());
+				t1.setHasta(addView.getHasta().getValue());
+				t1.setDenominacion(addView.getDenominacionText().getText());
+				t1.setOrganizador(addView.getOrganizadorText().getText());
 				cv.getTitulo().add(t1);
 				vaciarVentana();
 				formacionAdd.close();
-			} else if (editVista.getDenominacionText().getText().equals("")) {
+			} else if (addView.getDenominacionText().getText().equals("")) {
 				errorAlert.setTitle("Campos vacíos");
 				errorAlert.setContentText("Rellene todos los campos");
 				errorAlert.show();
@@ -80,10 +82,10 @@ public class FormacionController {
 	}
 
 	private void vaciarVentana() {
-		editVista.getDesde().setValue(null);
-		editVista.getHasta().setValue(null);
-		editVista.getDenominacionText().setText("");
-		editVista.getOrganizadorText().setText("");
+		addView.getDesde().setValue(null);
+		addView.getHasta().setValue(null);
+		addView.getDenominacionText().setText("");
+		addView.getOrganizadorText().setText("");
 	}
 
 	private void onCancelarButton(ActionEvent e) {
@@ -100,10 +102,6 @@ public class FormacionController {
 
 	public FormacionView getView() {
 		return view;
-	}
-
-	public Titulo getTitulo() {
-		return titulo;
 	}
 
 }

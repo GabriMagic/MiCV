@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.ConcurrentModificationException;
 import java.util.NoSuchElementException;
 import java.util.Optional;
+
+import dad.micv.model.CV;
 import dad.micv.model.Nacionalidad;
 import dad.micv.model.Personal;
 import dad.micv.view.PersonalView;
@@ -20,21 +22,20 @@ import javafx.scene.control.Alert.AlertType;
 
 public class PersonalController {
 
-	private Personal personal;
+	private CV cv;
 	private PersonalView view;
 	private ChoiceDialog<Nacionalidad> nacionalidadChoice;
 	private ArrayList<Nacionalidad> nacionChoice;
 
-	public PersonalController() {
+	public PersonalController(CV cv) {
 
+		this.cv = cv;
 		view = new PersonalView();
-
-		personal = new Personal();
 
 		view.getMasButton().setOnAction(e -> onMasButtonAction());
 		view.getMenosButton().setOnAction(e -> onMenosButtonAction());
 
-		bind(personal);
+		bind(cv.getPersonal());
 		cargarComboBox();
 
 		BufferedReader bf = null;
@@ -75,7 +76,7 @@ public class PersonalController {
 			Nacionalidad nacAux = view.getNacionalidadList().getSelectionModel().getSelectedItem();
 			nacionChoice.add(nacAux);
 			// nacionChoice.sort(String::compareToIgnoreCase);
-			personal.getNacionalidades().remove(nacAux);
+			cv.getPersonal().getNacionalidades().remove(nacAux);
 		} catch (NullPointerException e) {
 			Alert nacionalidadExist = new Alert(AlertType.WARNING);
 			nacionalidadExist.setHeaderText(null);
@@ -87,7 +88,7 @@ public class PersonalController {
 
 	private boolean comprobarNacionalidad(Nacionalidad nacionalidad) {
 		boolean exit = false;
-		for (Nacionalidad nacAux : personal.getNacionalidades())
+		for (Nacionalidad nacAux : cv.getPersonal().getNacionalidades())
 			if (nacAux.toString().equals(nacionalidad.toString()))
 				exit = true;
 		return exit;
@@ -112,7 +113,7 @@ public class PersonalController {
 
 				Nacionalidad nacionalidad = new Nacionalidad();
 				nacionalidad.setDenominacion(nac.get().toString());
-				personal.getNacionalidades().add(nacionalidad);
+				cv.getPersonal().getNacionalidades().add(nacionalidad);
 
 				actualizarComboBox();
 
@@ -137,7 +138,7 @@ public class PersonalController {
 
 	private void actualizarComboBox() {
 		try {
-			for (Nacionalidad nac : personal.getNacionalidades()) {
+			for (Nacionalidad nac : cv.getPersonal().getNacionalidades()) {
 				System.out.println("Estamos buscando " + nac);
 				for (Nacionalidad nacBox : nacionChoice) {
 					System.out.println("Comparamos " + nac + " con " + nacBox);
@@ -184,7 +185,7 @@ public class PersonalController {
 	}
 
 	public Personal getPersonal() {
-		return personal;
+		return cv.getPersonal();
 	}
 
 }

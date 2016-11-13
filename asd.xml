@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <cv>
     <contacto>
-        <emails direccion="asd"/>
         <emails direccion="champy9a@gmail.com"/>
-        <telefonos numero="9894" tipo="DOMICILIO"/>
+        <telefonos numero="606258977" tipo="MOVIL"/>
+        <webs url="https://www.gabrimagic.com"/>
     </contacto>
     <experiencia/>
     <habilidad/>

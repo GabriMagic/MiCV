@@ -33,17 +33,11 @@ public class MainController {
 
 		app = new MiCvAPP();
 
-		personalController = new PersonalController();
-		contactoController = new ContactoController();
-		formacionController = new FormacionController();
-		experienciaController = new ExperienciaController();
-		conocimientosController = new ConocimientosController();
-
-		cv.setPersonal(personalController.getPersonal());
-		cv.setContacto(contactoController.getContacto());
-		cv.getExperiencia().add(experienciaController.getExperiencia());
-		cv.getHabilidad().add(conocimientosController.getConocimiento());
-		cv.getTitulo().add(formacionController.getTitulo());
+		personalController = new PersonalController(cv);
+		contactoController = new ContactoController(cv);
+		formacionController = new FormacionController(cv);
+		experienciaController = new ExperienciaController(cv);
+		conocimientosController = new ConocimientosController(cv);
 
 		// PESTAÑAS
 		mainView.getPersonalTab().setContent(personalController.getView());
@@ -77,6 +71,7 @@ public class MainController {
 
 				personalController.bind(cv.getPersonal());
 				contactoController.bind(cv.getContacto());
+
 				Bindings.bindBidirectional(formacionController.getView().getFormacionTable().itemsProperty(),
 						cv.tituloProperty());
 
