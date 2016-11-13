@@ -31,6 +31,7 @@ public class AddIdiomaView extends GridPane {
 		certificacionText.setPrefColumnCount(10);
 
 		nivelBox = new ComboBox<>();
+		nivelBox.setMaxWidth(Double.MAX_VALUE);
 		nivelBox.setPromptText("Seleccione tipo");
 		nivelBox.getItems().addAll(Nivel.BASICO, Nivel.MEDIO, Nivel.AVANZADO);
 		nivelBox.setValue(Nivel.BASICO);
@@ -52,7 +53,7 @@ public class AddIdiomaView extends GridPane {
 
 		add(nivelLabel, 0, 2);
 		add(nivelBox, 1, 2);
-		add(botones, 1, 2);
+		add(botones, 1, 3);
 
 		GridPane.setHgrow(denominacionText, Priority.ALWAYS);
 
@@ -71,7 +72,11 @@ public class AddIdiomaView extends GridPane {
 		return nivelLabel;
 	}
 
-	public TextField getTelefonoText() {
+	public Label getCertificacionLabel() {
+		return certificacionLabel;
+	}
+
+	public TextField getDenominacionText() {
 		return denominacionText;
 	}
 
