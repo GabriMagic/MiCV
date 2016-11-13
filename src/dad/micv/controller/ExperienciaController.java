@@ -17,7 +17,6 @@ import javafx.stage.Stage;
 public class ExperienciaController {
 
 	private CV cv;
-	private Experiencia experiencia;
 	private ExperienciaView view;
 	private Stage formacionAdd;
 	private Scene formScene;
@@ -26,7 +25,6 @@ public class ExperienciaController {
 	public ExperienciaController(CV cv) {
 
 		this.cv = cv;
-		experiencia = new Experiencia();
 
 		view = new ExperienciaView();
 		addView = new AddExperienciaView();
@@ -80,8 +78,9 @@ public class ExperienciaController {
 			errorAlert.setContentText("Rellene todos los campos");
 			errorAlert.show();
 		}
+
 		for (Experiencia w1 : cv.getExperiencia()) {
-			System.out.println(w1.getDenominacion());
+			System.out.println(w1);
 		}
 	}
 
@@ -108,7 +107,4 @@ public class ExperienciaController {
 		return view;
 	}
 
-	public Experiencia getExperiencia() {
-		return experiencia;
-	}
 }

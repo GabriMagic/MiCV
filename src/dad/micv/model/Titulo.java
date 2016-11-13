@@ -80,8 +80,8 @@ public class Titulo {
 
 	@Override
 	public String toString() {
-		return "Desde:" + getDesde().toString() + "Hasta: " + getHasta().toString() + "Denominacion: "
-				+ getDenominacion() + "Organizador:" + getOrganizador();
+		return "Desde: " + getDesde().toString() + "\nHasta:" + getHasta().toString() + "\nDenominacion: "
+				+ getDenominacion() + "\nEmpleador: " + getOrganizador();
 	}
 
 }
