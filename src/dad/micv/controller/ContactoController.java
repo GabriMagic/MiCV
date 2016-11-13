@@ -8,6 +8,7 @@ import dad.micv.view.AddEmailView;
 import dad.micv.view.AddTelefonoView;
 import dad.micv.view.AddWebsView;
 import dad.micv.view.ContactoView;
+import javafx.beans.binding.Bindings;
 import javafx.event.ActionEvent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
@@ -66,13 +67,14 @@ public class ContactoController {
 		addWebsView.getAddButton().setOnAction(e -> addWeb(e));
 		addWebsView.getCancelButton().setOnAction(e -> onEndWeb(e));
 
-		bind();
+		bind(contacto);
 	}
 
-	public void bind() {
-		view.getTelefonosTable().itemsProperty().bind(contacto.telefonosProperty());
-		view.getEmailsTable().itemsProperty().bind(contacto.emailsProperty());
-		view.getWebsTable().itemsProperty().bind(contacto.websProperty());
+	public void bind(Contacto contacto) {
+		Bindings.bindBidirectional(view.getTelefonosTable().itemsProperty(), contacto.telefonosProperty());
+		Bindings.bindBidirectional(view.getEmailsTable().itemsProperty(), contacto.emailsProperty());
+		Bindings.bindBidirectional(view.getWebsTable().itemsProperty(), contacto.websProperty());
+		
 	}
 
 	// TELEFONOS
@@ -123,4 +125,5 @@ public class ContactoController {
 	public Contacto getContacto() {
 		return contacto;
 	}
+
 }

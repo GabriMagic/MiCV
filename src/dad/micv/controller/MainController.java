@@ -9,6 +9,7 @@ import dad.micv.model.Contacto;
 import dad.micv.model.Personal;
 import dad.micv.view.MainView;
 import javafx.application.Platform;
+import javafx.beans.binding.Bindings;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
@@ -46,17 +47,20 @@ public class MainController {
 		cv.getHabilidad().add(conocimientosController.getConocimiento());
 		cv.getTitulo().add(formacionController.getTitulo());
 
+		// PESTAÑAS
 		mainView.getPersonalTab().setContent(personalController.getView());
 		mainView.getContactoTab().setContent(contactoController.getView());
 		mainView.getFormaciónTab().setContent(formacionController.getView());
 		mainView.getExperienciaTab().setContent(experienciaController.getView());
 		mainView.getConocimientosTab().setContent(conocimientosController.getView());
 
+		// ACTIONS
 		mainView.getSalir().setOnAction(e -> onSalir(e));
 		mainView.getGuardar().setOnAction(e -> onGuardar(e));
 		mainView.getNuevo().setOnAction(e -> onNuevo(e));
 		mainView.getAbrir().setOnAction(e -> onAbrir(e));
 		mainView.getGuardarComo().setOnAction(e -> onGuardarComo(e));
+
 	}
 
 	private void onAbrir(ActionEvent e) {
@@ -71,13 +75,12 @@ public class MainController {
 		File file = fc.showOpenDialog(app.getPrimaryStage());
 		if (file != null) {
 			try {
-				CV c2 = CV.read(file);
+				cv = CV.read(file);
 
-				cv.personalProperty().bind(c2.personalProperty());
-				cv.contactoProperty().bind(c2.contactoProperty());
-				cv.habilidadProperty().bind(c2.habilidadProperty());
-				cv.experienciaProperty().bind(c2.experienciaProperty());
-				cv.tituloProperty().bind(c2.tituloProperty());
+				personalController.bind(cv.getPersonal());
+				contactoController.bind(cv.getContacto());
+				Bindings.bindBidirectional(formacionController.getView().getFormacionTable().itemsProperty(), cv.tituloProperty());
+				
 			} catch (Exception e1) {
 			}
 		}
@@ -88,16 +91,8 @@ public class MainController {
 		FileChooser fc = new FileChooser();
 		fc.setTitle("Guardar curriculum XML...");
 		fc.getExtensionFilters().add(new ExtensionFilter("Fichero XML", "*.xml"));
-
-		if (System.getProperty("os.name").indexOf("Win") >= 0) {
-			File fichero = new File(
-					System.getProperty("user.home").toString() + System.getProperty("file.separator") + "Desktop");
-			fc.setInitialDirectory(fichero);
-		} else if (System.getProperty("os.name").indexOf("Lin") >= 0) {
-			File fichero = new File(
-					System.getProperty("user.home").toString() + System.getProperty("file.separator") + "Desktop");
-			fc.setInitialDirectory(fichero);
-		}
+		fc.setInitialDirectory(new File("."));
+		
 		File file = fc.showOpenDialog(app.getPrimaryStage());
 		if (file != null) {
 			try {

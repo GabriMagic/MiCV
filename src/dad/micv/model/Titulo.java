@@ -20,7 +20,6 @@ public class Titulo {
 	public Titulo() {
 		desde = new SimpleObjectProperty<LocalDate>(this, "FechaInicio");
 		hasta = new SimpleObjectProperty<LocalDate>(this, "FechaFin");
-
 		denominacion = new SimpleStringProperty(this, "Deniminación");
 		organizador = new SimpleStringProperty(this, "Organizador");
 	}

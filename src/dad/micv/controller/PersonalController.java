@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.ConcurrentModificationException;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 import dad.micv.model.Nacionalidad;
@@ -21,8 +22,13 @@ public class PersonalController {
 
 	private Personal personal;
 	private PersonalView view;
-	private ChoiceDialog<String> nacionalidadChoice;
-	private ArrayList<String> nacionChoice;
+	private ChoiceDialog<Nacionalidad> nacionalidadChoice;
+	private ArrayList<Nacionalidad> nacionChoice;
+
+	public PersonalController(Personal personal) {
+		System.out.println("Cargando Datos...");
+		bind(personal);
+	}
 
 	public PersonalController() {
 
@@ -37,13 +43,16 @@ public class PersonalController {
 		cargarComboBox();
 
 		BufferedReader bf = null;
-		nacionChoice = new ArrayList<String>();
+		nacionChoice = new ArrayList<Nacionalidad>();
 
 		try {
 			bf = new BufferedReader(new FileReader(new File("nacionalidades.csv")));
 
-			while (bf.ready())
-				nacionChoice.add(bf.readLine());
+			while (bf.ready()) {
+				Nacionalidad n1 = new Nacionalidad();
+				n1.setDenominacion(bf.readLine());
+				nacionChoice.add(n1);
+			}
 
 		} catch (IOException e) {
 		} finally {
@@ -54,12 +63,13 @@ public class PersonalController {
 		}
 	}
 
-	private void bind(Personal personal) {
-		Bindings.bindBidirectional(view.getDniText().textProperty(), personal.dniProperty());
+	public void bind(Personal personal) {
 		Bindings.bindBidirectional(view.getNombreText().textProperty(), personal.nombreProperty());
+		Bindings.bindBidirectional(view.getDniText().textProperty(), personal.dniProperty());
 		Bindings.bindBidirectional(view.getApellidosText().textProperty(), personal.apellidosProperty());
 		Bindings.bindBidirectional(view.getFechaNacimiento().valueProperty(), personal.fechaNacimientoProperty());
 		Bindings.bindBidirectional(view.getCodPostalText().textProperty(), personal.codigoPostalProperty());
+		Bindings.bindBidirectional(view.getDireccionText().textProperty(), personal.direccionProperty());
 		Bindings.bindBidirectional(view.getLocalidadText().textProperty(), personal.localidadProperty());
 		Bindings.bindBidirectional(view.getPais().valueProperty(), personal.paisProperty());
 		Bindings.bindBidirectional(view.getNacionalidadList().itemsProperty(), personal.nacionalidadesProperty());
@@ -68,8 +78,8 @@ public class PersonalController {
 	private void onMenosButtonAction() {
 		try {
 			Nacionalidad nacAux = view.getNacionalidadList().getSelectionModel().getSelectedItem();
-			nacionChoice.add(nacAux.getDenominacion());
-			nacionChoice.sort(String::compareToIgnoreCase);
+			nacionChoice.add(nacAux);
+			// nacionChoice.sort(String::compareToIgnoreCase);
 			personal.getNacionalidades().remove(nacAux);
 		} catch (NullPointerException e) {
 			Alert nacionalidadExist = new Alert(AlertType.WARNING);
@@ -90,6 +100,7 @@ public class PersonalController {
 
 	private void onMasButtonAction() {
 
+		actualizarComboBox();
 		try {
 
 			nacionalidadChoice = new ChoiceDialog<>();
@@ -98,21 +109,23 @@ public class PersonalController {
 			nacionalidadChoice.setContentText("Seleccione una nacionalidad");
 			nacionalidadChoice.getItems().addAll(nacionChoice);
 
-			Optional<String> nac = nacionalidadChoice.showAndWait();
+			Optional<Nacionalidad> nac = nacionalidadChoice.showAndWait();
 			Nacionalidad aux = new Nacionalidad();
-			aux.setDenominacion(nac.get());
+			aux.setDenominacion(nac.get().toString());
 
 			if (!comprobarNacionalidad(aux)) {
 
 				Nacionalidad nacionalidad = new Nacionalidad();
-				nacionalidad.setDenominacion(nac.get());
+				nacionalidad.setDenominacion(nac.get().toString());
 				personal.getNacionalidades().add(nacionalidad);
 
-				for (int i = 0; i < nacionChoice.size(); i++) {
-					if (nacionChoice.get(i).equals(nac.get())) {
-						nacionChoice.remove(i);
-					}
-				}
+				actualizarComboBox();
+
+				// for (int i = 0; i < nacionChoice.size(); i++) {
+				// if (nacionChoice.get(i).equals(nac.get())) {
+				// nacionChoice.remove(i);
+				// }
+				// }
 
 			} else {
 				Alert nacionalidadExist = new Alert(AlertType.ERROR);
@@ -125,6 +138,25 @@ public class PersonalController {
 		} catch (NoSuchElementException e) {
 		}
 
+	}
+
+	private void actualizarComboBox() {
+		try {
+			for (Nacionalidad nac : personal.getNacionalidades()) {
+				System.out.println("Estamos buscando " + nac);
+				for (Nacionalidad nacBox : nacionChoice) {
+					System.out.println("Comparamos " + nac + " con " + nacBox);
+					if (nac.toString() == nacBox.toString()) {
+						System.out.println("EUREKA " + nac + " coincide con " + nacBox);
+						nacionChoice.remove(nacBox);
+					}
+				}
+			}
+		} catch (ConcurrentModificationException e) {
+
+		}
+		nacionalidadChoice.getItems().removeAll();
+		nacionalidadChoice.getItems().addAll(nacionChoice);
 	}
 
 	private void cargarComboBox() {

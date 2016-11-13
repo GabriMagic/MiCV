@@ -4,6 +4,7 @@ import javafx.scene.control.Alert.AlertType;
 import dad.micv.view.AddFormacionView;
 import dad.micv.view.FormacionView;
 import javafx.scene.control.Alert;
+import javafx.beans.binding.Bindings;
 import javafx.event.ActionEvent;
 import javafx.scene.image.Image;
 import javafx.stage.Modality;
@@ -38,10 +39,10 @@ public class FormacionController {
 		formacionAdd.setTitle("Añadir Título");
 		formacionAdd.setScene(formScene);
 
+		Bindings.bindBidirectional(view.getFormacionTable().itemsProperty(), cv.tituloProperty());
+
 		view.getAñadirButton().setOnAction(e -> onAddButtonAction(e));
 		view.getEliminarButton().setOnAction(e -> onEliminarButtonAction(e));
-
-		view.getFormacionTable().itemsProperty().bind(cv.tituloProperty());
 
 		editVista.getCancelarButton().setOnAction(e -> onCancelarButton(e));
 		editVista.getAddButton().setOnAction(e -> onConfirmAction(e));
@@ -90,7 +91,7 @@ public class FormacionController {
 	}
 
 	private void onEliminarButtonAction(ActionEvent e) {
-		 cv.getTitulo().remove(view.getFormacionTable().getSelectionModel().getSelectedItem());
+		cv.getTitulo().remove(view.getFormacionTable().getSelectionModel().getSelectedItem());
 	}
 
 	private void onAddButtonAction(ActionEvent e) {
@@ -104,4 +105,5 @@ public class FormacionController {
 	public Titulo getTitulo() {
 		return titulo;
 	}
+
 }
