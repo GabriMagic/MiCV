@@ -1,6 +1,6 @@
 package dad.micv.view;
 
-import dad.micv.model.Experiencia;
+import dad.micv.model.Conocimiento;
 import dad.micv.model.Nivel;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
@@ -12,9 +12,9 @@ import javafx.scene.layout.VBox;
 
 public class ConocimientoView extends GridPane {
 
-	TableView<Experiencia> conocimientoTable;
-	TableColumn<Experiencia, Nivel> nivelColumn;
-	TableColumn<Experiencia, String> denominacionColumn;
+	TableView<Conocimiento> conocimientoTable;
+	TableColumn<Conocimiento, Nivel> nivelColumn;
+	TableColumn<Conocimiento, String> denominacionColumn;
 
 	Button addConocimientoButton, addIdiomaButton, eliminarButton;
 
@@ -45,15 +45,15 @@ public class ConocimientoView extends GridPane {
 
 	}
 
-	public TableView<Experiencia> getConocimientoTable() {
+	public TableView<Conocimiento> getConocimientoTable() {
 		return conocimientoTable;
 	}
 
-	public TableColumn<Experiencia, Nivel> getNivelColumn() {
+	public TableColumn<Conocimiento, Nivel> getNivelColumn() {
 		return nivelColumn;
 	}
 
-	public TableColumn<Experiencia, String> getDenominacionColumn() {
+	public TableColumn<Conocimiento, String> getDenominacionColumn() {
 		return denominacionColumn;
 	}
 

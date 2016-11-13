@@ -56,13 +56,13 @@ public class ContactoController {
 		addWebsView.getAddButton().setOnAction(e -> addWeb(e));
 		addWebsView.getCancelButton().setOnAction(e -> onEndWeb(e));
 
-		bind(cv.getContacto());
+		bind(cv);
 	}
 
-	public void bind(Contacto contacto) {
-		Bindings.bindBidirectional(view.getTelefonosTable().itemsProperty(), contacto.telefonosProperty());
-		Bindings.bindBidirectional(view.getEmailsTable().itemsProperty(), contacto.emailsProperty());
-		Bindings.bindBidirectional(view.getWebsTable().itemsProperty(), contacto.websProperty());
+	public void bind(CV cv) {
+		Bindings.bindBidirectional(view.getTelefonosTable().itemsProperty(), cv.getContacto().telefonosProperty());
+		Bindings.bindBidirectional(view.getEmailsTable().itemsProperty(), cv.getContacto().emailsProperty());
+		Bindings.bindBidirectional(view.getWebsTable().itemsProperty(), cv.getContacto().websProperty());
 
 	}
 

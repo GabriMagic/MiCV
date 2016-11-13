@@ -66,16 +66,16 @@ public class MainController {
 		File file = fc.showOpenDialog(app.getPrimaryStage());
 		if (file != null) {
 			try {
-				cv = CV.read(file);
+				this.cv = CV.read(file);
 
-				personalController.bind(cv.getPersonal());
-				contactoController.bind(cv.getContacto());
-				experienciaController.bind(cv.getExperiencia());
-
+				personalController.bind(cv);
+				contactoController.bind(cv);
 				Bindings.bindBidirectional(formacionController.getView().getFormacionTable().itemsProperty(),
 						cv.tituloProperty());
 				Bindings.bindBidirectional(experienciaController.getView().getExperienciaTable().itemsProperty(),
 						cv.experienciaProperty());
+				Bindings.bindBidirectional(conocimientosController.getView().getConocimientoTable().itemsProperty(),
+						cv.habilidadProperty());
 
 			} catch (Exception e1) {
 			}
@@ -107,8 +107,8 @@ public class MainController {
 		Optional<ButtonType> confirm = confirmAlert.showAndWait();
 
 		if (confirm.get() == ButtonType.OK) {
-			personalController.bind(cv.getPersonal());
-			contactoController.bind(cv.getContacto());
+			personalController.bind(cv);
+			contactoController.bind(cv);
 			Bindings.bindBidirectional(formacionController.getView().getFormacionTable().itemsProperty(),
 					cv.tituloProperty());
 			Bindings.bindBidirectional(experienciaController.getView().getExperienciaTable().itemsProperty(),
@@ -133,7 +133,6 @@ public class MainController {
 				if (confirm.get() == ButtonType.OK) {
 					cv.save(fich);
 				} else {
-
 				}
 
 			}

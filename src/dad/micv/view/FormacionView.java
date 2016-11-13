@@ -7,9 +7,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
+import javafx.util.StringConverter;
 
 public class FormacionView extends GridPane {
 
@@ -22,20 +24,49 @@ public class FormacionView extends GridPane {
 	public FormacionView() {
 
 		formacionTable = new TableView<>();
+		formacionTable.setEditable(true);
 
 		desdeColumn = new TableColumn<>("FechaInicio");
 		desdeColumn.setCellValueFactory(new PropertyValueFactory<>("desde"));
+		desdeColumn.setCellFactory(TextFieldTableCell.forTableColumn(new StringConverter<LocalDate>() {
+
+			@Override
+			public LocalDate fromString(String string) {
+				String[] partes = string.split("/");
+				return LocalDate.parse(partes[2] + "-" + partes[1] + "-" + partes[0]);
+			}
+
+			@Override
+			public String toString(LocalDate object) {
+				return object.getDayOfMonth() + "/" + object.getMonthValue() + "/" + object.getYear();
+			}
+		}));
 		desdeColumn.setPrefWidth(100);
 
 		hastaColumn = new TableColumn<>("FechaFin");
+		hastaColumn.setCellFactory(TextFieldTableCell.forTableColumn(new StringConverter<LocalDate>() {
+
+			@Override
+			public LocalDate fromString(String string) {
+				String[] partes = string.split("/");
+				return LocalDate.parse(partes[2] + "-" + partes[1] + "-" + partes[0]);
+			}
+
+			@Override
+			public String toString(LocalDate object) {
+				return object.getDayOfMonth() + "/" + object.getMonthValue() + "/" + object.getYear();
+			}
+		}));
 		hastaColumn.setCellValueFactory(new PropertyValueFactory<>("hasta"));
 		hastaColumn.setPrefWidth(100);
 
 		denominacionColumn = new TableColumn<>("Denominacion");
+		denominacionColumn.setCellFactory(TextFieldTableCell.forTableColumn());
 		denominacionColumn.setCellValueFactory(new PropertyValueFactory<>("denominacion"));
 		denominacionColumn.setPrefWidth(150);
 
 		organizadorColumn = new TableColumn<>("Organizador");
+		organizadorColumn.setCellFactory(TextFieldTableCell.forTableColumn());
 		organizadorColumn.setCellValueFactory(new PropertyValueFactory<>("organizador"));
 		organizadorColumn.setPrefWidth(150);
 

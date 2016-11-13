@@ -26,6 +26,7 @@ public class PersonalController {
 	private PersonalView view;
 	private ChoiceDialog<Nacionalidad> nacionalidadChoice;
 	private ArrayList<Nacionalidad> nacionChoice;
+	private BufferedReader bf;
 
 	public PersonalController(CV cv) {
 
@@ -34,13 +35,15 @@ public class PersonalController {
 
 		view.getMasButton().setOnAction(e -> onMasButtonAction());
 		view.getMenosButton().setOnAction(e -> onMenosButtonAction());
-
-		bind(cv.getPersonal());
-		cargarComboBox();
-
-		BufferedReader bf = null;
 		nacionChoice = new ArrayList<Nacionalidad>();
 
+		bind(cv);
+		cargarComboBox();
+		cargarNacionalidades();
+
+	}
+
+	private void cargarNacionalidades() {
 		try {
 			bf = new BufferedReader(new FileReader(new File("nacionalidades.csv")));
 
@@ -59,16 +62,18 @@ public class PersonalController {
 		}
 	}
 
-	public void bind(Personal personal) {
-		Bindings.bindBidirectional(view.getNombreText().textProperty(), personal.nombreProperty());
-		Bindings.bindBidirectional(view.getDniText().textProperty(), personal.dniProperty());
-		Bindings.bindBidirectional(view.getApellidosText().textProperty(), personal.apellidosProperty());
-		Bindings.bindBidirectional(view.getFechaNacimiento().valueProperty(), personal.fechaNacimientoProperty());
-		Bindings.bindBidirectional(view.getCodPostalText().textProperty(), personal.codigoPostalProperty());
-		Bindings.bindBidirectional(view.getDireccionText().textProperty(), personal.direccionProperty());
-		Bindings.bindBidirectional(view.getLocalidadText().textProperty(), personal.localidadProperty());
-		Bindings.bindBidirectional(view.getPais().valueProperty(), personal.paisProperty());
-		Bindings.bindBidirectional(view.getNacionalidadList().itemsProperty(), personal.nacionalidadesProperty());
+	public void bind(CV cv) {
+		Bindings.bindBidirectional(view.getNombreText().textProperty(), cv.getPersonal().nombreProperty());
+		Bindings.bindBidirectional(view.getDniText().textProperty(), cv.getPersonal().dniProperty());
+		Bindings.bindBidirectional(view.getApellidosText().textProperty(), cv.getPersonal().apellidosProperty());
+		Bindings.bindBidirectional(view.getFechaNacimiento().valueProperty(),
+				cv.getPersonal().fechaNacimientoProperty());
+		Bindings.bindBidirectional(view.getCodPostalText().textProperty(), cv.getPersonal().codigoPostalProperty());
+		Bindings.bindBidirectional(view.getDireccionText().textProperty(), cv.getPersonal().direccionProperty());
+		Bindings.bindBidirectional(view.getLocalidadText().textProperty(), cv.getPersonal().localidadProperty());
+		Bindings.bindBidirectional(view.getPais().valueProperty(), cv.getPersonal().paisProperty());
+		Bindings.bindBidirectional(view.getNacionalidadList().itemsProperty(),
+				cv.getPersonal().nacionalidadesProperty());
 	}
 
 	private void onMenosButtonAction() {
@@ -115,13 +120,13 @@ public class PersonalController {
 				nacionalidad.setDenominacion(nac.get().toString());
 				cv.getPersonal().getNacionalidades().add(nacionalidad);
 
-				actualizarComboBox();
+				// actualizarComboBox();
 
-				// for (int i = 0; i < nacionChoice.size(); i++) {
-				// if (nacionChoice.get(i).equals(nac.get())) {
-				// nacionChoice.remove(i);
-				// }
-				// }
+				for (int i = 0; i < nacionChoice.size(); i++) {
+					if (nacionChoice.get(i).equals(nac.get())) {
+						nacionChoice.remove(i);
+					}
+				}
 
 			} else {
 				Alert nacionalidadExist = new Alert(AlertType.ERROR);
@@ -151,8 +156,7 @@ public class PersonalController {
 		} catch (ConcurrentModificationException e) {
 
 		}
-		nacionalidadChoice.getItems().removeAll();
-		nacionalidadChoice.getItems().addAll(nacionChoice);
+		// nacionalidadChoice.getItems().addAll(nacionChoice);
 	}
 
 	private void cargarComboBox() {

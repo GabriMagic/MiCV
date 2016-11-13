@@ -3,12 +3,13 @@
     <contacto>
         <emails direccion="champy9a@gmail.com"/>
         <telefonos numero="606258977" tipo="MOVIL"/>
+        <telefonos numero="922365689" tipo="DOMICILIO"/>
         <webs url="https://www.gabrimagic.com"/>
     </contacto>
     <experiencia>
-        <denominacion>1</denominacion>
+        <denominacion>Mi Origen</denominacion>
         <desde>2016-11-14</desde>
-        <empleador>1</empleador>
+        <empleador>Luis</empleador>
         <hasta>2016-12-02</hasta>
     </experiencia>
     <habilidad/>
@@ -19,10 +20,7 @@
         <dni>79854612-X</dni>
         <fechaNacimiento>1994-06-09</fechaNacimiento>
         <localidad>S/C de Tenerife</localidad>
-        <nacionalidades denominacion="botsuano"/>
-        <nacionalidades denominacion="brasileño"/>
-        <nacionalidades denominacion="británico"/>
-        <nacionalidades denominacion="bruneano"/>
+        <nacionalidades denominacion="afgano"/>
         <nombre>GabriMagic</nombre>
         <pais>Camboya</pais>
     </personal>
@@ -33,9 +31,9 @@
         <organizador>IES DPM</organizador>
     </titulo>
     <titulo>
-        <denominacion>1</denominacion>
+        <denominacion>Origen</denominacion>
         <desde>2016-11-07</desde>
         <hasta>2016-12-08</hasta>
-        <organizador>1</organizador>
+        <organizador>Yo mismo</organizador>
     </titulo>
 </cv>
