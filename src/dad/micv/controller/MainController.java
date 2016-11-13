@@ -5,8 +5,6 @@ import java.util.Optional;
 
 import dad.micv.main.MiCvAPP;
 import dad.micv.model.CV;
-import dad.micv.model.Contacto;
-import dad.micv.model.Personal;
 import dad.micv.view.MainView;
 import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
@@ -79,8 +77,9 @@ public class MainController {
 
 				personalController.bind(cv.getPersonal());
 				contactoController.bind(cv.getContacto());
-				Bindings.bindBidirectional(formacionController.getView().getFormacionTable().itemsProperty(), cv.tituloProperty());
-				
+				Bindings.bindBidirectional(formacionController.getView().getFormacionTable().itemsProperty(),
+						cv.tituloProperty());
+
 			} catch (Exception e1) {
 			}
 		}
@@ -92,11 +91,11 @@ public class MainController {
 		fc.setTitle("Guardar curriculum XML...");
 		fc.getExtensionFilters().add(new ExtensionFilter("Fichero XML", "*.xml"));
 		fc.setInitialDirectory(new File("."));
-		
+
 		File file = fc.showOpenDialog(app.getPrimaryStage());
 		if (file != null) {
 			try {
-				this.cv.save(file);
+				cv.save(file);
 			} catch (Exception e1) {
 			}
 		}
@@ -105,9 +104,20 @@ public class MainController {
 
 	private void onNuevo(ActionEvent e) {
 		cv = new CV();
+		Alert confirmAlert = new Alert(AlertType.CONFIRMATION);
+		confirmAlert.setHeaderText("Se borrarán los datos no guardados");
+		confirmAlert.setContentText("¿Desea cerrar el curriculum actual?");
+		Optional<ButtonType> confirm = confirmAlert.showAndWait();
 
-		cv.setPersonal(new Personal());
-		cv.setContacto(new Contacto());
+		if (confirm.get() == ButtonType.OK) {
+			personalController.bind(cv.getPersonal());
+			contactoController.bind(cv.getContacto());
+			Bindings.bindBidirectional(formacionController.getView().getFormacionTable().itemsProperty(),
+					cv.tituloProperty());
+		} else {
+
+		}
+
 	}
 
 	private void onGuardar(ActionEvent e) {

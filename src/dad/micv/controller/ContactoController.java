@@ -40,23 +40,12 @@ public class ContactoController {
 		addStage.setScene(new Scene(new VBox()));
 		addStage.initModality(Modality.APPLICATION_MODAL);
 
-		view.getTelefonoAddButton().setOnAction(e -> {
-			addStage.setTitle("Añadir Teléfono");
-			addStage.getScene().setRoot(addTelefonoView);
-			addStage.show();
-		});
-
-		view.getEmailsAddButton().setOnAction(e -> {
-			addStage.setTitle("Añadir E-Mail");
-			addStage.getScene().setRoot(addEmailView);
-			addStage.show();
-		});
-
-		view.getWebsAddButton().setOnAction(e -> {
-			addStage.setTitle("Añadir Web");
-			addStage.getScene().setRoot(addWebsView);
-			addStage.show();
-		});
+		view.getTelefonoAddButton().setOnAction(e -> addTelefonoOpen());
+		view.getTelefonoDelButotn().setOnAction(e -> onDelTelefono());
+		view.getEmailsAddButton().setOnAction(e -> addEmailOpen());
+		view.getEmailsDelButotn().setOnAction(e -> onDelEmail());
+		view.getWebsAddButton().setOnAction(e -> addWebOpen());
+		view.getWebsDelButotn().setOnAction(e -> onDelWeb());
 
 		addTelefonoView.getAddButton().setOnAction(e -> AddTelefono(e));
 		addTelefonoView.getCancelButton().setOnAction(e -> onEndTelefono(e));
@@ -74,10 +63,16 @@ public class ContactoController {
 		Bindings.bindBidirectional(view.getTelefonosTable().itemsProperty(), contacto.telefonosProperty());
 		Bindings.bindBidirectional(view.getEmailsTable().itemsProperty(), contacto.emailsProperty());
 		Bindings.bindBidirectional(view.getWebsTable().itemsProperty(), contacto.websProperty());
-		
+
 	}
 
 	// TELEFONOS
+	private void addTelefonoOpen() {
+		addStage.setTitle("Añadir Teléfono");
+		addStage.getScene().setRoot(addTelefonoView);
+		addStage.show();
+	}
+
 	private void AddTelefono(ActionEvent e) {
 		Telefono t1 = new Telefono();
 		t1.setNumero(addTelefonoView.getTelefonoText().getText());
@@ -86,7 +81,23 @@ public class ContactoController {
 		onEndTelefono(e);
 	}
 
+	private void onEndTelefono(ActionEvent e) {
+		addTelefonoView.getTelefonoText().setText("");
+		addTelefonoView.getTelefonoText().setText("");
+		addStage.close();
+	}
+
+	private void onDelTelefono() {
+		contacto.getTelefonos().remove(view.getTelefonosTable().getSelectionModel().getSelectedItem());
+	}
+
 	// EMAILS
+	private void addEmailOpen() {
+		addStage.setTitle("Añadir E-Mail");
+		addStage.getScene().setRoot(addEmailView);
+		addStage.show();
+	}
+
 	private void AddEmail(ActionEvent e) {
 		Email e1 = new Email();
 		e1.setDireccion(addEmailView.getEmailText().getText());
@@ -94,7 +105,22 @@ public class ContactoController {
 		onEndEmail(e);
 	}
 
+	private void onEndEmail(ActionEvent e) {
+		addEmailView.getEmailText().setText("");
+		addStage.close();
+	}
+
+	private void onDelEmail() {
+		contacto.getEmails().remove(view.getEmailsTable().getSelectionModel().getSelectedItem());
+	}
+
 	// WEBS
+	private void addWebOpen() {
+		addStage.setTitle("Añadir Web");
+		addStage.getScene().setRoot(addWebsView);
+		addStage.show();
+	}
+
 	private void addWeb(ActionEvent e) {
 		Web w1 = new Web();
 		w1.setUrl(addWebsView.getWebText().getText());
@@ -102,20 +128,13 @@ public class ContactoController {
 		onEndWeb(e);
 	}
 
-	private void onEndTelefono(ActionEvent e) {
-		addTelefonoView.getTelefonoText().setText("");
-		addTelefonoView.getTelefonoText().setText("");
-		addStage.close();
-	}
-
-	private void onEndEmail(ActionEvent e) {
-		addEmailView.getEmailText().setText("");
-		addStage.close();
-	}
-
 	private void onEndWeb(ActionEvent e) {
 		addWebsView.getWebText().setText("");
 		addStage.close();
+	}
+
+	private void onDelWeb() {
+		contacto.getWebs().remove(view.getWebsTable().getSelectionModel().getSelectedItem());
 	}
 
 	public ContactoView getView() {

@@ -4,6 +4,8 @@ import dad.micv.model.Email;
 import dad.micv.model.Telefono;
 import dad.micv.model.TipoTelefono;
 import dad.micv.model.Web;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.scene.control.Button;
@@ -11,7 +13,9 @@ import javafx.scene.control.SplitPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TitledPane;
+import javafx.scene.control.cell.ComboBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
@@ -26,6 +30,8 @@ public class ContactoView extends SplitPane {
 	private TableColumn<Email, String> emailColumn;
 	private TableColumn<Web, String> webColumn;
 
+	private ObservableList<TipoTelefono> tipoTelefonos;
+	
 	private TitledPane telefonosPane;
 	private TitledPane emailsPane;
 	private TitledPane websPane;
@@ -38,6 +44,8 @@ public class ContactoView extends SplitPane {
 
 	public ContactoView() {
 
+		tipoTelefonos = FXCollections.observableArrayList(TipoTelefono.DOMICILIO, TipoTelefono.MOVIL);
+		
 		telefonoAddButton = new Button("Añadir");
 		telefonoAddButton.setMaxWidth(Double.MAX_VALUE);
 		telefonoDelButotn = new Button("Eliminar");
@@ -52,27 +60,34 @@ public class ContactoView extends SplitPane {
 
 		telefonoColumn = new TableColumn<>("Número");
 		telefonoColumn.setCellValueFactory(new PropertyValueFactory<>("numero"));
+		telefonoColumn.setCellFactory(TextFieldTableCell.forTableColumn());
 		telefonoColumn.setPrefWidth(120);
 		tipoTelefonoColumn = new TableColumn<>("Tipo");
+		tipoTelefonoColumn.setCellFactory(ComboBoxTableCell.forTableColumn(tipoTelefonos));
 		tipoTelefonoColumn.setCellValueFactory(new PropertyValueFactory<>("tipo"));
 		tipoTelefonoColumn.setPrefWidth(120);
-		
+
 		telefonosTable = new TableView<Telefono>();
+		telefonosTable.setEditable(true);
 		telefonosTable.getColumns().add(telefonoColumn);
 		telefonosTable.getColumns().add(tipoTelefonoColumn);
 
 		emailColumn = new TableColumn<>("E-Mail");
+		emailColumn.setCellFactory(TextFieldTableCell.forTableColumn());
 		emailColumn.setPrefWidth(300);
 		emailColumn.setCellValueFactory(new PropertyValueFactory<>("direccion"));
 
 		emailsTable = new TableView<Email>();
+		emailsTable.setEditable(true);
 		emailsTable.getColumns().add(emailColumn);
 
 		webColumn = new TableColumn<>("URL");
+		webColumn.setCellFactory(TextFieldTableCell.forTableColumn());
 		webColumn.setPrefWidth(300);
 		webColumn.setCellValueFactory(new PropertyValueFactory<>("url"));
 
 		websTable = new TableView<Web>();
+		websTable.setEditable(true);
 		websTable.getColumns().add(webColumn);
 
 		// SPLITPANEL TELEFONOS
