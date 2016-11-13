@@ -25,11 +25,6 @@ public class PersonalController {
 	private ChoiceDialog<Nacionalidad> nacionalidadChoice;
 	private ArrayList<Nacionalidad> nacionChoice;
 
-	public PersonalController(Personal personal) {
-		System.out.println("Cargando Datos...");
-		bind(personal);
-	}
-
 	public PersonalController() {
 
 		view = new PersonalView();
