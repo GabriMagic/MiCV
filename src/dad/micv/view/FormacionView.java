@@ -15,9 +15,9 @@ import javafx.util.StringConverter;
 
 public class FormacionView extends GridPane {
 
-	TableView<Titulo> formacionTable;
-	TableColumn<Titulo, LocalDate> desdeColumn, hastaColumn;
-	TableColumn<Titulo, String> denominacionColumn, organizadorColumn;
+	private TableView<Titulo> formacionTable;
+	private TableColumn<Titulo, LocalDate> desdeColumn, hastaColumn;
+	private TableColumn<Titulo, String> denominacionColumn, organizadorColumn;
 
 	Button addButton, eliminarButton;
 

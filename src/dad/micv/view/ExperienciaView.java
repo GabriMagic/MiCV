@@ -15,9 +15,9 @@ import javafx.util.StringConverter;
 
 public class ExperienciaView extends GridPane {
 
-	TableView<Experiencia> experienciaTable;
-	TableColumn<Experiencia, LocalDate> desdeColumn, hastaColumn;
-	TableColumn<Experiencia, String> denominacionColumn, empleadorColumn;
+	private TableView<Experiencia> experienciaTable;
+	private TableColumn<Experiencia, LocalDate> desdeColumn, hastaColumn;
+	private TableColumn<Experiencia, String> denominacionColumn, empleadorColumn;
 
 	Button addButton, eliminarButton;
 

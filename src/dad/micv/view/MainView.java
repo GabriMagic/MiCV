@@ -12,11 +12,11 @@ import javafx.scene.layout.BorderPane;
 
 public class MainView extends BorderPane {
 
-	MenuBar menuBar;
-	Menu archivo, ayuda;
-	MenuItem nuevo, abrir, guardar, guardarComo, salir, acercaDe;
-	TabPane tabPane;
-	Tab personalTab, contactoTab, formaciónTab, experienciaTab, conocimientosTab;
+	private MenuBar menuBar;
+	private Menu archivo, ayuda;
+	private MenuItem nuevo, abrir, guardar, guardarComo, salir, acercaDe;
+	private TabPane tabPane;
+	private Tab personalTab, contactoTab, formaciónTab, experienciaTab, conocimientosTab;
 
 	public MainView() {
 		super();

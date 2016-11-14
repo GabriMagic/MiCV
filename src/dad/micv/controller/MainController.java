@@ -17,14 +17,14 @@ import javafx.scene.control.Alert.AlertType;
 
 public class MainController {
 
-	CV cv;
-	MiCvAPP app;
-	MainView mainView;
-	PersonalController personalController;
-	ContactoController contactoController;
-	FormacionController formacionController;
-	ExperienciaController experienciaController;
-	ConocimientosController conocimientosController;
+	private CV cv;
+	private MiCvAPP app;
+	private MainView mainView;
+	private PersonalController personalController;
+	private ContactoController contactoController;
+	private FormacionController formacionController;
+	private ExperienciaController experienciaController;
+	private ConocimientosController conocimientosController;
 
 	public MainController() {
 
