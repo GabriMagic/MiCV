@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.ConcurrentModificationException;
 import java.util.NoSuchElementException;
 import java.util.Optional;
@@ -27,6 +28,7 @@ public class PersonalController {
 	private ChoiceDialog<Nacionalidad> nacionalidadChoice;
 	private ArrayList<Nacionalidad> nacionChoice;
 	private BufferedReader bf;
+	private Comparator<Nacionalidad> nacComp;
 
 	public PersonalController(CV cv) {
 
@@ -40,6 +42,13 @@ public class PersonalController {
 		bind(cv);
 		cargarComboBox();
 		cargarNacionalidades();
+
+		nacComp = new Comparator<Nacionalidad>() {
+			@Override
+			public int compare(Nacionalidad nac1, Nacionalidad nac2) {
+				return nac1.getDenominacion().compareToIgnoreCase(nac2.getDenominacion());
+			}
+		};
 
 	}
 
@@ -100,7 +109,7 @@ public class PersonalController {
 	}
 
 	private void onMasButtonAction() {
-
+		nacionChoice.sort(nacComp);
 		actualizarComboBox();
 		try {
 
@@ -138,17 +147,17 @@ public class PersonalController {
 
 		} catch (NoSuchElementException e) {
 		}
-
+		cv.getPersonal().getNacionalidades().sort(nacComp);
 	}
 
 	private void actualizarComboBox() {
 		try {
 			for (Nacionalidad nac : cv.getPersonal().getNacionalidades()) {
-				System.out.println("Estamos buscando " + nac);
+				
 				for (Nacionalidad nacBox : nacionChoice) {
-					System.out.println("Comparamos " + nac + " con " + nacBox);
+					
 					if (nac.toString() == nacBox.toString()) {
-						System.out.println("EUREKA " + nac + " coincide con " + nacBox);
+
 						nacionChoice.remove(nacBox);
 					}
 				}
@@ -156,7 +165,6 @@ public class PersonalController {
 		} catch (ConcurrentModificationException e) {
 
 		}
-		// nacionalidadChoice.getItems().addAll(nacionChoice);
 	}
 
 	private void cargarComboBox() {

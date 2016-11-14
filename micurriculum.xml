@@ -13,11 +13,11 @@
         <hasta>2016-12-02</hasta>
     </experiencia>
     <habilidad denominacion="Esto no se lo que es" nivel="AVANZADO"/>
-    <habilidad denominacion="Yo se mucho" nivel="MEDIO"/>
-    <habilidad xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="idioma" certificacion="123123" denominacion="12312" nivel="BASICO"/>
+    <habilidad denominacion="Acceso a datos" nivel="MEDIO"/>
+    <habilidad xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="idioma" certificacion="123123" denominacion="Inglés" nivel="AVANZADO"/>
     <personal identificacion="">
         <apellidos>Mc'Pasta</apellidos>
-        <codigoPostal>897987</codigoPostal>
+        <codigoPostal>38006</codigoPostal>
         <direccion>C/ Miraflores 50</direccion>
         <dni>79854612-X</dni>
         <fechaNacimiento>1994-06-09</fechaNacimiento>
