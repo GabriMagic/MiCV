@@ -72,7 +72,6 @@ public class PersonalController {
 		try {
 			Nacionalidad nacAux = view.getNacionalidadList().getSelectionModel().getSelectedItem();
 			nacionChoice.add(nacAux);
-			// nacionChoice.sort(String::compareToIgnoreCase);
 			cv.getPersonal().getNacionalidades().remove(nacAux);
 		} catch (NullPointerException e) {
 			Alert nacionalidadExist = new Alert(AlertType.WARNING);
@@ -111,8 +110,6 @@ public class PersonalController {
 				Nacionalidad nacionalidad = new Nacionalidad();
 				nacionalidad.setDenominacion(nac.get().toString());
 				cv.getPersonal().getNacionalidades().add(nacionalidad);
-
-				// actualizarComboBox();
 
 				for (int i = 0; i < nacionChoice.size(); i++) {
 					if (nacionChoice.get(i).equals(nac.get())) {
