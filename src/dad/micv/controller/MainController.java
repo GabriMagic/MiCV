@@ -7,7 +7,6 @@ import dad.micv.main.MiCvAPP;
 import dad.micv.model.CV;
 import dad.micv.view.MainView;
 import javafx.application.Platform;
-import javafx.beans.binding.Bindings;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
@@ -33,11 +32,11 @@ public class MainController {
 
 		app = new MiCvAPP();
 
-		personalController = new PersonalController(cv);
-		contactoController = new ContactoController(cv);
-		formacionController = new FormacionController(cv);
-		experienciaController = new ExperienciaController(cv);
-		conocimientosController = new ConocimientosController(cv);
+		personalController = new PersonalController();
+		contactoController = new ContactoController();
+		formacionController = new FormacionController();
+		experienciaController = new ExperienciaController();
+		conocimientosController = new ConocimientosController();
 
 		// PESTAÑAS
 		mainView.getPersonalTab().setContent(personalController.getView());
@@ -58,46 +57,11 @@ public class MainController {
 	}
 
 	public void bind(CV cv) {
-
-		// BINDING PERSONAL
-		Bindings.bindBidirectional(personalController.getView().getNombreText().textProperty(),
-				cv.getPersonal().nombreProperty());
-		Bindings.bindBidirectional(personalController.getView().getDniText().textProperty(),
-				cv.getPersonal().dniProperty());
-		Bindings.bindBidirectional(personalController.getView().getApellidosText().textProperty(),
-				cv.getPersonal().apellidosProperty());
-		Bindings.bindBidirectional(personalController.getView().getFechaNacimiento().valueProperty(),
-				cv.getPersonal().fechaNacimientoProperty());
-		Bindings.bindBidirectional(personalController.getView().getCodPostalText().textProperty(),
-				cv.getPersonal().codigoPostalProperty());
-		Bindings.bindBidirectional(personalController.getView().getDireccionText().textProperty(),
-				cv.getPersonal().direccionProperty());
-		Bindings.bindBidirectional(personalController.getView().getLocalidadText().textProperty(),
-				cv.getPersonal().localidadProperty());
-		Bindings.bindBidirectional(personalController.getView().getPais().valueProperty(),
-				cv.getPersonal().paisProperty());
-		Bindings.bindBidirectional(personalController.getView().getNacionalidadList().itemsProperty(),
-				cv.getPersonal().nacionalidadesProperty());
-
-		// BINDING CONTACTO
-		Bindings.bindBidirectional(contactoController.getView().getTelefonosTable().itemsProperty(),
-				cv.getContacto().telefonosProperty());
-		Bindings.bindBidirectional(contactoController.getView().getEmailsTable().itemsProperty(),
-				cv.getContacto().emailsProperty());
-		Bindings.bindBidirectional(contactoController.getView().getWebsTable().itemsProperty(),
-				cv.getContacto().websProperty());
-
-		// BINDING FORMACION
-		Bindings.bindBidirectional(formacionController.getView().getFormacionTable().itemsProperty(),
-				cv.tituloProperty());
-
-		// BINDING EXPERIENCIA
-		Bindings.bindBidirectional(experienciaController.getView().getExperienciaTable().itemsProperty(),
-				cv.experienciaProperty());
-
-		// BINDING CONOCIMIENTO
-		Bindings.bindBidirectional(conocimientosController.getView().getConocimientoTable().itemsProperty(),
-				cv.habilidadProperty());
+		personalController.bind(cv.getPersonal());
+		contactoController.bind(cv.getContacto());
+		formacionController.bind(cv.tituloProperty());
+		experienciaController.bind(cv.experienciaProperty());
+		conocimientosController.bind(cv.habilidadProperty());
 	}
 
 	private void onAbrir(ActionEvent e) {

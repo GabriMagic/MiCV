@@ -2,10 +2,10 @@ package dad.micv.controller;
 
 import java.time.Period;
 
-import dad.micv.model.CV;
 import dad.micv.model.Experiencia;
 import dad.micv.view.AddExperienciaView;
 import dad.micv.view.ExperienciaView;
+import javafx.beans.property.ListProperty;
 import javafx.event.ActionEvent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -16,15 +16,13 @@ import javafx.stage.Stage;
 
 public class ExperienciaController {
 
-	private CV cv;
 	private ExperienciaView view;
 	private Stage formacionAdd;
 	private Scene formScene;
 	private AddExperienciaView addView;
+	private ListProperty<Experiencia> experiencias;
 
-	public ExperienciaController(CV cv) {
-
-		this.cv = cv;
+	public ExperienciaController() {
 
 		view = new ExperienciaView();
 		addView = new AddExperienciaView();
@@ -44,6 +42,11 @@ public class ExperienciaController {
 		addView.getAddButton().setOnAction(e -> onConfirmAction(e));
 	}
 
+	public void bind(ListProperty<Experiencia> experienciaProperty) {
+		this.experiencias = experienciaProperty;
+		view.getExperienciaTable().itemsProperty().bind(experiencias);
+	}
+
 	private void onConfirmAction(ActionEvent e) {
 		Alert errorAlert = new Alert(AlertType.ERROR);
 		errorAlert.setHeaderText(null);
@@ -55,7 +58,7 @@ public class ExperienciaController {
 				e1.setHasta(addView.getHasta().getValue());
 				e1.setDenominacion(addView.getDenominacionText().getText());
 				e1.setEmpleador(addView.getEmpleadorText().getText());
-				cv.getExperiencia().add(e1);
+				experiencias.add(e1);
 				vaciarVentana();
 				formacionAdd.close();
 			} else if (addView.getDenominacionText().getText().equals("")) {
@@ -84,7 +87,7 @@ public class ExperienciaController {
 	}
 
 	private void onEliminarButtonAction(ActionEvent e) {
-		cv.getExperiencia().remove(view.getExperienciaTable().getSelectionModel().getSelectedItem());
+		experiencias.remove(view.getExperienciaTable().getSelectionModel().getSelectedItem());
 	}
 
 	private void vaciarVentana() {
@@ -98,7 +101,4 @@ public class ExperienciaController {
 		return view;
 	}
 
-	public CV getCv() {
-		return cv;
-	}
 }

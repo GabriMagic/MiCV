@@ -1,13 +1,12 @@
 package dad.micv.controller;
 
-import dad.micv.model.CV;
 import dad.micv.model.Conocimiento;
 import dad.micv.model.Idioma;
 import dad.micv.model.Nivel;
 import dad.micv.view.AddConocimientoView;
 import dad.micv.view.AddIdiomaView;
 import dad.micv.view.ConocimientoView;
-import javafx.collections.ObservableList;
+import javafx.beans.property.ListProperty;
 import javafx.event.ActionEvent;
 import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
@@ -16,15 +15,14 @@ import javafx.stage.Stage;
 
 public class ConocimientosController {
 
-	private CV cv;
 	private AddConocimientoView addConocimientoView;
 	private AddIdiomaView addIdiomaView;
 	private ConocimientoView view;
 	private Stage addStage;
+	private ListProperty<Conocimiento> habilidades;
 
-	public ConocimientosController(CV cv) {
+	public ConocimientosController() {
 
-		this.cv = cv;
 		view = new ConocimientoView();
 
 		addConocimientoView = new AddConocimientoView();
@@ -45,6 +43,11 @@ public class ConocimientosController {
 		addIdiomaView.getCancelButton().setOnAction(e -> EndIdiomaADD(e));
 	}
 
+	public void bind(ListProperty<Conocimiento> habilidadProperty) {
+		this.habilidades = habilidadProperty;
+		view.getConocimientoTable().itemsProperty().bind(habilidades);
+	}
+
 	// CONOCIMIENTOS
 	private void onAddConocimiento(ActionEvent e) {
 		addStage.getScene().setRoot(addConocimientoView);
@@ -56,7 +59,7 @@ public class ConocimientosController {
 		c1.setDenominacion(addConocimientoView.getDenominacionText().getText());
 		c1.setNivel(addConocimientoView.getNivelBox().getValue());
 
-		cv.getHabilidad().add(c1);
+		habilidades.add(c1);
 		EndConocimientoADD(e);
 
 	}
@@ -79,7 +82,7 @@ public class ConocimientosController {
 		i1.setCertificacion(addIdiomaView.getCertificacionText().getText());
 		i1.setNivel(addConocimientoView.getNivelBox().getValue());
 
-		cv.getHabilidad().add(i1);
+		habilidades.add(i1);
 		EndIdiomaADD(e);
 	}
 
@@ -91,14 +94,11 @@ public class ConocimientosController {
 	}
 
 	private void onEliminar(ActionEvent e) {
-		cv.getHabilidad().remove(view.getConocimientoTable().getSelectionModel().getSelectedItem());
+		habilidades.remove(view.getConocimientoTable().getSelectionModel().getSelectedItem());
 	}
 
 	public ConocimientoView getView() {
 		return view;
 	}
 
-	public ObservableList<Conocimiento> getCv() {
-		return cv.getHabilidad();
-	}
 }

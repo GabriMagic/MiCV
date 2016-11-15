@@ -1,6 +1,5 @@
 package dad.micv.controller;
 
-import dad.micv.model.CV;
 import dad.micv.model.Contacto;
 import dad.micv.model.Email;
 import dad.micv.model.Telefono;
@@ -18,16 +17,15 @@ import javafx.stage.Stage;
 
 public class ContactoController {
 
-	private CV cv;
+	private Contacto contacto;
 	private ContactoView view;
 	private AddTelefonoView addTelefonoView;
 	private AddEmailView addEmailView;
 	private AddWebsView addWebsView;
 	private Stage addStage;
 
-	public ContactoController(CV cv) {
+	public ContactoController() {
 
-		this.cv = cv;
 		view = new ContactoView();
 
 		addTelefonoView = new AddTelefonoView();
@@ -57,6 +55,13 @@ public class ContactoController {
 
 	}
 
+	public void bind(Contacto contacto) {
+		this.contacto = contacto;
+		view.getTelefonosTable().itemsProperty().bind(contacto.telefonosProperty());
+		view.getEmailsTable().itemsProperty().bind(contacto.emailsProperty());
+		view.getWebsTable().itemsProperty().bind(contacto.websProperty());
+	}
+
 	// TELEFONOS
 	private void addTelefonoOpen() {
 		addStage.setTitle("Añadir Teléfono");
@@ -68,7 +73,7 @@ public class ContactoController {
 		Telefono t1 = new Telefono();
 		t1.setNumero(addTelefonoView.getTelefonoText().getText());
 		t1.setTipo(addTelefonoView.getTipoTelefonoBox().getValue());
-		cv.getContacto().getTelefonos().add(t1);
+		contacto.getTelefonos().add(t1);
 		onEndTelefono(e);
 	}
 
@@ -79,7 +84,7 @@ public class ContactoController {
 	}
 
 	private void onDelTelefono() {
-		cv.getContacto().getTelefonos().remove(view.getTelefonosTable().getSelectionModel().getSelectedItem());
+		contacto.getTelefonos().remove(view.getTelefonosTable().getSelectionModel().getSelectedItem());
 	}
 
 	// EMAILS
@@ -92,7 +97,7 @@ public class ContactoController {
 	private void AddEmail(ActionEvent e) {
 		Email e1 = new Email();
 		e1.setDireccion(addEmailView.getEmailText().getText());
-		cv.getContacto().getEmails().add(e1);
+		contacto.getEmails().add(e1);
 		onEndEmail(e);
 	}
 
@@ -102,7 +107,7 @@ public class ContactoController {
 	}
 
 	private void onDelEmail() {
-		cv.getContacto().getEmails().remove(view.getEmailsTable().getSelectionModel().getSelectedItem());
+		contacto.getEmails().remove(view.getEmailsTable().getSelectionModel().getSelectedItem());
 	}
 
 	// WEBS
@@ -115,7 +120,7 @@ public class ContactoController {
 	private void addWeb(ActionEvent e) {
 		Web w1 = new Web();
 		w1.setUrl(addWebsView.getWebText().getText());
-		cv.getContacto().getWebs().add(w1);
+		contacto.getWebs().add(w1);
 		onEndWeb(e);
 	}
 
@@ -125,15 +130,11 @@ public class ContactoController {
 	}
 
 	private void onDelWeb() {
-		cv.getContacto().getWebs().remove(view.getWebsTable().getSelectionModel().getSelectedItem());
+		contacto.getWebs().remove(view.getWebsTable().getSelectionModel().getSelectedItem());
 	}
 
 	public ContactoView getView() {
 		return view;
-	}
-
-	public Contacto getContacto() {
-		return cv.getContacto();
 	}
 
 }

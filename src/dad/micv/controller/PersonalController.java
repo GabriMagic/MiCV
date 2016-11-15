@@ -9,7 +9,6 @@ import java.util.Comparator;
 import java.util.ConcurrentModificationException;
 import java.util.NoSuchElementException;
 import java.util.Optional;
-import dad.micv.model.CV;
 import dad.micv.model.Nacionalidad;
 import dad.micv.model.Personal;
 import dad.micv.view.PersonalView;
@@ -21,16 +20,16 @@ import javafx.scene.control.Alert.AlertType;
 
 public class PersonalController {
 
-	private CV cv;
+	private Personal personal;
+
 	private PersonalView view;
 	private ChoiceDialog<Nacionalidad> nacionalidadChoice;
 	private ArrayList<Nacionalidad> nacionChoice;
 	private BufferedReader bf;
 	private Comparator<Nacionalidad> nacComp;
 
-	public PersonalController(CV cv) {
+	public PersonalController() {
 
-		this.cv = cv;
 		view = new PersonalView();
 
 		view.getMasButton().setOnAction(e -> onMasButtonAction());
@@ -49,7 +48,20 @@ public class PersonalController {
 
 	}
 
-	private void cargarNacionalidades() {
+	public void bind(Personal personal) {
+		this.personal = personal;
+		view.getNombreText().textProperty().bind(personal.nombreProperty());
+		view.getDniText().textProperty().bind(personal.dniProperty());
+		view.getApellidosText().textProperty().bind(personal.apellidosProperty());
+		view.getFechaNacimiento().valueProperty().bind(personal.fechaNacimientoProperty());
+		view.getCodPostalText().textProperty().bind(personal.codigoPostalProperty());
+		view.getDireccionText().textProperty().bind(personal.direccionProperty());
+		view.getLocalidadText().textProperty().bind(personal.localidadProperty());
+		view.getPais().valueProperty().bind(personal.paisProperty());
+		view.getNacionalidadList().itemsProperty().bind(personal.nacionalidadesProperty());
+	}
+
+	public void cargarNacionalidades() {
 		try {
 			bf = new BufferedReader(new FileReader(new File("nacionalidades.csv")));
 
@@ -72,7 +84,7 @@ public class PersonalController {
 		try {
 			Nacionalidad nacAux = view.getNacionalidadList().getSelectionModel().getSelectedItem();
 			nacionChoice.add(nacAux);
-			cv.getPersonal().getNacionalidades().remove(nacAux);
+			personal.getNacionalidades().remove(nacAux);
 		} catch (NullPointerException e) {
 			Alert nacionalidadExist = new Alert(AlertType.WARNING);
 			nacionalidadExist.setHeaderText(null);
@@ -84,7 +96,7 @@ public class PersonalController {
 
 	private boolean comprobarNacionalidad(Nacionalidad nacionalidad) {
 		boolean exit = false;
-		for (Nacionalidad nacAux : cv.getPersonal().getNacionalidades())
+		for (Nacionalidad nacAux : personal.getNacionalidades())
 			if (nacAux.toString().equals(nacionalidad.toString()))
 				exit = true;
 		return exit;
@@ -109,7 +121,7 @@ public class PersonalController {
 
 				Nacionalidad nacionalidad = new Nacionalidad();
 				nacionalidad.setDenominacion(nac.get().toString());
-				cv.getPersonal().getNacionalidades().add(nacionalidad);
+				personal.getNacionalidades().add(nacionalidad);
 
 				for (int i = 0; i < nacionChoice.size(); i++) {
 					if (nacionChoice.get(i).equals(nac.get())) {
@@ -127,12 +139,12 @@ public class PersonalController {
 
 		} catch (NoSuchElementException e) {
 		}
-		cv.getPersonal().getNacionalidades().sort(nacComp);
+		personal.getNacionalidades().sort(nacComp);
 	}
 
 	private void actualizarComboBox() {
 		try {
-			for (Nacionalidad nac : cv.getPersonal().getNacionalidades()) {
+			for (Nacionalidad nac : personal.getNacionalidades()) {
 
 				for (Nacionalidad nacBox : nacionChoice) {
 
@@ -143,7 +155,6 @@ public class PersonalController {
 				}
 			}
 		} catch (ConcurrentModificationException e) {
-
 		}
 	}
 
@@ -175,9 +186,4 @@ public class PersonalController {
 	public PersonalView getView() {
 		return view;
 	}
-
-	public Personal getPersonal() {
-		return cv.getPersonal();
-	}
-
 }

@@ -4,10 +4,10 @@ import javafx.scene.control.Alert.AlertType;
 import dad.micv.view.AddFormacionView;
 import dad.micv.view.FormacionView;
 import javafx.scene.control.Alert;
+import javafx.beans.property.ListProperty;
 import javafx.event.ActionEvent;
 import javafx.scene.image.Image;
 import javafx.stage.Modality;
-import dad.micv.model.CV;
 import dad.micv.model.Titulo;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
@@ -15,15 +15,13 @@ import java.time.Period;
 
 public class FormacionController {
 
-	private CV cv;
 	private FormacionView view;
 	private Stage formacionAdd;
 	private Scene formScene;
 	private AddFormacionView addView;
+	private ListProperty<Titulo> titulos;
 
-	public FormacionController(CV cv) {
-
-		this.cv = cv;
+	public FormacionController() {
 
 		view = new FormacionView();
 		addView = new AddFormacionView();
@@ -43,6 +41,11 @@ public class FormacionController {
 		addView.getAddButton().setOnAction(e -> onConfirmAction(e));
 	}
 
+	public void bind(ListProperty<Titulo> tituloProperty) {
+		this.titulos = tituloProperty;
+		view.getFormacionTable().itemsProperty().bind(titulos);
+	}
+
 	private void onConfirmAction(ActionEvent e) {
 		Alert errorAlert = new Alert(AlertType.ERROR);
 		errorAlert.setHeaderText(null);
@@ -54,7 +57,7 @@ public class FormacionController {
 				t1.setHasta(addView.getHasta().getValue());
 				t1.setDenominacion(addView.getDenominacionText().getText());
 				t1.setOrganizador(addView.getOrganizadorText().getText());
-				cv.getTitulo().add(t1);
+				titulos.add(t1);
 				vaciarVentana();
 				formacionAdd.close();
 			} else if (addView.getDenominacionText().getText().equals("")) {
@@ -86,7 +89,7 @@ public class FormacionController {
 	}
 
 	private void onEliminarButtonAction(ActionEvent e) {
-		cv.getTitulo().remove(view.getFormacionTable().getSelectionModel().getSelectedItem());
+		titulos.remove(view.getFormacionTable().getSelectionModel().getSelectedItem());
 	}
 
 	private void onAddButtonAction(ActionEvent e) {
