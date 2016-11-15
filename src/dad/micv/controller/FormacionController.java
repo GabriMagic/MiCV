@@ -65,7 +65,9 @@ public class FormacionController {
 			titulo.setOrganizador(editVista.getOrganizadorText().getText());
 
 			titulos.add(titulo);
+
 			vaciarVentana();
+
 			formacionAdd.close();
 
 		} else if (editVista.getDenominacionText().getText().isEmpty()) {
@@ -92,7 +94,7 @@ public class FormacionController {
 	}
 
 	private void onEliminarButtonAction(ActionEvent e) {
-		titulos.remove(view.getFormacionTable().getSelectionModel().getSelectedItem());
+
 	}
 
 	private void onAddButtonAction(ActionEvent e) {
