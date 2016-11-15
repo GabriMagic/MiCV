@@ -13,7 +13,7 @@
         <hasta>2016-12-02</hasta>
     </experiencia>
     <habilidad denominacion="Esto no se lo que es" nivel="AVANZADO"/>
-    <habilidad denominacion="Acceso a datos" nivel="MEDIO"/>
+    <habilidad denominacion="Acceso a datos" nivel="AVANZADO"/>
     <habilidad xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="idioma" certificacion="123123" denominacion="Inglés" nivel="AVANZADO"/>
     <personal identificacion="">
         <apellidos>Mc'Pasta</apellidos>
@@ -22,7 +22,7 @@
         <dni>79854612-X</dni>
         <fechaNacimiento>1994-06-09</fechaNacimiento>
         <localidad>S/C de Tenerife</localidad>
-        <nacionalidades denominacion="afgano"/>
+        <nacionalidades denominacion="español"/>
         <nombre>GabriMagic</nombre>
         <pais>España</pais>
     </personal>

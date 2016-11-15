@@ -2,7 +2,6 @@ package dad.micv.controller;
 
 import java.io.File;
 import java.util.Optional;
-
 import dad.micv.main.MiCvAPP;
 import dad.micv.model.CV;
 import dad.micv.view.MainView;

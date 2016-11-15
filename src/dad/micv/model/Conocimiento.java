@@ -11,7 +11,6 @@ import javafx.beans.property.StringProperty;
 
 @XmlType
 @XmlSeeAlso({ Idioma.class, Nivel.class })
-
 public class Conocimiento {
 
 	private StringProperty denominacion;
