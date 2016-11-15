@@ -9,7 +9,6 @@ import dad.micv.view.AddEmailView;
 import dad.micv.view.AddTelefonoView;
 import dad.micv.view.AddWebsView;
 import dad.micv.view.ContactoView;
-import javafx.beans.binding.Bindings;
 import javafx.event.ActionEvent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
@@ -55,14 +54,6 @@ public class ContactoController {
 
 		addWebsView.getAddButton().setOnAction(e -> addWeb(e));
 		addWebsView.getCancelButton().setOnAction(e -> onEndWeb(e));
-
-		bind(cv);
-	}
-
-	public void bind(CV cv) {
-		Bindings.bindBidirectional(view.getTelefonosTable().itemsProperty(), cv.getContacto().telefonosProperty());
-		Bindings.bindBidirectional(view.getEmailsTable().itemsProperty(), cv.getContacto().emailsProperty());
-		Bindings.bindBidirectional(view.getWebsTable().itemsProperty(), cv.getContacto().websProperty());
 
 	}
 

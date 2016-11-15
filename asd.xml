@@ -3,6 +3,7 @@
     <contacto/>
     <personal identificacion="">
         <apellidos></apellidos>
-        <nombre></nombre>
+        <dni>sdf</dni>
+        <nombre>sdf</nombre>
     </personal>
 </cv>

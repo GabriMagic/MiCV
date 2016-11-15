@@ -9,12 +9,10 @@ import java.util.Comparator;
 import java.util.ConcurrentModificationException;
 import java.util.NoSuchElementException;
 import java.util.Optional;
-
 import dad.micv.model.CV;
 import dad.micv.model.Nacionalidad;
 import dad.micv.model.Personal;
 import dad.micv.view.PersonalView;
-import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
@@ -39,7 +37,6 @@ public class PersonalController {
 		view.getMenosButton().setOnAction(e -> onMenosButtonAction());
 		nacionChoice = new ArrayList<Nacionalidad>();
 
-		bind(cv);
 		cargarComboBox();
 		cargarNacionalidades();
 
@@ -69,20 +66,6 @@ public class PersonalController {
 			} catch (IOException e1) {
 			}
 		}
-	}
-
-	public void bind(CV cv) {
-		Bindings.bindBidirectional(view.getNombreText().textProperty(), cv.getPersonal().nombreProperty());
-		Bindings.bindBidirectional(view.getDniText().textProperty(), cv.getPersonal().dniProperty());
-		Bindings.bindBidirectional(view.getApellidosText().textProperty(), cv.getPersonal().apellidosProperty());
-		Bindings.bindBidirectional(view.getFechaNacimiento().valueProperty(),
-				cv.getPersonal().fechaNacimientoProperty());
-		Bindings.bindBidirectional(view.getCodPostalText().textProperty(), cv.getPersonal().codigoPostalProperty());
-		Bindings.bindBidirectional(view.getDireccionText().textProperty(), cv.getPersonal().direccionProperty());
-		Bindings.bindBidirectional(view.getLocalidadText().textProperty(), cv.getPersonal().localidadProperty());
-		Bindings.bindBidirectional(view.getPais().valueProperty(), cv.getPersonal().paisProperty());
-		Bindings.bindBidirectional(view.getNacionalidadList().itemsProperty(),
-				cv.getPersonal().nacionalidadesProperty());
 	}
 
 	private void onMenosButtonAction() {
@@ -153,9 +136,9 @@ public class PersonalController {
 	private void actualizarComboBox() {
 		try {
 			for (Nacionalidad nac : cv.getPersonal().getNacionalidades()) {
-				
+
 				for (Nacionalidad nacBox : nacionChoice) {
-					
+
 					if (nac.toString() == nacBox.toString()) {
 
 						nacionChoice.remove(nacBox);

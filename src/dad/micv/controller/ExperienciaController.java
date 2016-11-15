@@ -4,8 +4,8 @@ import java.time.Period;
 
 import dad.micv.model.CV;
 import dad.micv.model.Experiencia;
+import dad.micv.view.AddExperienciaView;
 import dad.micv.view.ExperienciaView;
-import javafx.beans.binding.Bindings;
 import javafx.event.ActionEvent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -37,17 +37,11 @@ public class ExperienciaController {
 		formacionAdd.setTitle("Añadir Título");
 		formacionAdd.setScene(formScene);
 
-		bind();
-
 		view.getAddButton().setOnAction(e -> onAddButtonAction(e));
 		view.getEliminarButton().setOnAction(e -> onEliminarButtonAction(e));
 
 		addView.getCancelarButton().setOnAction(e -> onCancelarButton(e));
 		addView.getAddButton().setOnAction(e -> onConfirmAction(e));
-	}
-
-	public void bind() {
-		Bindings.bindBidirectional(view.getExperienciaTable().itemsProperty(), cv.experienciaProperty());
 	}
 
 	private void onConfirmAction(ActionEvent e) {

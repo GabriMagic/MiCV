@@ -53,6 +53,51 @@ public class MainController {
 		mainView.getAbrir().setOnAction(e -> onAbrir(e));
 		mainView.getGuardarComo().setOnAction(e -> onGuardarComo(e));
 
+		bind(cv);
+
+	}
+
+	public void bind(CV cv) {
+
+		// BINDING PERSONAL
+		Bindings.bindBidirectional(personalController.getView().getNombreText().textProperty(),
+				cv.getPersonal().nombreProperty());
+		Bindings.bindBidirectional(personalController.getView().getDniText().textProperty(),
+				cv.getPersonal().dniProperty());
+		Bindings.bindBidirectional(personalController.getView().getApellidosText().textProperty(),
+				cv.getPersonal().apellidosProperty());
+		Bindings.bindBidirectional(personalController.getView().getFechaNacimiento().valueProperty(),
+				cv.getPersonal().fechaNacimientoProperty());
+		Bindings.bindBidirectional(personalController.getView().getCodPostalText().textProperty(),
+				cv.getPersonal().codigoPostalProperty());
+		Bindings.bindBidirectional(personalController.getView().getDireccionText().textProperty(),
+				cv.getPersonal().direccionProperty());
+		Bindings.bindBidirectional(personalController.getView().getLocalidadText().textProperty(),
+				cv.getPersonal().localidadProperty());
+		Bindings.bindBidirectional(personalController.getView().getPais().valueProperty(),
+				cv.getPersonal().paisProperty());
+		Bindings.bindBidirectional(personalController.getView().getNacionalidadList().itemsProperty(),
+				cv.getPersonal().nacionalidadesProperty());
+
+		// BINDING CONTACTO
+		Bindings.bindBidirectional(contactoController.getView().getTelefonosTable().itemsProperty(),
+				cv.getContacto().telefonosProperty());
+		Bindings.bindBidirectional(contactoController.getView().getEmailsTable().itemsProperty(),
+				cv.getContacto().emailsProperty());
+		Bindings.bindBidirectional(contactoController.getView().getWebsTable().itemsProperty(),
+				cv.getContacto().websProperty());
+
+		// BINDING FORMACION
+		Bindings.bindBidirectional(formacionController.getView().getFormacionTable().itemsProperty(),
+				cv.tituloProperty());
+
+		// BINDING EXPERIENCIA
+		Bindings.bindBidirectional(experienciaController.getView().getExperienciaTable().itemsProperty(),
+				cv.experienciaProperty());
+
+		// BINDING CONOCIMIENTO
+		Bindings.bindBidirectional(conocimientosController.getView().getConocimientoTable().itemsProperty(),
+				cv.habilidadProperty());
 	}
 
 	private void onAbrir(ActionEvent e) {
@@ -67,16 +112,7 @@ public class MainController {
 		if (file != null) {
 			try {
 				this.cv = CV.read(file);
-
-				personalController.bind(cv);
-				contactoController.bind(cv);
-				Bindings.bindBidirectional(formacionController.getView().getFormacionTable().itemsProperty(),
-						cv.tituloProperty());
-				Bindings.bindBidirectional(experienciaController.getView().getExperienciaTable().itemsProperty(),
-						cv.experienciaProperty());
-				Bindings.bindBidirectional(conocimientosController.getView().getConocimientoTable().itemsProperty(),
-						cv.habilidadProperty());
-
+				bind(cv);
 			} catch (Exception e1) {
 			}
 		}
@@ -107,14 +143,7 @@ public class MainController {
 		Optional<ButtonType> confirm = confirmAlert.showAndWait();
 
 		if (confirm.get() == ButtonType.OK) {
-			personalController.bind(cv);
-			contactoController.bind(cv);
-			Bindings.bindBidirectional(formacionController.getView().getFormacionTable().itemsProperty(),
-					cv.tituloProperty());
-			Bindings.bindBidirectional(experienciaController.getView().getExperienciaTable().itemsProperty(),
-					cv.experienciaProperty());
-			Bindings.bindBidirectional(conocimientosController.getView().getConocimientoTable().itemsProperty(),
-					cv.habilidadProperty());
+			bind(cv);
 		} else {
 
 		}

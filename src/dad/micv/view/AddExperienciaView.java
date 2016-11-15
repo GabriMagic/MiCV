@@ -1,4 +1,4 @@
-package dad.micv.controller;
+package dad.micv.view;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;

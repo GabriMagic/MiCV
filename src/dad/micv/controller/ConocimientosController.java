@@ -5,8 +5,8 @@ import dad.micv.model.Conocimiento;
 import dad.micv.model.Idioma;
 import dad.micv.model.Nivel;
 import dad.micv.view.AddConocimientoView;
+import dad.micv.view.AddIdiomaView;
 import dad.micv.view.ConocimientoView;
-import javafx.beans.binding.Bindings;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.scene.Scene;
@@ -34,8 +34,6 @@ public class ConocimientosController {
 		addStage.initModality(Modality.APPLICATION_MODAL);
 		addStage.setTitle("Añadir habiliad");
 		addStage.setScene(new Scene(new VBox()));
-
-		Bindings.bindBidirectional(view.getConocimientoTable().itemsProperty(), cv.habilidadProperty());
 
 		view.getAddConocimientoButton().setOnAction(e -> onAddConocimiento(e));
 		view.getAddIdiomaButton().setOnAction(e -> onAddIdioma(e));

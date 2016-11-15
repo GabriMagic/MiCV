@@ -1,4 +1,4 @@
-package dad.micv.controller;
+package dad.micv.view;
 
 import dad.micv.model.Nivel;
 import javafx.geometry.Insets;
