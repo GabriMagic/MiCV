@@ -4,14 +4,6 @@
         <emails direccion="champy9a@gmail.com"/>
         <telefonos numero="606258977" tipo="MOVIL"/>
         <telefonos numero="922365689" tipo="DOMICILIO"/>
-        <telefonos numero="124124" tipo="DOMICILIO"/>
-        <telefonos numero="124124" tipo="DOMICILIO"/>
-        <telefonos numero="124124" tipo="DOMICILIO"/>
-        <telefonos numero="124124" tipo="DOMICILIO"/>
-        <telefonos numero="124124" tipo="MOVIL"/>
-        <telefonos numero="124124" tipo="DOMICILIO"/>
-        <telefonos numero="124124" tipo="MOVIL"/>
-        <telefonos numero="124" tipo="MOVIL"/>
         <webs url="https://www.gabrimagic.com"/>
     </contacto>
     <experiencia>
@@ -32,7 +24,7 @@
         <localidad>S/C de Tenerife</localidad>
         <nacionalidades denominacion="afgano"/>
         <nombre>GabriMagic</nombre>
-        <pais>Camboya</pais>
+        <pais>España</pais>
     </personal>
     <titulo>
         <denominacion>2º DAM</denominacion>
@@ -41,7 +33,7 @@
         <organizador>IES DPM</organizador>
     </titulo>
     <titulo>
-        <denominacion>Og</denominacion>
+        <denominacion>Fnatic</denominacion>
         <desde>2016-11-07</desde>
         <hasta>2016-12-08</hasta>
         <organizador>Yo mismo</organizador>

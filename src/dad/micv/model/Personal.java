@@ -34,11 +34,11 @@ public class Personal {
 		identificacion = new SimpleStringProperty(this, "identificacion", "");
 		nombre = new SimpleStringProperty(this, "nombre", "");
 		apellidos = new SimpleStringProperty(this, "apellidos", "");
-		direccion = new SimpleStringProperty(this, "direccion");
-		codigoPostal = new SimpleStringProperty(this, "codigoPostal");
-		localidad = new SimpleStringProperty(this, "localidad");
+		direccion = new SimpleStringProperty(this, "direccion", "");
+		codigoPostal = new SimpleStringProperty(this, "codigoPostal", "");
+		localidad = new SimpleStringProperty(this, "localidad", "");
 		pais = new SimpleStringProperty(this, "pais");
-		dni = new SimpleStringProperty(this, "dni");
+		dni = new SimpleStringProperty(this, "dni", "");
 		fechaNacimiento = new SimpleObjectProperty<LocalDate>(this, "fechaNacimiento");
 		nacionalidades = new SimpleListProperty<Nacionalidad>(this, "nacionalidades",
 				FXCollections.observableArrayList());
