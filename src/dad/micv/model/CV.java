@@ -8,7 +8,6 @@ import javax.xml.bind.Unmarshaller;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
-
 import javafx.beans.property.ListProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleListProperty;
@@ -19,6 +18,7 @@ import javafx.collections.ObservableList;
 @XmlType
 @XmlRootElement
 public class CV {
+
 	private ObjectProperty<Personal> personal;
 	private ObjectProperty<Contacto> contacto;
 	private ListProperty<Titulo> titulo;
@@ -30,7 +30,7 @@ public class CV {
 		contacto = new SimpleObjectProperty<Contacto>(this, "contacto", new Contacto());
 		titulo = new SimpleListProperty<Titulo>(this, "titulo", FXCollections.observableArrayList());
 		experiencia = new SimpleListProperty<Experiencia>(this, "experiencia", FXCollections.observableArrayList());
-		habilidad = new SimpleListProperty<>(this, "habilidad", FXCollections.observableArrayList());
+		habilidad = new SimpleListProperty<Conocimiento>(this, "habilidad", FXCollections.observableArrayList());
 	}
 
 	public void save(File file) throws Exception {
@@ -38,6 +38,7 @@ public class CV {
 		Marshaller marshaller = context.createMarshaller();
 		marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
 		marshaller.marshal(this, file);
+		marshaller.marshal(this, System.out);
 	}
 
 	public static CV read(File file) throws JAXBException {

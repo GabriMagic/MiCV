@@ -1,7 +1,6 @@
-package dad.micv.main;
+package dad.micv.model;
 
 import java.time.LocalDate;
-
 import javax.xml.bind.annotation.adapters.XmlAdapter;
 
 public class LocalDateAdapter extends XmlAdapter<String, LocalDate> {
@@ -15,5 +14,4 @@ public class LocalDateAdapter extends XmlAdapter<String, LocalDate> {
 	public LocalDate unmarshal(String Localdate) throws Exception {
 		return LocalDate.parse(Localdate);
 	}
-
 }

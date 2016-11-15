@@ -12,16 +12,14 @@ import javafx.beans.property.StringProperty;
 @XmlType
 @XmlSeeAlso({ Idioma.class, Nivel.class })
 
-public class Conocimiento extends Idioma{
+public class Conocimiento {
 
 	private StringProperty denominacion;
-	private ObjectProperty<Idioma> idioma;
 	private ObjectProperty<Nivel> nivel;
 
 	public Conocimiento() {
 
 		denominacion = new SimpleStringProperty(this, "denominacion");
-		idioma = new SimpleObjectProperty<>(this, "idioma");
 		nivel = new SimpleObjectProperty<>(this, "idioma");
 
 	}
@@ -37,19 +35,6 @@ public class Conocimiento extends Idioma{
 
 	public void setDenominacion(final String denominacion) {
 		this.denominacionProperty().set(denominacion);
-	}
-
-	public ObjectProperty<Idioma> idiomaProperty() {
-		return this.idioma;
-	}
-
-	@XmlAttribute
-	public Idioma getIdioma() {
-		return this.idiomaProperty().get();
-	}
-
-	public void setIdioma(final Idioma idioma) {
-		this.idiomaProperty().set(idioma);
 	}
 
 	public ObjectProperty<Nivel> nivelProperty() {

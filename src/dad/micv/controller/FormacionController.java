@@ -1,14 +1,14 @@
 package dad.micv.controller;
 
 import javafx.scene.control.Alert.AlertType;
-import javafx.collections.ObservableList;
-import javafx.collections.FXCollections;
-import dad.micv.view.FormacionADDView;
+import dad.micv.view.AddFormacionView;
 import dad.micv.view.FormacionView;
 import javafx.scene.control.Alert;
+import javafx.beans.binding.Bindings;
 import javafx.event.ActionEvent;
 import javafx.scene.image.Image;
 import javafx.stage.Modality;
+import dad.micv.model.CV;
 import dad.micv.model.Titulo;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
@@ -16,26 +16,20 @@ import java.time.Period;
 
 public class FormacionController {
 
-	private Titulo titulo;
+	private CV cv;
 	private FormacionView view;
-	private FormacionADDController controller;
 	private Stage formacionAdd;
 	private Scene formScene;
-	private FormacionADDView editVista;
-	private ObservableList<Titulo> titulos;
+	private AddFormacionView addView;
 
-	public FormacionController() {
+	public FormacionController(CV cv) {
 
-		controller = new FormacionADDController();
+		this.cv = cv;
 
 		view = new FormacionView();
-		editVista = controller.getView();
+		addView = new AddFormacionView();
 
-		titulo = new Titulo();
-
-		titulos = FXCollections.observableArrayList();
-
-		formScene = new Scene(controller.getView(), 305, 155);
+		formScene = new Scene(addView, 305, 155);
 
 		formacionAdd = new Stage();
 		formacionAdd.getIcons().add(new Image("cv64x64.png"));
@@ -43,50 +37,55 @@ public class FormacionController {
 		formacionAdd.setTitle("Añadir Título");
 		formacionAdd.setScene(formScene);
 
-		view.getFormacionTable().setItems(titulos);
+		bind();
 
 		view.getAñadirButton().setOnAction(e -> onAddButtonAction(e));
 		view.getEliminarButton().setOnAction(e -> onEliminarButtonAction(e));
-		editVista.getCancelarButton().setOnAction(e -> onCancelarButton(e));
-		editVista.getAddButton().setOnAction(e -> onConfirmAction(e));
 
+		addView.getCancelarButton().setOnAction(e -> onCancelarButton(e));
+		addView.getAddButton().setOnAction(e -> onConfirmAction(e));
+	}
+
+	private void bind() {
+		Bindings.bindBidirectional(view.getFormacionTable().itemsProperty(), cv.tituloProperty());
 	}
 
 	private void onConfirmAction(ActionEvent e) {
-
 		Alert errorAlert = new Alert(AlertType.ERROR);
 		errorAlert.setHeaderText(null);
 
-		if (Period.between(editVista.getDesde().getValue(), editVista.getHasta().getValue()).getDays() > 0) {
-
-			titulo.setDesde(editVista.getDesde().getValue());
-			titulo.setHasta(editVista.getHasta().getValue());
-			titulo.setDenominacion(editVista.getDenominacionText().getText());
-			titulo.setOrganizador(editVista.getOrganizadorText().getText());
-
-			titulos.add(titulo);
-
-			vaciarVentana();
-
-			formacionAdd.close();
-
-		} else if (editVista.getDenominacionText().getText().isEmpty()) {
+		try {
+			if (Period.between(addView.getDesde().getValue(), addView.getHasta().getValue()).getDays() > 0) {
+				Titulo t1 = new Titulo();
+				t1.setDesde(addView.getDesde().getValue());
+				t1.setHasta(addView.getHasta().getValue());
+				t1.setDenominacion(addView.getDenominacionText().getText());
+				t1.setOrganizador(addView.getOrganizadorText().getText());
+				cv.getTitulo().add(t1);
+				vaciarVentana();
+				formacionAdd.close();
+			} else if (addView.getDenominacionText().getText().equals("")) {
+				errorAlert.setTitle("Campos vacíos");
+				errorAlert.setContentText("Rellene todos los campos");
+				errorAlert.show();
+			} else {
+				errorAlert.setTitle("Fecha Incorrecta");
+				errorAlert.setContentText("Las fechas deben ser correctas.");
+				errorAlert.show();
+			}
+		} catch (NullPointerException e2) {
 			errorAlert.setTitle("Campos vacíos");
 			errorAlert.setContentText("Rellene todos los campos");
-			errorAlert.show();
-		} else {
-			errorAlert.setTitle("Fecha Incorrecta");
-			errorAlert.setContentText("Las fechas deben ser correctas.");
 			errorAlert.show();
 		}
 
 	}
 
 	private void vaciarVentana() {
-		editVista.getDesde().setValue(null);
-		editVista.getHasta().setValue(null);
-		editVista.getDenominacionText().setText(null);
-		editVista.getOrganizadorText().setText(null);
+		addView.getDesde().setValue(null);
+		addView.getHasta().setValue(null);
+		addView.getDenominacionText().setText("");
+		addView.getOrganizadorText().setText("");
 	}
 
 	private void onCancelarButton(ActionEvent e) {
@@ -94,7 +93,7 @@ public class FormacionController {
 	}
 
 	private void onEliminarButtonAction(ActionEvent e) {
-
+		cv.getTitulo().remove(view.getFormacionTable().getSelectionModel().getSelectedItem());
 	}
 
 	private void onAddButtonAction(ActionEvent e) {
@@ -104,4 +103,5 @@ public class FormacionController {
 	public FormacionView getView() {
 		return view;
 	}
+
 }

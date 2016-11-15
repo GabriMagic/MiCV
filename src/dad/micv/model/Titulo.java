@@ -4,6 +4,7 @@ import java.time.LocalDate;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
@@ -19,7 +20,6 @@ public class Titulo {
 	public Titulo() {
 		desde = new SimpleObjectProperty<LocalDate>(this, "FechaInicio");
 		hasta = new SimpleObjectProperty<LocalDate>(this, "FechaFin");
-
 		denominacion = new SimpleStringProperty(this, "Deniminación");
 		organizador = new SimpleStringProperty(this, "Organizador");
 	}
@@ -29,6 +29,7 @@ public class Titulo {
 	}
 
 	@XmlElement
+	@XmlJavaTypeAdapter(LocalDateAdapter.class)
 	public LocalDate getDesde() {
 		return this.desdeProperty().get();
 	}
@@ -42,6 +43,7 @@ public class Titulo {
 	}
 
 	@XmlElement
+	@XmlJavaTypeAdapter(LocalDateAdapter.class)
 	public LocalDate getHasta() {
 		return this.hastaProperty().get();
 	}
@@ -74,6 +76,12 @@ public class Titulo {
 
 	public void setOrganizador(final String organizador) {
 		this.organizadorProperty().set(organizador);
+	}
+
+	@Override
+	public String toString() {
+		return "Desde: " + getDesde().toString() + "\nHasta:" + getHasta().toString() + "\nDenominacion: "
+				+ getDenominacion() + "\nEmpleador: " + getOrganizador();
 	}
 
 }

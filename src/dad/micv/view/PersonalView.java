@@ -23,7 +23,7 @@ public class PersonalView extends GridPane {
 	private TextField dniText, nombreText, apellidosText, codPostalText, localidadText;
 	private DatePicker fechaNacimiento;
 	private Button masButton, menosButton;
-	private ComboBox<String> paises;
+	private ComboBox<String> pais;
 	private ListView<Nacionalidad> nacionalidadList;
 
 	public PersonalView() {
@@ -53,8 +53,8 @@ public class PersonalView extends GridPane {
 
 		fechaNacimiento = new DatePicker();
 
-		paises = new ComboBox<>();
-		paises.setPromptText("Seleccione un país");
+		pais = new ComboBox<>();
+		pais.setPromptText("Seleccione un país");
 
 		masButton = new Button("+");
 		masButton.setMaxWidth(Double.MAX_VALUE);
@@ -76,7 +76,7 @@ public class PersonalView extends GridPane {
 		add(localidadLabel, 0, 6);
 		add(localidadText, 1, 6);
 		add(paisLabel, 0, 7);
-		add(paises, 1, 7);
+		add(pais, 1, 7);
 		add(nacionalidadLabel, 0, 8);
 		add(nacionalidadList, 1, 8);
 		add(new VBox(5, masButton, menosButton), 2, 8);
@@ -181,8 +181,8 @@ public class PersonalView extends GridPane {
 		return fechaNacimiento;
 	}
 
-	public ComboBox<String> getPaises() {
-		return paises;
+	public ComboBox<String> getPais() {
+		return pais;
 	}
 
 }
