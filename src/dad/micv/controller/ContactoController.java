@@ -10,6 +10,7 @@ import dad.micv.view.AddWebsView;
 import dad.micv.view.ContactoView;
 import javafx.event.ActionEvent;
 import javafx.scene.Scene;
+import javafx.scene.control.TableColumn.CellEditEvent;
 import javafx.scene.image.Image;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
@@ -52,6 +53,21 @@ public class ContactoController {
 
 		addWebsView.getAddButton().setOnAction(e -> addWeb(e));
 		addWebsView.getCancelButton().setOnAction(e -> onEndWeb(e));
+
+		view.getTelefonoColumn().setOnEditCommit(e -> asdasd(e));
+
+	}
+
+	private void asdasd(CellEditEvent<Telefono, String> e) {
+		if (e.getNewValue().length() > 3) {
+
+			e.getRowValue().setNumero(e.getNewValue());
+
+		} else {
+			
+			e.getTableView().getColumns().get(e.getTableView().getEditingCell().getRow()).setVisible(false);
+			e.getTableView().getColumns().get(e.getTableView().getEditingCell().getRow()).setVisible(true);
+		}
 
 	}
 

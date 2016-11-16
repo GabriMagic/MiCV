@@ -10,7 +10,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 @XmlType
-@XmlSeeAlso({ Telefono.class, Email.class, Web.class })
 public class Contacto {
 
 	private ListProperty<Telefono> telefonos;

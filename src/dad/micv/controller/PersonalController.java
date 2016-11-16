@@ -37,7 +37,6 @@ public class PersonalController {
 		view.getMasButton().setOnAction(e -> onMasButtonAction());
 		view.getMenosButton().setOnAction(e -> onMenosButtonAction());
 
-
 		cargarComboBox();
 		cargarNacionalidades();
 

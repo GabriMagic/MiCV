@@ -1,14 +1,20 @@
 package dad.micv.controller;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.Optional;
 import dad.micv.main.MiCvAPP;
 import dad.micv.model.CV;
 import dad.micv.view.MainView;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
+import javafx.scene.layout.GridPane;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.scene.control.Alert.AlertType;
@@ -50,6 +56,7 @@ public class MainController {
 		mainView.getNuevo().setOnAction(e -> onNuevo(e));
 		mainView.getAbrir().setOnAction(e -> onAbrir(e));
 		mainView.getGuardarComo().setOnAction(e -> onGuardarComo(e));
+		mainView.getAcercaDe().setOnAction(e -> onFormat(e));
 
 		bind(cv);
 
@@ -143,6 +150,25 @@ public class MainController {
 
 		if (opt.get() == ButtonType.OK)
 			Platform.exit();
+	}
+
+	@FXML
+	private GridPane formatView;
+
+	@FXML
+	private Label formatLabel;
+
+	@FXML
+	private ProgressBar formatBar;
+
+	private void onFormat(ActionEvent e) {
+		try {
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/dad/micv/view/FormatView.fxml"));
+			loader.setController(this);
+			formatView = loader.load();
+		} catch (IOException e1) {
+		}
+		System.out.println();
 	}
 
 	public MainView getMainView() {
