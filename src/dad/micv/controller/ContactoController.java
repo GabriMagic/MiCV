@@ -35,7 +35,7 @@ public class ContactoController {
 
 		addStage = new Stage();
 		addStage.getIcons().add(new Image("cv64x64.png"));
-		addStage.setScene(new Scene(new VBox()));
+		addStage.setScene(new Scene(addTelefonoView));
 		addStage.initModality(Modality.APPLICATION_MODAL);
 
 		view.getTelefonoAddButton().setOnAction(e -> addTelefonoOpen());
