@@ -168,7 +168,6 @@ public class MainController {
 			formatView = loader.load();
 		} catch (IOException e1) {
 		}
-		System.out.println();
 	}
 
 	public MainView getMainView() {

@@ -38,7 +38,6 @@ public class CV {
 		Marshaller marshaller = context.createMarshaller();
 		marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
 		marshaller.marshal(this, file);
-		marshaller.marshal(this, System.out);
 	}
 
 	public static CV read(File file) throws JAXBException {

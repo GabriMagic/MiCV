@@ -22,6 +22,8 @@
         <dni>79854612-X</dni>
         <fechaNacimiento>1994-06-09</fechaNacimiento>
         <localidad>S/C de Tenerife</localidad>
+        <nacionalidades denominacion="afgano"/>
+        <nacionalidades denominacion="albano"/>
         <nacionalidades denominacion="español"/>
         <nombre>GabriMagic</nombre>
         <pais>España</pais>

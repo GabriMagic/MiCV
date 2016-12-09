@@ -1,41 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <cv>
-    <contacto>
-        <emails direccion="champy9a@gmail.com"/>
-        <telefonos numero="606258977" tipo="MOVIL"/>
-        <telefonos numero="11111111111111" tipo="DOMICILIO"/>
-        <webs url="https://www.gabrimagic.com"/>
-    </contacto>
-    <experiencia>
-        <denominacion>Mi Origen</denominacion>
-        <desde>2016-11-14</desde>
-        <empleador>Luis</empleador>
-        <hasta>2016-12-02</hasta>
-    </experiencia>
-    <habilidad denominacion="Esto no se lo que es" nivel="AVANZADO"/>
-    <habilidad denominacion="Acceso a datos" nivel="AVANZADO"/>
-    <habilidad xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="idioma" certificacion="123123" denominacion="Inglés" nivel="AVANZADO"/>
+    <contacto/>
     <personal identificacion="">
-        <apellidos>Mc'Pasta</apellidos>
-        <codigoPostal>38006</codigoPostal>
-        <direccion>C/ Miraflores 50</direccion>
-        <dni>79854612-X</dni>
-        <fechaNacimiento>1994-06-09</fechaNacimiento>
-        <localidad>S/C de Tenerife</localidad>
-        <nacionalidades denominacion="español"/>
-        <nombre>GabriMagic</nombre>
-        <pais>España</pais>
+        <apellidos></apellidos>
+        <codigoPostal></codigoPostal>
+        <direccion></direccion>
+        <dni></dni>
+        <localidad></localidad>
+        <nombre></nombre>
     </personal>
-    <titulo>
-        <denominacion>2º DAM</denominacion>
-        <desde>2016-10-03</desde>
-        <hasta>2016-12-21</hasta>
-        <organizador>IES DPM</organizador>
-    </titulo>
-    <titulo>
-        <denominacion>Fnatic</denominacion>
-        <desde>2016-11-07</desde>
-        <hasta>2016-12-08</hasta>
-        <organizador>Yo mismo</organizador>
-    </titulo>
 </cv>

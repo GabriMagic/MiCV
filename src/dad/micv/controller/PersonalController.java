@@ -133,7 +133,6 @@ public class PersonalController {
 			personal.getNacionalidades().sort(nacComp);
 
 		} catch (NoSuchElementException e) {
-			System.out.println("Cancelado.");
 		}
 
 	}
