@@ -1,7 +1,6 @@
 package dad.micv.model;
 
 import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.bind.annotation.XmlType;
 
 import javafx.beans.property.ListProperty;
