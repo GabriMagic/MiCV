@@ -195,8 +195,9 @@ public class MainController {
 					formatBar.setProgress(formatBar.getProgress() + 0.01);
 
 				} while (formatBar.getProgress() <= 1.0);
+				
+				
 				Platform.runLater(new Runnable() {
-					
 					@Override
 					public void run() {
 						stage.close();
