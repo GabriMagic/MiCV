@@ -3,6 +3,7 @@ package dad.micv.controller;
 import java.io.File;
 import java.io.IOException;
 import java.util.Optional;
+
 import dad.micv.main.MiCvAPP;
 import dad.micv.model.CV;
 import dad.micv.view.MainView;
@@ -10,14 +11,18 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
+import javafx.stage.Modality;
 import javafx.stage.FileChooser.ExtensionFilter;
-import javafx.scene.control.Alert.AlertType;
+import javafx.stage.Stage;
 
 public class MainController {
 
@@ -29,6 +34,7 @@ public class MainController {
 	private FormacionController formacionController;
 	private ExperienciaController experienciaController;
 	private ConocimientosController conocimientosController;
+	private Stage stage;
 
 	public MainController() {
 
@@ -36,6 +42,10 @@ public class MainController {
 		cv = new CV();
 
 		app = new MiCvAPP();
+
+		stage = new Stage();
+		stage.setScene(new Scene(new VBox()));
+		stage.initModality(Modality.APPLICATION_MODAL);
 
 		personalController = new PersonalController();
 		contactoController = new ContactoController();
@@ -168,6 +178,34 @@ public class MainController {
 			formatView = loader.load();
 		} catch (IOException e1) {
 		}
+
+		stage.getScene().setRoot(formatView);
+		stage.show();
+
+		new Thread(new Runnable() {
+
+			@Override
+			public void run() {
+				do {
+					try {
+						Thread.sleep(50);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+					formatBar.setProgress(formatBar.getProgress() + 0.01);
+
+				} while (formatBar.getProgress() <= 1.0);
+				Platform.runLater(new Runnable() {
+					
+					@Override
+					public void run() {
+						stage.close();
+						formatBar.setProgress(0.0);
+					}
+				});
+			}
+		}).start();
+
 	}
 
 	public MainView getMainView() {
