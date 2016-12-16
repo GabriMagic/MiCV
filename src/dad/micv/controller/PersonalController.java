@@ -51,15 +51,15 @@ public class PersonalController {
 
 	public void bind(Personal personal) {
 		this.personal = personal;
-		view.getNombreText().textProperty().bind(personal.nombreProperty());
-		view.getDniText().textProperty().bind(personal.dniProperty());
-		view.getApellidosText().textProperty().bind(personal.apellidosProperty());
-		view.getFechaNacimiento().valueProperty().bind(personal.fechaNacimientoProperty());
-		view.getCodPostalText().textProperty().bind(personal.codigoPostalProperty());
-		view.getDireccionText().textProperty().bind(personal.direccionProperty());
-		view.getLocalidadText().textProperty().bind(personal.localidadProperty());
+		view.getNombreText().textProperty().bindBidirectional(personal.nombreProperty());
+		view.getDniText().textProperty().bindBidirectional(personal.dniProperty());
+		view.getApellidosText().textProperty().bindBidirectional(personal.apellidosProperty());
+		view.getFechaNacimiento().valueProperty().bindBidirectional(personal.fechaNacimientoProperty());
+		view.getCodPostalText().textProperty().bindBidirectional(personal.codigoPostalProperty());
+		view.getDireccionText().textProperty().bindBidirectional(personal.direccionProperty());
+		view.getLocalidadText().textProperty().bindBidirectional(personal.localidadProperty());
 		Bindings.bindBidirectional(view.getPais().valueProperty(), personal.paisProperty());
-		view.getNacionalidadList().itemsProperty().bind(personal.nacionalidadesProperty());
+		view.getNacionalidadList().itemsProperty().bindBidirectional(personal.nacionalidadesProperty());
 	}
 
 	public void cargarNacionalidades() {

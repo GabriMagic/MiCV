@@ -1,43 +1,34 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <cv>
     <contacto>
-        <emails direccion="champy9a@gmail.com"/>
-        <telefonos numero="606258977" tipo="MOVIL"/>
-        <telefonos numero="922365689" tipo="DOMICILIO"/>
-        <webs url="https://www.gabrimagic.com"/>
+        <emails direccion="champya92@gmail.com"/>
+        <telefonos numero="922566558" tipo="MOVIL"/>
+        <webs url="www.suilergames.com"/>
     </contacto>
     <experiencia>
-        <denominacion>Mi Origen</denominacion>
-        <desde>2016-11-14</desde>
-        <empleador>Luis</empleador>
-        <hasta>2016-12-02</hasta>
+        <denominacion>3</denominacion>
+        <desde>2016-11-28</desde>
+        <empleador>wer</empleador>
+        <hasta>2016-12-24</hasta>
     </experiencia>
-    <habilidad denominacion="Esto no se lo que es" nivel="AVANZADO"/>
-    <habilidad denominacion="Acceso a datos" nivel="AVANZADO"/>
-    <habilidad xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="idioma" certificacion="123123" denominacion="Inglés" nivel="AVANZADO"/>
+    <habilidad denominacion="Programación" nivel="MEDIO"/>
+    <habilidad xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="idioma" certificacion="B2" denominacion="Inglés" nivel="AVANZADO"/>
     <personal identificacion="">
-        <apellidos>Mc'Pasta</apellidos>
-        <codigoPostal>38006</codigoPostal>
-        <direccion>C/ Miraflores 50</direccion>
-        <dni>79854612-X</dni>
+        <apellidos>Ramos Cozzi</apellidos>
+        <codigoPostal>38004</codigoPostal>
+        <direccion>C/ Porlier 50</direccion>
+        <dni>79259846-F</dni>
         <fechaNacimiento>1994-06-09</fechaNacimiento>
         <localidad>S/C de Tenerife</localidad>
         <nacionalidades denominacion="afgano"/>
         <nacionalidades denominacion="albano"/>
-        <nacionalidades denominacion="español"/>
-        <nombre>GabriMagic</nombre>
+        <nombre>Gabriel</nombre>
         <pais>España</pais>
     </personal>
     <titulo>
-        <denominacion>2º DAM</denominacion>
-        <desde>2016-10-03</desde>
-        <hasta>2016-12-21</hasta>
-        <organizador>IES DPM</organizador>
-    </titulo>
-    <titulo>
-        <denominacion>Fnatic</denominacion>
-        <desde>2016-11-07</desde>
-        <hasta>2016-12-08</hasta>
-        <organizador>Yo mismo</organizador>
+        <denominacion>Tecnico superior en DAM</denominacion>
+        <desde>2016-12-05</desde>
+        <hasta>2016-12-31</hasta>
+        <organizador>IES Perez Minik</organizador>
     </titulo>
 </cv>
